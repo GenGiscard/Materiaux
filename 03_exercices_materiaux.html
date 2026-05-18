@@ -730,6 +730,9 @@ header {
   gap: 10px;
   margin-bottom: 24px;
 }
+@media (max-width: 880px) {
+  .games-tabs { grid-template-columns: repeat(2, 1fr); }
+}
 .game-tab {
   background: var(--bg-card);
   border: 1px solid var(--line);
@@ -761,6 +764,349 @@ header {
 
 .game { display: none; }
 .game.active { display: block; animation: fadeIn 0.3s ease; }
+
+/* ====== TIR AUX SOLLICITATIONS (target) ====== */
+.target-game {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.target-stats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.target-stats strong { color: var(--copper); font-size: 16px; }
+.target-object {
+  background: var(--bg-soft);
+  border-radius: 14px;
+  padding: 24px;
+  margin: 16px auto;
+  max-width: 480px;
+}
+.target-object .obj-emoji { font-size: 64px; margin-bottom: 8px; }
+.target-object .obj-label {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.target-object .obj-context {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.1em;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+.target-cibles {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  max-width: 720px;
+  margin: 24px auto 0;
+}
+.cible {
+  background: var(--bg-elev);
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink);
+  transition: all 0.15s;
+  position: relative;
+}
+.cible:hover { background: var(--bg-card-hi); transform: scale(1.05); border-color: var(--copper); }
+.cible.ok { background: var(--green); color: white; border-color: var(--green); animation: pop 0.4s; }
+.cible.ko { background: var(--red); color: white; border-color: var(--red); animation: shake 0.3s; }
+@keyframes pop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+.target-feedback {
+  margin-top: 18px;
+  min-height: 24px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.target-feedback.ok { color: var(--green); font-weight: 600; }
+.target-feedback.ko { color: var(--red); font-weight: 600; }
+
+/* ====== MYSTÈRE MATÉRIAU (mystery) ====== */
+.mystery-game {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  max-width: 800px;
+  margin: 0 auto;
+}
+.mystery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.mystery-header strong { color: var(--copper); font-size: 16px; }
+.mystery-card {
+  background: linear-gradient(135deg, rgba(184,92,46,0.08), rgba(184,92,46,0.02));
+  border: 2px dashed var(--copper);
+  border-radius: 14px;
+  padding: 24px 28px;
+  margin-bottom: 18px;
+}
+.mystery-q {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 16px;
+}
+.mystery-hints {
+  display: grid;
+  gap: 10px;
+}
+.mystery-hint {
+  background: white;
+  border-left: 3px solid var(--copper);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--ink);
+  animation: fadeIn 0.4s ease;
+}
+.mystery-hint .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--copper);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-right: 8px;
+  font-weight: 700;
+}
+.mystery-answers {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 18px;
+}
+.mystery-ans {
+  background: var(--bg-soft);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 14px 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: center;
+  transition: all 0.15s;
+}
+.mystery-ans:hover { background: var(--bg-card-hi); border-color: var(--copper); }
+.mystery-ans.ok { background: var(--green); color: white; border-color: var(--green); }
+.mystery-ans.ko { background: var(--red); color: white; border-color: var(--red); }
+.mystery-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ====== LA MAISON (house) ====== */
+.house-game {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.house-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.house-svg-wrap {
+  background: var(--bg-soft);
+  border-radius: 12px;
+  padding: 18px;
+  position: sticky;
+  top: 90px;
+}
+.house-svg-wrap svg { display: block; width: 100%; height: auto; }
+.house-part {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.house-part:hover { opacity: 0.8; }
+.house-part.selected { stroke: var(--copper); stroke-width: 3; }
+.house-part.done { opacity: 1; }
+.house-part.empty { opacity: 0.4; stroke-dasharray: 6 4; }
+
+.house-question {
+  background: var(--bg-elev);
+}
+.house-stats {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+  display: flex;
+  gap: 18px;
+}
+.house-stats strong { color: var(--copper); font-size: 15px; }
+.house-prompt {
+  background: rgba(46,106,142,0.08);
+  border-left: 3px solid var(--steel);
+  padding: 14px 18px;
+  border-radius: 0 10px 10px 0;
+  font-size: 15px;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+.house-prompt strong { color: var(--steel); }
+.house-choices { display: grid; gap: 10px; }
+.house-choice {
+  background: var(--bg-soft);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.15s;
+}
+.house-choice:hover { background: var(--bg-card-hi); border-color: var(--line); }
+.house-choice.ok { background: rgba(91,160,136,0.15); border-color: var(--green); }
+.house-choice.ko { background: rgba(217,83,79,0.1); border-color: var(--red); }
+.house-choice .ic {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.house-choice .name {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 14px;
+}
+.house-choice .why {
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin-top: 2px;
+}
+.house-finished {
+  text-align: center;
+  padding: 30px;
+}
+.house-finished .big-score {
+  font-weight: 800;
+  font-size: 64px;
+  color: var(--copper);
+  line-height: 1;
+}
+.house-finished .big-score .out { font-size: 24px; color: var(--ink-mute); }
+
+/* ====== ÉCHELLE DE DURETÉ (hardness) ====== */
+.hardness-game {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  max-width: 760px;
+  margin: 0 auto;
+}
+.hardness-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+.hardness-header h3 { font-size: 20px; margin-bottom: 6px; }
+.hardness-header p { color: var(--ink-soft); font-size: 14px; }
+.hardness-scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.hardness-list {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  background: var(--bg-soft);
+  border-radius: 10px;
+}
+.hardness-item {
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: move;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.15s;
+  user-select: none;
+}
+.hardness-item.dragging { opacity: 0.4; }
+.hardness-item.over { border-color: var(--copper); background: var(--bg-card-hi); }
+.hardness-item.correct { background: rgba(91,160,136,0.1); border-color: var(--green); }
+.hardness-item.wrong { background: rgba(217,83,79,0.08); border-color: var(--red); }
+.hardness-rank {
+  background: var(--copper);
+  color: white;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  flex-shrink: 0;
+}
+.hardness-name { flex: 1; font-weight: 600; color: var(--ink); }
+.hardness-mohs {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-mute);
+}
+.hardness-handle {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--ink-mute);
+  font-size: 16px;
+}
+.hardness-feedback {
+  margin-top: 18px;
+  text-align: center;
+  min-height: 28px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.hardness-feedback.ok { color: var(--green); }
+.hardness-feedback.ko { color: var(--red); }
+.hardness-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 /* ====== MEMORY ====== */
 .memory-info {
@@ -1174,10 +1520,6 @@ header {
     <div class="step-sep"></div>
     <div class="step step-bonus" data-act="6"><span class="step-num">★</span>Jeux</div>
   </div>
-  <div class="score-badge">
-    <span class="label">Score</span>
-    <span class="value"><span id="scoreNow">0</span>/20</span>
-  </div>
 </header>
 
 <div class="container">
@@ -1418,6 +1760,26 @@ header {
         <div class="gt-name">Comparateur</div>
         <div class="gt-desc">Radar des propriétés</div>
       </div>
+      <div class="game-tab" data-game="target">
+        <div class="gt-icon">🎯</div>
+        <div class="gt-name">Tir aux sollicitations</div>
+        <div class="gt-desc">Vise la bonne cible</div>
+      </div>
+      <div class="game-tab" data-game="mystery">
+        <div class="gt-icon">🔍</div>
+        <div class="gt-name">Mystère matériau</div>
+        <div class="gt-desc">Devine avec des indices</div>
+      </div>
+      <div class="game-tab" data-game="house">
+        <div class="gt-icon">🏗️</div>
+        <div class="gt-name">La maison</div>
+        <div class="gt-desc">Choisis les matériaux</div>
+      </div>
+      <div class="game-tab" data-game="hardness">
+        <div class="gt-icon">🪜</div>
+        <div class="gt-name">Échelle de dureté</div>
+        <div class="gt-desc">Classe du tendre au dur</div>
+      </div>
     </div>
 
     <!-- JEU 1 : MEMORY -->
@@ -1514,6 +1876,104 @@ header {
           <div style="margin-top:14px;padding:14px;background:var(--bg-card);border:1px solid var(--line);border-radius:8px;font-size:13px;color:var(--ink-soft);line-height:1.5">
             <strong style="color:var(--steel)">Lecture :</strong> chaque axe représente une propriété notée de 1 (faible) à 5 (excellent). Plus la forme est large sur un axe, meilleur est le matériau pour cette propriété.
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JEU 5 : TIR AUX SOLLICITATIONS -->
+    <div class="game" data-g="target">
+      <div class="target-game">
+        <div class="target-stats">
+          <div>Question : <strong><span id="tgtQ">1</span> / 10</strong></div>
+          <div>Score : <strong id="tgtScore">0</strong></div>
+          <div>Combo : <strong id="tgtCombo">0</strong> ✦</div>
+        </div>
+        <div class="target-object" id="tgtObject">
+          <div class="obj-emoji">🎯</div>
+          <div class="obj-label">Clique sur la sollicitation correcte</div>
+          <div class="obj-context">Le combo monte si tu enchaînes les bonnes réponses</div>
+        </div>
+        <div class="target-cibles" id="tgtCibles"></div>
+        <div class="target-feedback" id="tgtFeedback">Démarre la partie pour commencer</div>
+        <div style="margin-top:16px">
+          <button class="btn" id="tgtStart">▶ Démarrer la partie</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JEU 6 : MYSTÈRE MATÉRIAU -->
+    <div class="game" data-g="mystery">
+      <div class="mystery-game">
+        <div class="mystery-header">
+          <div>Mystère <strong><span id="mysQ">1</span> / 5</strong></div>
+          <div>Score total : <strong id="mysScore">0</strong></div>
+        </div>
+        <div class="mystery-card">
+          <div class="mystery-q">🔍 Quelle est la famille de ce matériau mystère ?</div>
+          <div class="mystery-hints" id="mysHints"></div>
+        </div>
+        <div class="mystery-answers" id="mysAnswers">
+          <div class="mystery-ans" data-fam="metal">⚙ Métaux</div>
+          <div class="mystery-ans" data-fam="poly">🧴 Polymères</div>
+          <div class="mystery-ans" data-fam="cera">🏺 Céramiques</div>
+          <div class="mystery-ans" data-fam="comp">🔧 Composites</div>
+          <div class="mystery-ans" data-fam="orga">🌿 Organiques</div>
+        </div>
+        <div class="mystery-actions">
+          <button class="btn btn-ghost" id="mysHintBtn">💡 Indice suivant (−1 point)</button>
+          <button class="btn" id="mysStart">▶ Démarrer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JEU 7 : LA MAISON -->
+    <div class="game" data-g="house">
+      <div class="house-game">
+        <div class="house-layout">
+          <div class="house-svg-wrap">
+            <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" id="houseSvg">
+              <!-- Sol -->
+              <rect x="0" y="320" width="400" height="40" fill="#8B6F47" opacity="0.4"/>
+              <!-- Toit -->
+              <polygon points="60,160 200,60 340,160" class="house-part empty" data-part="toit" fill="#E0D6C2" stroke="#4A5A6B" stroke-width="2" opacity="0.4"/>
+              <!-- Murs -->
+              <rect x="80" y="160" width="240" height="160" class="house-part empty" data-part="murs" fill="#E0D6C2" stroke="#4A5A6B" stroke-width="2" opacity="0.4"/>
+              <!-- Fenêtre -->
+              <rect x="110" y="200" width="60" height="60" class="house-part empty" data-part="fenetre" fill="#E0D6C2" stroke="#4A5A6B" stroke-width="2" opacity="0.4"/>
+              <line x1="140" y1="200" x2="140" y2="260" stroke="#4A5A6B" stroke-width="1"/>
+              <line x1="110" y1="230" x2="170" y2="230" stroke="#4A5A6B" stroke-width="1"/>
+              <!-- Porte -->
+              <rect x="220" y="220" width="60" height="100" class="house-part empty" data-part="porte" fill="#E0D6C2" stroke="#4A5A6B" stroke-width="2" opacity="0.4"/>
+              <circle cx="265" cy="270" r="2" fill="#4A5A6B"/>
+              <!-- Fondations -->
+              <rect x="60" y="310" width="280" height="14" class="house-part empty" data-part="fondations" fill="#E0D6C2" stroke="#4A5A6B" stroke-width="2" opacity="0.4"/>
+              <!-- Câble (poteau électrique) -->
+              <line x1="370" y1="320" x2="370" y2="100" stroke="#4A5A6B" stroke-width="3"/>
+              <line x1="370" y1="120" x2="200" y2="150" class="house-part empty" data-part="cable" stroke="#7B8A99" stroke-width="3" opacity="0.4"/>
+            </svg>
+            <div style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:0.15em;text-transform:uppercase;margin-top:10px">Ta maison se construit avec tes choix</div>
+          </div>
+          <div class="house-question" id="houseQ"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JEU 8 : ÉCHELLE DE DURETÉ -->
+    <div class="game" data-g="hardness">
+      <div class="hardness-game">
+        <div class="hardness-header">
+          <h3>🪜 L'échelle de dureté</h3>
+          <p>Glisse les matériaux pour les classer du plus tendre (en haut) au plus dur (en bas), selon l'échelle de Mohs.</p>
+        </div>
+        <div class="hardness-scale-labels">
+          <span>▲ Plus tendre · Mohs 1</span>
+          <span>Plus dur · Mohs 10 ▼</span>
+        </div>
+        <div class="hardness-list" id="hardList"></div>
+        <div class="hardness-feedback" id="hardFeedback"></div>
+        <div class="hardness-actions">
+          <button class="btn" id="hardCheck">✓ Vérifier mon classement</button>
+          <button class="btn btn-ghost" id="hardReset">↻ Mélanger</button>
         </div>
       </div>
     </div>
@@ -1675,8 +2135,6 @@ const unlocked = [true, false, false, false, false, false, false];
 const REQUIRED_PCT = 0.8; // 80% pour débloquer la suivante
 
 function updateScoreDisplay() {
-  const total = scores.reduce((a, b) => a + b, 0);
-  document.getElementById('scoreNow').textContent = total;
   // Steps
   document.querySelectorAll('.step').forEach(s => {
     const act = parseInt(s.dataset.act);
@@ -2509,6 +2967,485 @@ function drawRadar() {
   }).join('');
 }
 
+// ============ JEU 5 : TIR AUX SOLLICITATIONS ============
+const tgtObjects = [
+  { emoji: '🔗', label: 'Câble d\u2019ascenseur', ctx: 'Tient la cabine et son poids', correct: 'traction' },
+  { emoji: '🏛', label: 'Pilier de bâtiment', ctx: 'Supporte le toit', correct: 'compression' },
+  { emoji: '📚', label: 'Étagère chargée de livres', ctx: 'Supportée à deux extrémités', correct: 'flexion' },
+  { emoji: '🔩', label: 'Vis qu\u2019on serre', ctx: 'Tournée par un tournevis', correct: 'torsion' },
+  { emoji: '✂️', label: 'Papier coupé par les ciseaux', ctx: 'Entre les deux lames', correct: 'cisaillement' },
+  { emoji: '🪢', label: 'Corde à linge tendue', ctx: 'Étirée entre deux poteaux', correct: 'traction' },
+  { emoji: '🦴', label: 'Plongeoir d\u2019une piscine', ctx: 'On saute au bout', correct: 'flexion' },
+  { emoji: '🔧', label: 'Clé qui force', ctx: 'Sur une serrure bloquée', correct: 'torsion' },
+  { emoji: '🪜', label: 'Pied de chaise', ctx: 'Sous le poids d\u2019un élève', correct: 'compression' },
+  { emoji: '🪚', label: 'Lame de scie', ctx: 'Qui sépare du bois', correct: 'cisaillement' },
+  { emoji: '🌉', label: 'Pont suspendu', ctx: 'Les câbles principaux', correct: 'traction' },
+  { emoji: '⚙', label: 'Arbre de transmission', ctx: 'Tourne entre moteur et roues', correct: 'torsion' }
+];
+const sollicLabels = { traction: 'Traction', compression: 'Compression', flexion: 'Flexion', torsion: 'Torsion', cisaillement: 'Cisaillement' };
+
+let tgtState = { q: 0, score: 0, combo: 0, queue: [], active: false };
+
+function startTarget() {
+  tgtState = { q: 0, score: 0, combo: 0, active: true };
+  // Mélanger les objets et en prendre 10
+  const shuffled = [...tgtObjects].sort(() => Math.random() - 0.5).slice(0, 10);
+  tgtState.queue = shuffled;
+  document.getElementById('tgtStart').textContent = '↻ Recommencer';
+  nextTargetQuestion();
+}
+
+function nextTargetQuestion() {
+  const obj = tgtState.queue[tgtState.q];
+  if (!obj) {
+    finishTarget();
+    return;
+  }
+  document.getElementById('tgtQ').textContent = tgtState.q + 1;
+  document.getElementById('tgtScore').textContent = tgtState.score;
+  document.getElementById('tgtCombo').textContent = tgtState.combo;
+  const objEl = document.getElementById('tgtObject');
+  objEl.innerHTML = '<div class="obj-emoji">' + obj.emoji + '</div>' +
+    '<div class="obj-label">' + obj.label + '</div>' +
+    '<div class="obj-context">' + obj.ctx + '</div>';
+  // Construire les cibles dans un ordre mélangé
+  const sollics = ['traction', 'compression', 'flexion', 'torsion', 'cisaillement'].sort(() => Math.random() - 0.5);
+  const cibles = document.getElementById('tgtCibles');
+  cibles.innerHTML = sollics.map(s => '<div class="cible" data-s="' + s + '">' + sollicLabels[s] + '</div>').join('');
+  document.getElementById('tgtFeedback').className = 'target-feedback';
+  document.getElementById('tgtFeedback').textContent = 'À toi de jouer !';
+  cibles.querySelectorAll('.cible').forEach(c => {
+    c.addEventListener('click', () => handleTargetClick(c.dataset.s, c, obj));
+  });
+}
+
+function handleTargetClick(choix, el, obj) {
+  if (el.classList.contains('ok') || el.classList.contains('ko')) return;
+  const fb = document.getElementById('tgtFeedback');
+  if (choix === obj.correct) {
+    el.classList.add('ok');
+    const bonus = 1 + Math.floor(tgtState.combo / 3); // bonus combo tous les 3
+    tgtState.score += bonus;
+    tgtState.combo++;
+    fb.className = 'target-feedback ok';
+    fb.textContent = '✓ Bien joué ! +' + bonus + ' point' + (bonus > 1 ? 's' : '') + ' (combo ×' + tgtState.combo + ')';
+  } else {
+    el.classList.add('ko');
+    // Marquer la bonne aussi
+    document.querySelector('.cible[data-s="' + obj.correct + '"]').classList.add('ok');
+    tgtState.combo = 0;
+    fb.className = 'target-feedback ko';
+    fb.textContent = '✗ Raté — la bonne réponse était : ' + sollicLabels[obj.correct];
+  }
+  document.getElementById('tgtScore').textContent = tgtState.score;
+  document.getElementById('tgtCombo').textContent = tgtState.combo;
+  setTimeout(() => {
+    tgtState.q++;
+    nextTargetQuestion();
+  }, 1400);
+}
+
+function finishTarget() {
+  tgtState.active = false;
+  document.getElementById('tgtObject').innerHTML =
+    '<div class="obj-emoji">🏆</div>' +
+    '<div class="obj-label">Partie terminée · ' + tgtState.score + ' points</div>' +
+    '<div class="obj-context">' +
+      (tgtState.score >= 13 ? 'Excellent ! Tu maîtrises les sollicitations.' :
+       tgtState.score >= 8 ? 'Bon score. Quelques cas à revoir.' :
+       'À retravailler avec le cours.') +
+    '</div>';
+  document.getElementById('tgtCibles').innerHTML = '';
+  document.getElementById('tgtFeedback').textContent = '';
+}
+
+document.getElementById('tgtStart').addEventListener('click', startTarget);
+
+// ============ JEU 6 : MYSTÈRE MATÉRIAU ============
+const mysteries = [
+  {
+    fam: 'metal',
+    hints: [
+      'Je suis très solide et je peux supporter de grosses charges.',
+      'Je conduis très bien l\u2019électricité et la chaleur.',
+      'On me trouve sous forme d\u2019alliages comme l\u2019acier ou l\u2019inox.',
+      'Je suis brillant et froid au toucher.',
+      'On me trouve dans les couverts, casseroles et fils électriques.'
+    ]
+  },
+  {
+    fam: 'poly',
+    hints: [
+      'Je suis fabriqué à partir du pétrole.',
+      'Je suis souple et léger, je peux être moulé facilement.',
+      'Je mets très longtemps à me décomposer dans la nature.',
+      'PE, PP, PVC, PET sont des exemples de mes variantes.',
+      'On me trouve dans les bouteilles d\u2019eau et les sacs de courses.'
+    ]
+  },
+  {
+    fam: 'cera',
+    hints: [
+      'Je suis cuit à très haute température (souvent +1000°C).',
+      'Je suis très dur mais je casse net si on me fait tomber.',
+      'Je suis un excellent isolant électrique et thermique.',
+      'Le sable et l\u2019argile sont parmi mes matières premières.',
+      'On me trouve dans les vitres, assiettes et briques.'
+    ]
+  },
+  {
+    fam: 'comp',
+    hints: [
+      'Je suis créé en mélangeant deux matériaux différents.',
+      'Mes deux ingrédients se complètent : l\u2019un résistant, l\u2019autre rigide.',
+      'Je suis léger ET résistant — parfait pour la course.',
+      'Le béton armé et la fibre de carbone font partie de ma famille.',
+      'On me trouve dans les cadres de vélo de course et les coques de bateau.'
+    ]
+  },
+  {
+    fam: 'orga',
+    hints: [
+      'Je viens directement du vivant : plantes ou animaux.',
+      'La nature me fabrique sans usine.',
+      'Je suis biodégradable, je retourne à la terre quand on me jette.',
+      'Le bois, le coton, le cuir, la laine font partie de ma famille.',
+      'L\u2019humain m\u2019utilise depuis l\u2019âge de pierre.'
+    ]
+  }
+];
+const famNames = { metal: 'Métaux', poly: 'Polymères', cera: 'Céramiques', comp: 'Composites', orga: 'Organiques' };
+
+let mysState = { q: 0, score: 0, hintsShown: 0, current: null, queue: [], finished: false };
+
+function startMystery() {
+  mysState = { q: 0, score: 0, hintsShown: 0, finished: false };
+  mysState.queue = [...mysteries].sort(() => Math.random() - 0.5);
+  document.getElementById('mysStart').textContent = '↻ Recommencer';
+  nextMystery();
+}
+
+function nextMystery() {
+  if (mysState.q >= mysState.queue.length) {
+    finishMystery();
+    return;
+  }
+  mysState.current = mysState.queue[mysState.q];
+  mysState.hintsShown = 1;
+  document.getElementById('mysQ').textContent = mysState.q + 1;
+  document.getElementById('mysScore').textContent = mysState.score;
+  renderMysteryHints();
+  document.querySelectorAll('.mystery-ans').forEach(el => {
+    el.classList.remove('ok', 'ko');
+  });
+  document.getElementById('mysHintBtn').disabled = false;
+  document.getElementById('mysHintBtn').textContent = '💡 Indice suivant (−1 point)';
+}
+
+function renderMysteryHints() {
+  const container = document.getElementById('mysHints');
+  container.innerHTML = '';
+  for (let i = 0; i < mysState.hintsShown; i++) {
+    container.innerHTML += '<div class="mystery-hint"><span class="num">Indice ' + (i + 1) + '</span>' + mysState.current.hints[i] + '</div>';
+  }
+}
+
+document.getElementById('mysHintBtn').addEventListener('click', () => {
+  if (mysState.hintsShown < 5) {
+    mysState.hintsShown++;
+    renderMysteryHints();
+    if (mysState.hintsShown >= 5) {
+      document.getElementById('mysHintBtn').disabled = true;
+      document.getElementById('mysHintBtn').textContent = '— Tous les indices sont visibles —';
+    }
+  }
+});
+
+document.getElementById('mysStart').addEventListener('click', startMystery);
+
+document.querySelectorAll('.mystery-ans').forEach(el => {
+  el.addEventListener('click', () => {
+    if (!mysState.current || mysState.finished) return;
+    if (el.classList.contains('ok') || el.classList.contains('ko')) return;
+    const fam = el.dataset.fam;
+    if (fam === mysState.current.fam) {
+      el.classList.add('ok');
+      const points = Math.max(1, 6 - mysState.hintsShown); // 5 indices : 1pt, 1 indice : 5pts
+      mysState.score += points;
+      document.getElementById('mysScore').textContent = mysState.score;
+    } else {
+      el.classList.add('ko');
+      // Révéler la bonne
+      document.querySelector('.mystery-ans[data-fam="' + mysState.current.fam + '"]').classList.add('ok');
+    }
+    setTimeout(() => {
+      mysState.q++;
+      nextMystery();
+    }, 1600);
+  });
+});
+
+function finishMystery() {
+  mysState.finished = true;
+  document.getElementById('mysHints').innerHTML =
+    '<div style="text-align:center;padding:30px"><div style="font-size:48px">🏆</div>' +
+    '<div style="font-weight:700;font-size:22px;margin-top:10px;color:var(--copper)">' + mysState.score + ' points</div>' +
+    '<div style="color:var(--ink-soft);margin-top:8px">' +
+      (mysState.score >= 18 ? 'Bravo, tu reconnais vite chaque famille !' :
+       mysState.score >= 10 ? 'Bon travail. Encore quelques détails à revoir.' :
+       'À retravailler avec le cours.') +
+    '</div></div>';
+  document.querySelector('.mystery-q').textContent = '🏆 Partie terminée';
+  document.getElementById('mysHintBtn').disabled = true;
+}
+
+// ============ JEU 7 : LA MAISON ============
+const housePartsData = [
+  {
+    id: 'fondations',
+    label: 'Fondations',
+    prompt: 'Les fondations supportent tout le poids de la maison. Elles sont en <strong>compression</strong> permanente. Quel matériau choisis-tu ?',
+    color: '#7B8A99',
+    choices: [
+      { id: 'beton', ok: true,  ic: '🪨', name: 'Béton armé', why: 'Excellent en compression et durable' },
+      { id: 'bois',  ok: false, ic: '🪵', name: 'Bois', why: 'Pourrit avec l\u2019humidité du sol' },
+      { id: 'plast', ok: false, ic: '🧴', name: 'Plastique PE', why: 'S\u2019écraserait sous le poids' }
+    ]
+  },
+  {
+    id: 'murs',
+    label: 'Murs',
+    prompt: 'Les murs portent le toit et doivent être isolants. Quel matériau pour les murs porteurs ?',
+    color: '#D4B896',
+    choices: [
+      { id: 'parp',  ok: true,  ic: '🧱', name: 'Brique ou parpaing', why: 'Isolant, solide, économique' },
+      { id: 'verre', ok: false, ic: '🪟', name: 'Verre', why: 'Trop fragile et non isolant' },
+      { id: 'tole',  ok: false, ic: '🔩', name: 'Tôle d\u2019acier', why: 'Mauvaise isolation thermique' }
+    ]
+  },
+  {
+    id: 'toit',
+    label: 'Toit',
+    prompt: 'Le toit doit être <strong>léger</strong>, étanche à la pluie et résister au vent. Quel matériau ?',
+    color: '#B85C2E',
+    choices: [
+      { id: 'tuiles', ok: true,  ic: '🏠', name: 'Tuiles en terre cuite', why: 'Étanches, légères, durables' },
+      { id: 'beton',  ok: false, ic: '🪨', name: 'Dalle de béton', why: 'Beaucoup trop lourde pour le toit' },
+      { id: 'carton', ok: false, ic: '📦', name: 'Carton', why: 'Pas étanche, durerait quelques jours' }
+    ]
+  },
+  {
+    id: 'fenetre',
+    label: 'Fenêtre',
+    prompt: 'Une fenêtre doit laisser passer la <strong>lumière</strong> sans laisser passer le vent ni la pluie. Quel matériau ?',
+    color: '#A3CDDA',
+    choices: [
+      { id: 'verre', ok: true,  ic: '🪟', name: 'Verre (double vitrage)', why: 'Transparent et isolant' },
+      { id: 'bois',  ok: false, ic: '🪵', name: 'Planche de bois', why: 'Opaque, on n\u2019y verrait rien' },
+      { id: 'metal', ok: false, ic: '🔩', name: 'Plaque d\u2019acier', why: 'Opaque et froide en hiver' }
+    ]
+  },
+  {
+    id: 'porte',
+    label: 'Porte',
+    prompt: 'La porte doit être <strong>solide</strong> (sécurité) et <strong>chaleureuse</strong>. Quel matériau classique ?',
+    color: '#8B6F47',
+    choices: [
+      { id: 'bois',  ok: true,  ic: '🪵', name: 'Bois massif', why: 'Solide, isolant, esthétique' },
+      { id: 'verre', ok: false, ic: '🪟', name: 'Verre simple', why: 'Trop fragile pour une porte' },
+      { id: 'plast', ok: false, ic: '🧴', name: 'Plastique fin', why: 'Pas assez sécurisant' }
+    ]
+  },
+  {
+    id: 'cable',
+    label: 'Câble électrique',
+    prompt: 'Le câble qui amène l\u2019électricité à la maison doit <strong>conduire le courant</strong> sur de longues distances. Quel matériau pour l\u2019âme du câble ?',
+    color: '#D67D3E',
+    choices: [
+      { id: 'cuivre', ok: true,  ic: '⚙', name: 'Cuivre', why: 'Excellent conducteur électrique' },
+      { id: 'pvc',    ok: false, ic: '🧴', name: 'PVC', why: 'Isole le courant (gaine extérieure seulement)' },
+      { id: 'bois',   ok: false, ic: '🪵', name: 'Bois', why: 'N\u2019est pas conducteur' }
+    ]
+  }
+];
+
+let houseState = { idx: 0, score: 0, done: {} };
+
+function renderHouseStep() {
+  if (houseState.idx >= housePartsData.length) {
+    renderHouseFinished();
+    return;
+  }
+  const step = housePartsData[houseState.idx];
+  const q = document.getElementById('houseQ');
+  q.innerHTML =
+    '<div class="house-stats">' +
+      '<div>Étape <strong>' + (houseState.idx + 1) + ' / ' + housePartsData.length + '</strong></div>' +
+      '<div>Score : <strong>' + houseState.score + '</strong></div>' +
+    '</div>' +
+    '<div class="house-prompt"><strong>' + step.label + '</strong> · ' + step.prompt + '</div>' +
+    '<div class="house-choices">' +
+      step.choices.map(c =>
+        '<div class="house-choice" data-cid="' + c.id + '">' +
+          '<div class="ic">' + c.ic + '</div>' +
+          '<div><div class="name">' + c.name + '</div><div class="why" style="display:none">' + c.why + '</div></div>' +
+        '</div>'
+      ).join('') +
+    '</div>';
+
+  q.querySelectorAll('.house-choice').forEach(el => {
+    el.addEventListener('click', () => {
+      if (el.classList.contains('ok') || el.classList.contains('ko')) return;
+      const choice = step.choices.find(c => c.id === el.dataset.cid);
+      if (choice.ok) {
+        el.classList.add('ok');
+        houseState.score++;
+        // Colorer la pièce dans le SVG
+        const part = document.querySelector('.house-part[data-part="' + step.id + '"]');
+        if (part) {
+          part.setAttribute('fill', step.color);
+          part.classList.remove('empty');
+          part.classList.add('done');
+          part.style.opacity = 1;
+        }
+      } else {
+        el.classList.add('ko');
+        // Marquer aussi la bonne
+        const okChoice = step.choices.find(c => c.ok);
+        q.querySelector('.house-choice[data-cid="' + okChoice.id + '"]').classList.add('ok');
+      }
+      // Révéler les explications
+      q.querySelectorAll('.why').forEach(w => w.style.display = '');
+      setTimeout(() => {
+        houseState.idx++;
+        renderHouseStep();
+      }, 1800);
+    });
+  });
+}
+
+function renderHouseFinished() {
+  const q = document.getElementById('houseQ');
+  q.innerHTML =
+    '<div class="house-finished">' +
+      '<div class="big-score">' + houseState.score + '<span class="out"> / ' + housePartsData.length + '</span></div>' +
+      '<div style="margin-top:10px;font-family:JetBrains Mono;font-size:11px;color:var(--ink-mute);letter-spacing:0.2em;text-transform:uppercase">Maison construite</div>' +
+      '<p style="margin-top:18px;color:var(--ink-soft);font-size:14px">' +
+        (houseState.score === housePartsData.length ? 'Sans-faute ! Tu es un vrai architecte.' :
+         houseState.score >= 4 ? 'Belle maison. Quelques choix à revoir.' :
+         'La maison tient à peine. Reprends le cours et recommence !') +
+      '</p>' +
+      '<button class="btn" style="margin-top:18px" onclick="startHouse()">↻ Reconstruire</button>' +
+    '</div>';
+}
+
+function startHouse() {
+  houseState = { idx: 0, score: 0, done: {} };
+  // Reset SVG
+  document.querySelectorAll('.house-part').forEach(p => {
+    p.setAttribute('fill', '#E0D6C2');
+    p.classList.remove('done');
+    p.classList.add('empty');
+    p.style.opacity = 0.4;
+  });
+  renderHouseStep();
+}
+
+// ============ JEU 8 : ÉCHELLE DE DURETÉ ============
+const hardMats = [
+  { id: 'talc',     name: 'Talc',                mohs: 1 },
+  { id: 'cuivre',   name: 'Cuivre',              mohs: 3 },
+  { id: 'verre',    name: 'Verre',               mohs: 5 },
+  { id: 'acier',    name: 'Acier trempé',        mohs: 7 },
+  { id: 'corindon', name: 'Corindon',            mohs: 9 },
+  { id: 'diamant',  name: 'Diamant',             mohs: 10 }
+];
+
+let hardOrder = [];
+
+function buildHardness() {
+  // Mélange initial
+  hardOrder = [...hardMats].sort(() => Math.random() - 0.5);
+  renderHardness();
+  document.getElementById('hardFeedback').textContent = '';
+  document.getElementById('hardFeedback').className = 'hardness-feedback';
+}
+
+function renderHardness() {
+  const list = document.getElementById('hardList');
+  list.innerHTML = hardOrder.map((m, i) =>
+    '<div class="hardness-item" draggable="true" data-mid="' + m.id + '">' +
+      '<div class="hardness-rank">' + (i + 1) + '</div>' +
+      '<div class="hardness-name">' + m.name + '</div>' +
+      '<div class="hardness-mohs"></div>' +
+      '<div class="hardness-handle">⋮⋮</div>' +
+    '</div>'
+  ).join('');
+  setupHardnessDrag();
+}
+
+function setupHardnessDrag() {
+  let dragSrc = null;
+  document.querySelectorAll('.hardness-item').forEach(el => {
+    el.addEventListener('dragstart', e => {
+      dragSrc = el;
+      el.classList.add('dragging');
+    });
+    el.addEventListener('dragend', () => el.classList.remove('dragging'));
+    el.addEventListener('dragover', e => {
+      e.preventDefault();
+      el.classList.add('over');
+    });
+    el.addEventListener('dragleave', () => el.classList.remove('over'));
+    el.addEventListener('drop', e => {
+      e.preventDefault();
+      el.classList.remove('over');
+      if (dragSrc && dragSrc !== el) {
+        const list = document.getElementById('hardList');
+        const items = Array.from(list.children);
+        const from = items.indexOf(dragSrc);
+        const to = items.indexOf(el);
+        if (from < to) list.insertBefore(dragSrc, el.nextSibling);
+        else list.insertBefore(dragSrc, el);
+        // Sauvegarder l'ordre
+        hardOrder = Array.from(list.children).map(c => hardMats.find(m => m.id === c.dataset.mid));
+        // Renuméroter
+        Array.from(list.children).forEach((c, i) => {
+          c.querySelector('.hardness-rank').textContent = i + 1;
+        });
+      }
+    });
+  });
+}
+
+document.getElementById('hardCheck').addEventListener('click', () => {
+  const correctOrder = [...hardMats].sort((a, b) => a.mohs - b.mohs);
+  let correct = 0;
+  hardOrder.forEach((m, i) => {
+    const el = document.querySelector('.hardness-item[data-mid="' + m.id + '"]');
+    if (m.id === correctOrder[i].id) {
+      el.classList.add('correct');
+      el.classList.remove('wrong');
+      correct++;
+    } else {
+      el.classList.add('wrong');
+      el.classList.remove('correct');
+    }
+    // Afficher la valeur Mohs réelle
+    el.querySelector('.hardness-mohs').textContent = 'Mohs ' + m.mohs;
+  });
+  const fb = document.getElementById('hardFeedback');
+  if (correct === hardMats.length) {
+    fb.className = 'hardness-feedback ok';
+    fb.textContent = '✓ Parfait ! Tu as bien classé les 6 matériaux.';
+  } else {
+    fb.className = 'hardness-feedback ko';
+    fb.textContent = correct + ' / ' + hardMats.length + ' bien placés. Reprends et essaie encore !';
+  }
+});
+
+document.getElementById('hardReset').addEventListener('click', buildHardness);
+
 // ============ INIT ============
 initAct1();
 initAct2();
@@ -2517,8 +3454,9 @@ initAct4();
 buildMemory();
 initSim();
 initCmp();
+buildHardness();
+startHouse();
 updateScoreDisplay();
-
 </script>
 
 </body>
