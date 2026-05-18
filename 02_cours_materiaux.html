@@ -335,7 +335,7 @@ h3 {
 }
 .zoom-canvas canvas { display: block; width: 100%; height: 100%; }
 .canvas-caption {
-  position: absolute; bottom: 14px; left: 14px; right: 14px;
+  position: absolute; bottom: 14px; left: 14px; right: 168px;
   background: rgba(255,255,255,0.96);
   padding: 12px 16px;
   border-radius: 8px;
@@ -378,8 +378,55 @@ h3 {
   border-radius: 50%;
   background: var(--line);
   transition: all 0.3s;
+  cursor: pointer;
 }
+.phase-dot:hover { background: var(--copper-soft); transform: scale(1.2); }
 .phase-dot.active { background: var(--copper); transform: scale(1.3); }
+
+.phase-nav {
+  position: absolute; bottom: 14px; right: 14px;
+  display: flex;
+  gap: 6px;
+  background: rgba(255,255,255,0.96);
+  padding: 6px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 8px rgba(26,35,50,0.06);
+}
+.phase-btn {
+  width: 34px; height: 34px;
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--copper);
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.12s;
+}
+.phase-btn:hover {
+  background: var(--copper);
+  color: white;
+  border-color: var(--copper);
+}
+.phase-btn.auto {
+  width: auto;
+  padding: 0 12px;
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.phase-btn.auto.active {
+  background: var(--copper);
+  color: white;
+  border-color: var(--copper);
+}
 
 .zoom-content h2 { font-size: 44px; margin-bottom: 6px; }
 .zoom-content .subtitle {
@@ -431,6 +478,91 @@ h3 {
   color: var(--ink);
   font-weight: 600;
   font-size: 14px;
+}
+
+/* ============= BLOC EXPLICATIF PÉDAGOGIQUE ============= */
+.explain-block {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 32px;
+}
+.explain-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px;
+  position: relative;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.explain-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--c, var(--copper));
+  border-radius: 12px 12px 0 0;
+}
+.explain-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.explain-ic {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: var(--ic-bg, rgba(184,92,46,0.12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+.explain-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--c, var(--copper));
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.explain-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 4px;
+}
+.explain-card p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  flex: 1;
+}
+.explain-card p strong { color: var(--ink); }
+.explain-card ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+.explain-card li {
+  font-size: 14px;
+  color: var(--ink);
+  padding: 8px 12px;
+  background: var(--bg-soft);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.explain-card li::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c, var(--copper));
+  flex-shrink: 0;
 }
 
 /* ============= SLIDE 8 — 4 PROPRIETES ============= */
@@ -550,6 +682,186 @@ h3 {
 }
 .demo-btn:hover { background: var(--copper-soft); transform: translateY(-1px); }
 
+/* ============= SLIDE ÉLASTIQUE vs PLASTIQUE ============= */
+.elastoplast-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+.ep-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.ep-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--ep-c);
+}
+.ep-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 14px;
+}
+.ep-ic {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--ep-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.ep-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ep-c);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.ep-card h3 {
+  font-size: 24px;
+  color: var(--ink);
+  font-weight: 700;
+}
+.ep-canvas {
+  background: var(--bg-soft);
+  border-radius: 10px;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.ep-canvas canvas { display: block; width: 100%; height: 100%; }
+.ep-conclusion {
+  background: var(--bg-soft);
+  border-left: 3px solid var(--ep-c);
+  padding: 12px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.ep-conclusion strong { color: var(--ep-c); }
+.ep-examples {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ep-examples .tag {
+  padding: 5px 11px;
+  font-size: 11px;
+}
+
+.ep-card.elastic { --ep-c: #5BA088; --ep-bg: rgba(91,160,136,0.15); }
+.ep-card.plastic { --ep-c: #B85C2E; --ep-bg: rgba(184,92,46,0.15); }
+
+.ep-summary {
+  margin-top: 24px;
+  background: rgba(46,106,142,0.08);
+  border: 1px solid var(--steel);
+  border-radius: 12px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.ep-summary .icon {
+  width: 44px; height: 44px;
+  background: var(--steel);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.ep-summary p {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.ep-summary strong { color: var(--steel); }
+
+/* ============= SLIDE COURBE σ-ε ============= */
+.curve-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  margin-top: 14px;
+}
+.curve-canvas-wrap {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px;
+  position: relative;
+  box-shadow: var(--shadow);
+  min-height: 440px;
+}
+.curve-canvas-wrap canvas { display: block; width: 100%; height: 100%; }
+.curve-info {
+  display: flex; flex-direction: column; gap: 12px;
+}
+.curve-zone {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 18px;
+  border-left: 4px solid var(--z-c);
+}
+.curve-zone-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--z-c);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.curve-zone h4 {
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.curve-zone p {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.curve-zone.z1 { --z-c: #5BA088; }
+.curve-zone.z2 { --z-c: #C9931E; }
+.curve-zone.z3 { --z-c: #B85C2E; }
+.curve-zone.z4 { --z-c: #D9534F; }
+
+.curve-controls {
+  margin-top: 14px;
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+}
+.curve-mat-btn {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 13px;
+  color: var(--ink-soft);
+  transition: all 0.15s;
+}
+.curve-mat-btn:hover { background: var(--bg-soft); color: var(--ink); }
+.curve-mat-btn.active {
+  background: var(--copper);
+  color: white;
+  border-color: var(--copper);
+}
+
 /* ============= SLIDE SOLLICITATIONS ============= */
 .solli-grid {
   display: grid;
@@ -607,6 +919,67 @@ h3 {
   border-top: 1px dashed var(--line);
   text-align: center;
 }
+
+/* ============= SLIDE DÉTAIL SOLLICITATION ============= */
+.solli-detail {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 28px;
+  margin-top: 14px;
+  align-items: center;
+}
+.solli-big-canvas {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  height: 380px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.solli-big-canvas canvas { display: block; width: 100%; height: 100%; }
+.solli-info h2 {
+  font-size: 44px;
+  margin-bottom: 6px;
+}
+.solli-info .subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-mute);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.solli-formula {
+  background: var(--bg-soft);
+  border-left: 3px solid var(--copper);
+  padding: 12px 16px;
+  margin-top: 16px;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.solli-formula strong { color: var(--copper); font-weight: 700; }
+.solli-formula code {
+  font-family: 'JetBrains Mono', monospace;
+  background: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  font-size: 13px;
+}
+.solli-materials {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: rgba(46,106,142,0.08);
+  border-left: 3px solid var(--steel);
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.solli-materials strong { color: var(--steel); }
 
 /* ============= SLIDE REPARABILITE ============= */
 .repar-hero {
@@ -892,11 +1265,18 @@ h3 {
     <div class="module-title">Module 2 — Propriétés</div>
     <div class="nav-item" data-target="s8"><span class="nav-num">08</span><span>4 catégories</span></div>
     <div class="nav-item" data-target="s9"><span class="nav-num">09</span><span>Démo résistance</span></div>
-    <div class="nav-item" data-target="s9b"><span class="nav-num">10</span><span>5 sollicitations</span></div>
-    <div class="nav-item" data-target="s10"><span class="nav-num">11</span><span>Casque vélo</span></div>
-    <div class="nav-item" data-target="s11"><span class="nav-num">12</span><span>Environnement</span></div>
-    <div class="nav-item" data-target="s11b"><span class="nav-num">13</span><span>Réparabilité</span></div>
-    <div class="nav-item" data-target="s12"><span class="nav-num">14</span><span>Bilan</span></div>
+    <div class="nav-item" data-target="s9c"><span class="nav-num">10</span><span>Élastique / plastique</span></div>
+    <div class="nav-item" data-target="s9d"><span class="nav-num">11</span><span>Courbe σ-ε</span></div>
+    <div class="nav-item" data-target="s9b"><span class="nav-num">12</span><span>5 sollicitations</span></div>
+    <div class="nav-item" data-target="s9b1"><span class="nav-num">13</span><span>· Traction</span></div>
+    <div class="nav-item" data-target="s9b2"><span class="nav-num">14</span><span>· Compression</span></div>
+    <div class="nav-item" data-target="s9b3"><span class="nav-num">15</span><span>· Flexion</span></div>
+    <div class="nav-item" data-target="s9b4"><span class="nav-num">16</span><span>· Torsion</span></div>
+    <div class="nav-item" data-target="s9b5"><span class="nav-num">17</span><span>· Cisaillement</span></div>
+    <div class="nav-item" data-target="s10"><span class="nav-num">18</span><span>Casque vélo</span></div>
+    <div class="nav-item" data-target="s11"><span class="nav-num">19</span><span>Environnement</span></div>
+    <div class="nav-item" data-target="s11b"><span class="nav-num">20</span><span>Réparabilité</span></div>
+    <div class="nav-item" data-target="s12"><span class="nav-num">21</span><span>Bilan</span></div>
   </div>
 </aside>
 
@@ -1080,6 +1460,11 @@ h3 {
           <div class="cap-step" id="step-metal">PHASE 1/4</div>
           <div class="cap-text" id="text-metal">…</div>
         </div>
+        <div class="phase-nav">
+          <button class="phase-btn" onclick="navPhase('metal', -1)" title="Phase précédente">←</button>
+          <button class="phase-btn auto active" id="auto-metal" onclick="toggleAuto('metal')" title="Lecture automatique">Auto</button>
+          <button class="phase-btn" onclick="navPhase('metal', 1)" title="Phase suivante">→</button>
+        </div>
       </div>
       <div class="zoom-content">
         <h2 style="color:var(--c-metal)">Métaux &amp; alliages</h2>
@@ -1114,6 +1499,38 @@ h3 {
         </div>
       </div>
     </div>
+
+    <div class="explain-block" style="--c: var(--c-metal); --ic-bg: rgba(74,90,107,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>Imagine les billes d'un roulement : tous les atomes du métal sont rangés comme ça, alignés en rangées parfaites. C'est cette structure régulière qui rend le métal <strong>solide</strong> et qui laisse les électrons circuler entre les atomes.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">⚙</div>
+          <div class="explain-tag">Comment on l'obtient</div>
+        </div>
+        <h4>Origine &amp; fabrication</h4>
+        <p>On extrait du <strong>minerai</strong> de la roche, on le fait fondre à très haute température (1500°C dans un haut-fourneau). On mélange souvent plusieurs métaux pour faire des <strong>alliages</strong> plus performants : fer + carbone = acier.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Tu en croises tous les jours</h4>
+        <ul>
+          <li>Couverts et casseroles en inox</li>
+          <li>Canette de soda en aluminium</li>
+          <li>Fils électriques en cuivre</li>
+        </ul>
+      </div>
+    </div>
+
   </section>
 
   <!-- ========== S4 — POLYMERES ========== -->
@@ -1128,6 +1545,11 @@ h3 {
         <div class="canvas-caption">
           <div class="cap-step" id="step-poly">PHASE 1/4</div>
           <div class="cap-text" id="text-poly">…</div>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-btn" onclick="navPhase('poly', -1)" title="Phase précédente">←</button>
+          <button class="phase-btn auto active" id="auto-poly" onclick="toggleAuto('poly')" title="Lecture automatique">Auto</button>
+          <button class="phase-btn" onclick="navPhase('poly', 1)" title="Phase suivante">→</button>
         </div>
       </div>
       <div class="zoom-content">
@@ -1161,6 +1583,38 @@ h3 {
         </div>
       </div>
     </div>
+
+    <div class="explain-block" style="--c: var(--c-poly); --ic-bg: rgba(201,147,30,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>Imagine un plat de spaghettis emmêlés. Un plastique, c'est ça à l'échelle microscopique : de très longues <strong>chaînes de molécules</strong> qui glissent les unes sur les autres. C'est pourquoi un plastique <strong>plie sans casser</strong> et fond facilement.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">⚙</div>
+          <div class="explain-tag">Comment on l'obtient</div>
+        </div>
+        <h4>Origine &amp; fabrication</h4>
+        <p>Presque tous les plastiques sont fabriqués à partir du <strong>pétrole</strong>. On le chauffe et on le transforme pour créer les chaînes. À chaud, on peut le mouler en n'importe quelle forme : c'est l'avantage industriel n°1.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Tu en croises tous les jours</h4>
+        <ul>
+          <li>Bouteille d’eau en PET</li>
+          <li>Sac plastique du supermarché</li>
+          <li>Coque de téléphone, jouets, emballages</li>
+        </ul>
+      </div>
+    </div>
+
   </section>
 
   <!-- ========== S5 — CERAMIQUES ========== -->
@@ -1175,6 +1629,11 @@ h3 {
         <div class="canvas-caption">
           <div class="cap-step" id="step-cera">PHASE 1/4</div>
           <div class="cap-text" id="text-cera">…</div>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-btn" onclick="navPhase('cera', -1)" title="Phase précédente">←</button>
+          <button class="phase-btn auto active" id="auto-cera" onclick="toggleAuto('cera')" title="Lecture automatique">Auto</button>
+          <button class="phase-btn" onclick="navPhase('cera', 1)" title="Phase suivante">→</button>
         </div>
       </div>
       <div class="zoom-content">
@@ -1209,6 +1668,38 @@ h3 {
         </div>
       </div>
     </div>
+
+    <div class="explain-block" style="--c: var(--c-cera); --ic-bg: rgba(184,92,46,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>Une céramique, c'est de la <strong>roche cuite</strong>. On chauffe une matière minérale très fort, ça durcit en refroidissant. Le résultat : <strong>très dur</strong> et <strong>très isolant</strong>, mais qui casse net comme une assiette qu'on fait tomber.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">⚙</div>
+          <div class="explain-tag">Comment on l'obtient</div>
+        </div>
+        <h4>Origine &amp; fabrication</h4>
+        <p>Le verre s'obtient en chauffant du <strong>sable</strong> avec de la soude à 1500°C. La porcelaine, en cuisant de l'<strong>argile</strong> à 1200°C. La brique, le carrelage, le béton : même principe, on chauffe et ça durcit.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Tu en croises tous les jours</h4>
+        <ul>
+          <li>Vitres des fenêtres</li>
+          <li>Assiettes et tasses en porcelaine</li>
+          <li>Briques, tuiles, carrelage</li>
+        </ul>
+      </div>
+    </div>
+
   </section>
 
   <!-- ========== S6 — COMPOSITES ========== -->
@@ -1223,6 +1714,11 @@ h3 {
         <div class="canvas-caption">
           <div class="cap-step" id="step-comp">PHASE 1/4</div>
           <div class="cap-text" id="text-comp">…</div>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-btn" onclick="navPhase('comp', -1)" title="Phase précédente">←</button>
+          <button class="phase-btn auto active" id="auto-comp" onclick="toggleAuto('comp')" title="Lecture automatique">Auto</button>
+          <button class="phase-btn" onclick="navPhase('comp', 1)" title="Phase suivante">→</button>
         </div>
       </div>
       <div class="zoom-content">
@@ -1256,6 +1752,38 @@ h3 {
         </div>
       </div>
     </div>
+
+    <div class="explain-block" style="--c: var(--c-comp); --ic-bg: rgba(61,126,95,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>Un composite, c'est <strong>2 matériaux qui se complètent</strong>. La <strong>fibre</strong> (résistante mais souple) est noyée dans une <strong>matrice</strong> (rigide mais fragile). Tout seuls, chacun a une faiblesse ; ensemble, ils sont géniaux. Le béton armé en est l'exemple le plus connu.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">⚙</div>
+          <div class="explain-tag">Comment on l'obtient</div>
+        </div>
+        <h4>Origine &amp; fabrication</h4>
+        <p>Les composites modernes sont créés sur mesure pour gagner du poids tout en gardant de la résistance. On dispose les fibres dans un moule, on coule la résine, on laisse durcir. Procédé long et coûteux mais résultats très performants.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Tu en croises tous les jours</h4>
+        <ul>
+          <li>Cadre de vélo en fibre de carbone</li>
+          <li>Coque de bateau en fibre de verre</li>
+          <li>Béton armé des bâtiments</li>
+        </ul>
+      </div>
+    </div>
+
   </section>
 
   <!-- ========== S7 — ORGANIQUES ========== -->
@@ -1270,6 +1798,11 @@ h3 {
         <div class="canvas-caption">
           <div class="cap-step" id="step-orga">PHASE 1/4</div>
           <div class="cap-text" id="text-orga">…</div>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-btn" onclick="navPhase('orga', -1)" title="Phase précédente">←</button>
+          <button class="phase-btn auto active" id="auto-orga" onclick="toggleAuto('orga')" title="Lecture automatique">Auto</button>
+          <button class="phase-btn" onclick="navPhase('orga', 1)" title="Phase suivante">→</button>
         </div>
       </div>
       <div class="zoom-content">
@@ -1305,6 +1838,38 @@ h3 {
         </div>
       </div>
     </div>
+
+    <div class="explain-block" style="--c: var(--c-orga); --ic-bg: rgba(139,111,71,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>Ce sont les matériaux qui viennent <strong>directement du vivant</strong> : un arbre donne le bois, un mouton donne la laine, un cotonnier donne le coton. La nature les fabrique seule, pas besoin d'usine. Et ils se <strong>décomposent dans le sol</strong> quand on les jette.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">⚙</div>
+          <div class="explain-tag">Comment on l'obtient</div>
+        </div>
+        <h4>Origine &amp; fabrication</h4>
+        <p>Ces matériaux <strong>poussent</strong>. On les utilise depuis l'âge de pierre. Le bois est fait de fibres verticales (comme des pailles collées) : c'est pour ça qu'il résiste si bien en compression verticale, ce qui en fait un super matériau pour les charpentes.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Tu en croises tous les jours</h4>
+        <ul>
+          <li>Meubles et charpentes en bois</li>
+          <li>Vêtements en coton ou laine</li>
+          <li>Chaussures en cuir</li>
+        </ul>
+      </div>
+    </div>
+
   </section>
 
   <!-- ========== S8 — 4 PROPRIETES ========== -->
@@ -1435,6 +2000,103 @@ h3 {
     </div>
   </section>
 
+  <!-- ========== S9c — ÉLASTIQUE vs PLASTIQUE ========== -->
+  <section class="slide" id="s9c">
+    <div class="slide-tag">Module 2 · Comportement sous une force</div>
+    <h1>Élastique <span style="color:var(--ink-mute)">ou</span> <span class="hi">plastique</span> ?</h1>
+    <p class="lead">Selon la force qu'on applique, un matériau ne réagit pas de la même façon. Deux comportements à distinguer.</p>
+
+    <div class="elastoplast-grid">
+
+      <div class="ep-card elastic">
+        <div class="ep-head">
+          <div class="ep-ic">🪀</div>
+          <div>
+            <div class="ep-tag">Comportement 1</div>
+            <h3>Déformation élastique</h3>
+          </div>
+        </div>
+        <div class="ep-canvas"><canvas id="c-elastic"></canvas></div>
+        <div class="ep-conclusion">
+          <strong>Le matériau revient à sa forme initiale</strong> dès qu'on enlève la force. Comme un élastique qu'on relâche.
+        </div>
+        <div class="ep-examples">
+          <span class="tag">Élastique caoutchouc</span>
+          <span class="tag">Ressort</span>
+          <span class="tag">Métal (petite force)</span>
+        </div>
+      </div>
+
+      <div class="ep-card plastic">
+        <div class="ep-head">
+          <div class="ep-ic">📎</div>
+          <div>
+            <div class="ep-tag">Comportement 2</div>
+            <h3>Déformation plastique</h3>
+          </div>
+        </div>
+        <div class="ep-canvas"><canvas id="c-plastic"></canvas></div>
+        <div class="ep-conclusion">
+          <strong>Le matériau garde sa nouvelle forme</strong> même quand on enlève la force. Comme un trombone qu'on a tordu.
+        </div>
+        <div class="ep-examples">
+          <span class="tag">Pâte à modeler</span>
+          <span class="tag">Métal (forte force)</span>
+          <span class="tag">Aluminium plié</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ep-summary">
+      <div class="icon">!</div>
+      <p>La plupart des matériaux passent <strong>d'abord par l'élastique, puis par le plastique</strong> avant de casser. Le point qui sépare les deux s'appelle la <strong>limite élastique</strong> : c'est elle que les ingénieurs ne veulent jamais dépasser.</p>
+    </div>
+  </section>
+
+  <!-- ========== S9d — COURBE CONTRAINTE-DÉFORMATION ========== -->
+  <section class="slide" id="s9d">
+    <div class="slide-tag">Module 2 · Comportement complet d'un matériau</div>
+    <h1>La <span class="hi">courbe</span> contrainte-déformation</h1>
+    <p class="lead">Quand on tire progressivement sur une éprouvette de matériau et qu'on note la déformation, on obtient cette courbe en 4 zones.</p>
+
+    <div class="curve-layout">
+      <div class="curve-canvas-wrap">
+        <canvas id="c-curve"></canvas>
+      </div>
+
+      <div class="curve-info">
+        <div class="curve-zone z1">
+          <div class="curve-zone-label">Zone 1 · droite</div>
+          <h4>Élastique (réversible)</h4>
+          <p>La déformation est proportionnelle à la force. Si on relâche, le matériau revient à sa forme initiale.</p>
+        </div>
+        <div class="curve-zone z2">
+          <div class="curve-zone-label">Point clé</div>
+          <h4>Limite élastique (R<sub>e</sub>)</h4>
+          <p>Au-delà, on entre en zone plastique. <strong>À ne jamais dépasser</strong> dans une pièce mécanique en usage normal.</p>
+        </div>
+        <div class="curve-zone z3">
+          <div class="curve-zone-label">Zone 2 · plateau</div>
+          <h4>Plastique (irréversible)</h4>
+          <p>Le matériau se déforme sans revenir. C'est ce qui se passe quand on tord un trombone.</p>
+        </div>
+        <div class="curve-zone z4">
+          <div class="curve-zone-label">Fin</div>
+          <h4>Rupture (R<sub>m</sub>)</h4>
+          <p>Le matériau casse. La fibre carbone casse net presque sans plasticité, l'acier prévient en se déformant beaucoup avant.</p>
+        </div>
+
+        <div class="curve-controls">
+          <button class="curve-mat-btn active" data-mat="acier">Acier</button>
+          <button class="curve-mat-btn" data-mat="alu">Aluminium</button>
+          <button class="curve-mat-btn" data-mat="verre">Verre</button>
+          <button class="curve-mat-btn" data-mat="caoutchouc">Caoutchouc</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== S9b — 5 SOLLICITATIONS ========== -->
   <section class="slide" id="s9b">
     <div class="slide-tag">Module 2 · Comportement mécanique</div>
@@ -1480,6 +2142,247 @@ h3 {
         <div class="solli-canvas"><canvas id="c-cisail"></canvas></div>
         <div class="solli-desc">Forces parallèles décalées. La pièce se <strong>tranche</strong>.</div>
         <div class="solli-ex">ciseaux · rivet · boulon</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== S9B1 — TRACTION ========== -->
+  <section class="slide" id="s9b1">
+    <div class="slide-tag">Sollicitation 1/5 · Module 2</div>
+    <h1>Traction</h1>
+    <p class="lead">On tire dans deux sens opposés</p>
+
+    <div class="solli-detail">
+      <div class="solli-big-canvas">
+        <canvas id="c-traction-big"></canvas>
+      </div>
+      <div class="solli-info">
+        <div class="solli-formula"><strong>Contrainte de traction :</strong> σ = F / S<br><span style="color:var(--ink-mute);font-size:12px">force divisée par la surface · en MPa (méga-pascals)</span></div>
+        <div class="solli-materials"><strong>Très bons en traction :</strong> acier, fibre de carbone, câble en aramide.<br><strong>Mauvais :</strong> béton seul, fonte (cassent en traction).</div>
+      </div>
+    </div>
+
+    <div class="explain-block" style="--c: var(--copper); --ic-bg: rgba(184,92,46,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>Imagine que tu tires sur une <strong>corde à sauter</strong> par les deux poignées en même temps. La corde s’allonge. C’est exactement ça : deux forces qui s’éloignent.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">📐</div>
+          <div class="explain-tag">Déformation</div>
+        </div>
+        <h4>Comment la pièce se déforme</h4>
+        <p>Les atomes <strong>s’écartent</strong> dans le sens de la traction. La pièce devient plus <strong>longue</strong> et un peu plus <strong>fine</strong>.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Exemples concrets</h4>
+        <ul>
+          <li>Câble de funiculaire ou de pont suspendu</li>
+          <li>Corde à linge tendue</li>
+          <li>Tige de vis serrée (elle est en traction)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== S9B2 — COMPRESSION ========== -->
+  <section class="slide" id="s9b2">
+    <div class="slide-tag">Sollicitation 2/5 · Module 2</div>
+    <h1>Compression</h1>
+    <p class="lead">On écrase, la pièce se raccourcit</p>
+
+    <div class="solli-detail">
+      <div class="solli-big-canvas">
+        <canvas id="c-compression-big"></canvas>
+      </div>
+      <div class="solli-info">
+        <div class="solli-formula"><strong>Contrainte de compression :</strong> σ = F / S<br><span style="color:var(--ink-mute);font-size:12px">même formule que la traction, mais force en sens inverse</span></div>
+        <div class="solli-materials"><strong>Très bons en compression :</strong> béton, pierre, fonte, céramiques.<br><strong>Bois :</strong> excellent dans le sens des fibres (verticalement) — c’est pour ça qu’on l’utilise en poteaux.</div>
+      </div>
+    </div>
+
+    <div class="explain-block" style="--c: var(--copper); --ic-bg: rgba(184,92,46,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>Quand tu appuies sur un <strong>ressort de stylo</strong>, il se tasse. C’est de la compression : deux forces qui se rapprochent.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">📐</div>
+          <div class="explain-tag">Déformation</div>
+        </div>
+        <h4>Comment la pièce se déforme</h4>
+        <p>Les atomes se <strong>rapprochent</strong>. La pièce devient plus <strong>courte</strong> et parfois plus <strong>large</strong>. Pour les pièces hautes et fines, attention au <strong>flambage</strong> (la pièce flanche sur le côté).</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Exemples concrets</h4>
+        <ul>
+          <li>Pilier d’un bâtiment qui supporte le toit</li>
+          <li>Pied de chaise qui supporte ton poids</li>
+          <li>Fondations en béton sous une maison</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== S9B3 — FLEXION ========== -->
+  <section class="slide" id="s9b3">
+    <div class="slide-tag">Sollicitation 3/5 · Module 2</div>
+    <h1>Flexion</h1>
+    <p class="lead">Pièce posée sur deux appuis, force au milieu</p>
+
+    <div class="solli-detail">
+      <div class="solli-big-canvas">
+        <canvas id="c-flexion-big"></canvas>
+      </div>
+      <div class="solli-info">
+        <div class="solli-formula"><strong>Plus la pièce est haute, mieux elle résiste !</strong><br><span style="color:var(--ink-mute);font-size:12px">C’est pour ça que les poutres sont posées sur la tranche (en I), pas à plat.</span></div>
+        <div class="solli-materials"><strong>Très bons en flexion :</strong> acier en profilé (poutre IPN), bois lamellé-collé, béton armé.<br>Le secret : combiner un matériau qui résiste en haut (compression) avec un autre qui résiste en bas (traction).</div>
+      </div>
+    </div>
+
+    <div class="explain-block" style="--c: var(--copper); --ic-bg: rgba(184,92,46,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>Pose une <strong>règle plate</strong> sur deux livres et appuie au milieu : la règle se courbe. C’est de la flexion. C’est la sollicitation la plus courante en construction.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">📐</div>
+          <div class="explain-tag">Déformation</div>
+        </div>
+        <h4>Comment la pièce se déforme</h4>
+        <p>La flexion combine deux sollicitations à la fois : la <strong>face supérieure est comprimée</strong>, la <strong>face inférieure est étirée</strong>. Au milieu, une zone sans déformation : la <strong>fibre neutre</strong>.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Exemples concrets</h4>
+        <ul>
+          <li>Poutre qui tient un plafond</li>
+          <li>Étagère chargée de livres</li>
+          <li>Planche de skate ou plongeoir</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== S9B4 — TORSION ========== -->
+  <section class="slide" id="s9b4">
+    <div class="slide-tag">Sollicitation 4/5 · Module 2</div>
+    <h1>Torsion</h1>
+    <p class="lead">On tord autour de son axe</p>
+
+    <div class="solli-detail">
+      <div class="solli-big-canvas">
+        <canvas id="c-torsion-big"></canvas>
+      </div>
+      <div class="solli-info">
+        <div class="solli-formula"><strong>Pièces creuses = légères et résistantes</strong><br><span style="color:var(--ink-mute);font-size:12px">Un tube résiste presque aussi bien à la torsion qu’une barre pleine, pour 4 fois moins de poids.</span></div>
+        <div class="solli-materials"><strong>Très bons en torsion :</strong> aciers spéciaux (arbres moteur), titane, alliages d’aluminium.<br><strong>Mauvais :</strong> céramiques, fontes — elles cassent net.</div>
+      </div>
+    </div>
+
+    <div class="explain-block" style="--c: var(--copper); --ic-bg: rgba(184,92,46,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>Quand tu <strong>essores une serpillière</strong> en la tordant, ou quand tu serres une vis avec un tournevis, tu fais de la torsion. Une extrémité tourne pendant que l’autre est bloquée.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">📐</div>
+          <div class="explain-tag">Déformation</div>
+        </div>
+        <h4>Comment la pièce se déforme</h4>
+        <p>Les sections de la pièce <strong>tournent les unes par rapport aux autres</strong>. Les fibres latérales s’enroulent en <strong>hélice</strong>. Si on dépasse la limite, la pièce casse en biais (à 45°).</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Exemples concrets</h4>
+        <ul>
+          <li>Arbre de transmission d’une voiture</li>
+          <li>Vis qu’on serre avec un tournevis</li>
+          <li>Clé qui force dans une serrure bloquée</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== S9B5 — CISAILLEMENT ========== -->
+  <section class="slide" id="s9b5">
+    <div class="slide-tag">Sollicitation 5/5 · Module 2</div>
+    <h1>Cisaillement</h1>
+    <p class="lead">Deux forces parallèles décalées qui tranchent</p>
+
+    <div class="solli-detail">
+      <div class="solli-big-canvas">
+        <canvas id="c-cisail-big"></canvas>
+      </div>
+      <div class="solli-info">
+        <div class="solli-formula"><strong>Contrainte de cisaillement :</strong> τ = F / S<br><span style="color:var(--ink-mute);font-size:12px">"tau" au lieu de "sigma" car la force est parallèle, pas perpendiculaire à la surface</span></div>
+        <div class="solli-materials"><strong>À surveiller :</strong> chaque rivet, chaque boulon, chaque soudure est soumise à du cisaillement dans une structure.<br><strong>Bonne résistance :</strong> aciers de construction. <strong>Faible :</strong> verre, céramiques.</div>
+      </div>
+    </div>
+
+    <div class="explain-block" style="--c: var(--copper); --ic-bg: rgba(184,92,46,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>C’est ce que font des <strong>ciseaux</strong> sur du papier : deux lames qui glissent l’une contre l’autre. Les forces sont parallèles mais décalées, et la matière entre les deux finit par se déchirer.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">📐</div>
+          <div class="explain-tag">Déformation</div>
+        </div>
+        <h4>Comment la pièce se déforme</h4>
+        <p>La pièce se <strong>déforme en parallélogramme</strong> dans la zone soumise aux deux forces. Si la force dépasse la limite, la pièce est <strong>sectionnée net</strong> à l’endroit du cisaillement.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Exemples concrets</h4>
+        <ul>
+          <li>Ciseaux qui coupent du papier</li>
+          <li>Rivet ou boulon qui maintient deux plaques (cisaillé si la liaison tire)</li>
+          <li>Cisaille à ferraille sur un chantier</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -1755,11 +2658,29 @@ function setupCanvas(id) {
 })();
 
 // ============ HELPER PHASE PÉDAGOGIQUE ============
-// Donne la phase (0-3) en fonction du temps total et de la durée d'une phase
-function phase(t, perPhase) {
+// État de contrôle par famille : auto (null) ou phase forcée (0-3)
+const phaseControl = {
+  metal: { manual: null, animOffset: 0 },
+  poly: { manual: null, animOffset: 0 },
+  cera: { manual: null, animOffset: 0 },
+  comp: { manual: null, animOffset: 0 },
+  orga: { manual: null, animOffset: 0 }
+};
+
+// Phase actuelle selon le mode (auto = défilement, manuel = bloquée)
+function phase(t, perPhase, famille) {
+  if (famille && phaseControl[famille] && phaseControl[famille].manual !== null) {
+    return phaseControl[famille].manual;
+  }
   return Math.floor((t / perPhase) % 4);
 }
-function phaseProgress(t, perPhase) {
+// Progression interne (0→1) dans la phase courante
+function phaseProgress(t, perPhase, famille) {
+  if (famille && phaseControl[famille] && phaseControl[famille].manual !== null) {
+    // En mode manuel, on rejoue la phase en boucle (animation interne continue)
+    const local = (t - phaseControl[famille].animOffset) % perPhase;
+    return local / perPhase;
+  }
   return ((t % perPhase) / perPhase);
 }
 function updateCaption(famille, p, texts) {
@@ -1776,6 +2697,53 @@ function updateCaption(famille, p, texts) {
   }
 }
 
+// Helper : récupère la phase actuellement affichée pour une famille
+function currentPhase(famille) {
+  const dots = document.querySelectorAll('#dots-' + famille + ' .phase-dot');
+  let current = 0;
+  dots.forEach((d, i) => { if (d.classList.contains('active')) current = i; });
+  return current;
+}
+
+// Navigation manuelle entre les phases
+function navPhase(famille, direction) {
+  const next = (currentPhase(famille) + direction + 4) % 4;
+  phaseControl[famille].manual = next;
+  const autoBtn = document.getElementById('auto-' + famille);
+  if (autoBtn) autoBtn.classList.remove('active');
+  // Force refresh dans updateCaption
+  const stepEl = document.getElementById('step-' + famille);
+  if (stepEl) stepEl.dataset.p = '';
+}
+
+// Toggle entre auto et stop
+function toggleAuto(famille) {
+  const btn = document.getElementById('auto-' + famille);
+  if (phaseControl[famille].manual !== null) {
+    // Reprendre l'auto
+    phaseControl[famille].manual = null;
+    if (btn) btn.classList.add('active');
+  } else {
+    // Stopper sur la phase courante
+    phaseControl[famille].manual = currentPhase(famille);
+    if (btn) btn.classList.remove('active');
+  }
+}
+
+// Permettre clic direct sur les phase-dots
+document.querySelectorAll('.phase-dots').forEach(dotsEl => {
+  const famille = dotsEl.id.replace('dots-', '');
+  dotsEl.querySelectorAll('.phase-dot').forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      phaseControl[famille].manual = i;
+      const autoBtn = document.getElementById('auto-' + famille);
+      if (autoBtn) autoBtn.classList.remove('active');
+      const stepEl = document.getElementById('step-' + famille);
+      if (stepEl) stepEl.dataset.p = '';
+    });
+  });
+});
+
 // ============ METAUX — structure → conduction → ductilité ============
 (function() {
   const { cv, ctx, w, h } = setupCanvas('c-metal');
@@ -1790,8 +2758,8 @@ function updateCaption(famille, p, texts) {
 
   function loop() {
     ctx.clearRect(0, 0, w(), h());
-    const p = phase(t, PER);
-    const pp = phaseProgress(t, PER);
+    const p = phase(t, PER, 'metal');
+    const pp = phaseProgress(t, PER, 'metal');
     updateCaption('metal', p, texts);
 
     const cx = w() / 2, cy = h() / 2 - 30;
@@ -1954,8 +2922,8 @@ function updateCaption(famille, p, texts) {
 
   function loop() {
     ctx.clearRect(0, 0, w(), h());
-    const p = phase(t, PER);
-    const pp = phaseProgress(t, PER);
+    const p = phase(t, PER, 'poly');
+    const pp = phaseProgress(t, PER, 'poly');
     updateCaption('poly', p, texts);
 
     let stretch = 0;
@@ -2090,8 +3058,8 @@ function updateCaption(famille, p, texts) {
 
   function loop() {
     ctx.clearRect(0, 0, w(), h());
-    const p = phase(t, PER);
-    const pp = phaseProgress(t, PER);
+    const p = phase(t, PER, 'cera');
+    const pp = phaseProgress(t, PER, 'cera');
     updateCaption('cera', p, texts);
 
     // Phase 1 (cuisson) : flammes en bas
@@ -2270,8 +3238,8 @@ function updateCaption(famille, p, texts) {
 
   function loop() {
     ctx.clearRect(0, 0, w(), h());
-    const p = phase(t, PER);
-    const pp = phaseProgress(t, PER);
+    const p = phase(t, PER, 'comp');
+    const pp = phaseProgress(t, PER, 'comp');
     updateCaption('comp', p, texts);
 
     const cx = w() / 2, cy = h() / 2;
@@ -2486,8 +3454,8 @@ function updateCaption(famille, p, texts) {
 
   function loop() {
     ctx.clearRect(0, 0, w(), h());
-    const p = phase(t, PER);
-    const pp = phaseProgress(t, PER);
+    const p = phase(t, PER, 'orga');
+    const pp = phaseProgress(t, PER, 'orga');
     updateCaption('orga', p, texts);
 
     // Sol toujours présent
@@ -3274,6 +4242,910 @@ function replayCasque() {
     const fy2 = cy + 13;
     ctx.beginPath(); ctx.moveTo(w() - 20 - slip + 22, fy2); ctx.lineTo(w() - 20 - slip + 4, fy2); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(w() - 20 - slip + 4, fy2); ctx.lineTo(w() - 20 - slip + 10, fy2 - 4); ctx.lineTo(w() - 20 - slip + 10, fy2 + 4); ctx.fill();
+
+    t++;
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ============ ÉLASTIQUE : ressort qui s'étire et revient ============
+(function() {
+  const { cv, ctx, w, h } = setupCanvas('c-elastic');
+  let t = 0;
+  function loop() {
+    ctx.clearRect(0, 0, w(), h());
+    const cy = h() / 2;
+    // Cycle : 0 → étiré → 0 → étiré
+    const cycle = (Math.sin(t * 0.04) + 1) / 2; // 0 ↔ 1
+    const stretchPx = cycle * 70;
+    const x1 = 30, x2 = w() - 60 + stretchPx;
+
+    // Mur de fixation à gauche
+    ctx.fillStyle = '#4A5A6B';
+    ctx.fillRect(0, cy - 30, 16, 60);
+    for (let i = 0; i < 6; i++) {
+      ctx.strokeStyle = '#4A5A6B';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(16, cy - 24 + i * 10);
+      ctx.lineTo(28, cy - 30 + i * 10);
+      ctx.stroke();
+    }
+
+    // Ressort (zigzag)
+    const coils = 10;
+    const len = x2 - x1 - 20;
+    const segLen = len / (coils * 2);
+    ctx.strokeStyle = '#3D7E5F';
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.moveTo(x1, cy);
+    for (let i = 0; i < coils * 2; i++) {
+      const px = x1 + (i + 1) * segLen;
+      const py = cy + (i % 2 === 0 ? -14 : 14);
+      ctx.lineTo(px, py);
+    }
+    ctx.lineTo(x2 - 8, cy);
+    ctx.stroke();
+
+    // Masse au bout
+    ctx.fillStyle = '#5BA088';
+    ctx.fillRect(x2 - 8, cy - 18, 28, 36);
+    ctx.strokeStyle = '#3D7E5F';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(x2 - 8, cy - 18, 28, 36);
+
+    // Flèche de force quand stretch > 0
+    if (cycle > 0.05) {
+      const arrowAlpha = Math.min(1, cycle * 2);
+      ctx.strokeStyle = 'rgba(184,92,46,' + arrowAlpha + ')';
+      ctx.fillStyle = 'rgba(184,92,46,' + arrowAlpha + ')';
+      ctx.lineWidth = 2;
+      const ax1 = x2 + 26, ax2 = x2 + 56;
+      ctx.beginPath();
+      ctx.moveTo(ax1, cy); ctx.lineTo(ax2, cy); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(ax2, cy); ctx.lineTo(ax2 - 7, cy - 4); ctx.lineTo(ax2 - 7, cy + 4); ctx.fill();
+      ctx.font = '600 10px JetBrains Mono';
+      ctx.fillText('FORCE', ax1 - 6, cy - 10);
+    } else {
+      // Au repos
+      ctx.fillStyle = '#3D7E5F';
+      ctx.font = '600 10px JetBrains Mono';
+      ctx.fillText('REPOS', x2 + 30, cy + 4);
+    }
+
+    // Label en haut
+    ctx.fillStyle = 'rgba(91,160,136,0.85)';
+    ctx.font = '600 11px JetBrains Mono';
+    ctx.fillText(cycle > 0.5 ? '→ ÉTIRÉ' : (cycle < 0.05 ? '✓ REVIENT À LA FORME INITIALE' : '← RELÂCHE'), 12, 20);
+
+    t++;
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ============ PLASTIQUE : trombone qui se plie et reste plié ============
+(function() {
+  const { cv, ctx, w, h } = setupCanvas('c-plastic');
+  // Cycle en 3 phases :
+  // 1) Force appliquée → barre plie
+  // 2) Force enlevée → barre RESTE pliée
+  // 3) Reset (animation reset)
+  const PERIOD = 360; // 6s par cycle
+  let t = 0;
+  function loop() {
+    ctx.clearRect(0, 0, w(), h());
+    const cy = h() / 2;
+    const local = t % PERIOD;
+    let bend = 0;
+    let phase = '';
+    if (local < 120) {
+      // Force appliquée, plie progressivement
+      bend = (local / 120) * 40;
+      phase = '→ FORCE APPLIQUÉE';
+    } else if (local < 240) {
+      // Force enlevée, RESTE plié
+      bend = 40;
+      phase = '✗ FORCE ENLEVÉE · RESTE PLIÉ';
+    } else if (local < 320) {
+      // Phase finale : on conserve la déformation
+      bend = 40;
+      phase = '✗ DÉFORMATION PERMANENTE';
+    } else {
+      // Reset progressif (l'animation se remet au départ)
+      const r = (local - 320) / 40;
+      bend = 40 * (1 - r);
+      phase = '↻ NOUVELLE TENTATIVE';
+    }
+
+    // Pince fixe à gauche
+    ctx.fillStyle = '#4A5A6B';
+    ctx.fillRect(0, cy - 24, 18, 48);
+
+    // Barre (trombone) avec courbure
+    const x1 = 18, x2 = w() - 30;
+    ctx.strokeStyle = '#B85C2E';
+    ctx.lineWidth = 6;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    const segs = 30;
+    for (let i = 0; i <= segs; i++) {
+      const ratio = i / segs;
+      const px = x1 + ratio * (x2 - x1);
+      const py = cy + Math.sin(ratio * Math.PI / 2) * bend;
+      if (i === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    // Référence (barre droite initiale en pointillé)
+    if (bend > 5) {
+      ctx.strokeStyle = 'rgba(74,90,107,0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath();
+      ctx.moveTo(x1, cy);
+      ctx.lineTo(x2, cy);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(74,90,107,0.45)';
+      ctx.font = '9px JetBrains Mono';
+      ctx.fillText('forme d\u2019origine', x2 - 76, cy - 6);
+    }
+
+    // Flèche de force si phase 1
+    if (local < 120) {
+      const arrowAlpha = Math.min(1, local / 60);
+      ctx.strokeStyle = 'rgba(184,92,46,' + arrowAlpha + ')';
+      ctx.fillStyle = 'rgba(184,92,46,' + arrowAlpha + ')';
+      ctx.lineWidth = 2.5;
+      const tipX = x2 - 8;
+      const tipY = cy + bend - 8;
+      ctx.beginPath();
+      ctx.moveTo(tipX, tipY - 38); ctx.lineTo(tipX, tipY - 4); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(tipX, tipY - 4); ctx.lineTo(tipX - 5, tipY - 12); ctx.lineTo(tipX + 5, tipY - 12); ctx.fill();
+      ctx.font = '600 10px JetBrains Mono';
+      ctx.fillText('FORCE', tipX + 10, tipY - 20);
+    }
+
+    // Label en haut
+    ctx.fillStyle = 'rgba(184,92,46,0.85)';
+    ctx.font = '600 11px JetBrains Mono';
+    ctx.fillText(phase, 12, 20);
+
+    t++;
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ============ COURBE σ-ε ============
+(function() {
+  const { cv, ctx, w, h } = setupCanvas('c-curve');
+  // Profil par matériau : points clés normalisés (déformation, contrainte) entre 0 et 1
+  // Re = limite élastique, Rm = rupture max
+  const profiles = {
+    acier: {
+      name: 'Acier doux',
+      color: '#4A5A6B',
+      Re_x: 0.10, Re_y: 0.70,
+      plateau_x: 0.30, plateau_y: 0.78,
+      Rm_x: 0.65, Rm_y: 0.95,
+      rupture_x: 0.80, ductility: 'haute'
+    },
+    alu: {
+      name: 'Aluminium',
+      color: '#A0AEBE',
+      Re_x: 0.08, Re_y: 0.55,
+      plateau_x: 0.25, plateau_y: 0.68,
+      Rm_x: 0.50, Rm_y: 0.80,
+      rupture_x: 0.62, ductility: 'moyenne'
+    },
+    verre: {
+      name: 'Verre',
+      color: '#5A8FB5',
+      Re_x: 0.18, Re_y: 0.65,
+      plateau_x: 0.19, plateau_y: 0.66,
+      Rm_x: 0.20, Rm_y: 0.68,
+      rupture_x: 0.21, ductility: 'nulle' // cassant
+    },
+    caoutchouc: {
+      name: 'Caoutchouc',
+      color: '#3D7E5F',
+      Re_x: 0.60, Re_y: 0.50, // énorme phase élastique
+      plateau_x: 0.75, plateau_y: 0.60,
+      Rm_x: 0.92, Rm_y: 0.85,
+      rupture_x: 0.96, ductility: 'haute'
+    }
+  };
+
+  let currentMat = 'acier';
+  let animProgress = 0; // 0 → 1
+  let drawing = true;
+
+  // Boutons
+  document.querySelectorAll('.curve-mat-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.curve-mat-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      currentMat = b.dataset.mat;
+      animProgress = 0;
+      drawing = true;
+    });
+  });
+
+  function draw() {
+    const W = w(), H = h();
+    ctx.clearRect(0, 0, W, H);
+    const p = profiles[currentMat];
+
+    const padL = 64, padR = 30, padT = 30, padB = 60;
+    const gw = W - padL - padR;
+    const gh = H - padT - padB;
+    const ox = padL, oy = H - padB; // origine
+
+    // Axes
+    ctx.strokeStyle = 'rgba(74,90,107,0.6)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(ox, padT); ctx.lineTo(ox, oy); ctx.lineTo(ox + gw, oy);
+    ctx.stroke();
+    // Flèches
+    ctx.fillStyle = 'rgba(74,90,107,0.6)';
+    ctx.beginPath();
+    ctx.moveTo(ox, padT - 6); ctx.lineTo(ox - 4, padT + 4); ctx.lineTo(ox + 4, padT + 4); ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(ox + gw + 6, oy); ctx.lineTo(ox + gw - 4, oy - 4); ctx.lineTo(ox + gw - 4, oy + 4); ctx.fill();
+
+    // Labels axes
+    ctx.fillStyle = '#4A5A6B';
+    ctx.font = '600 12px Bricolage Grotesque';
+    ctx.textAlign = 'center';
+    ctx.fillText('Déformation (ε)', ox + gw / 2, H - 12);
+    ctx.save();
+    ctx.translate(18, padT + gh / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('Contrainte (σ)', 0, 0);
+    ctx.restore();
+    ctx.textAlign = 'left';
+
+    // Grille de fond légère
+    ctx.strokeStyle = 'rgba(74,90,107,0.08)';
+    ctx.lineWidth = 1;
+    for (let i = 1; i <= 4; i++) {
+      const x = ox + (gw / 5) * i;
+      ctx.beginPath(); ctx.moveTo(x, oy); ctx.lineTo(x, padT); ctx.stroke();
+      const y = oy - (gh / 5) * i;
+      ctx.beginPath(); ctx.moveTo(ox, y); ctx.lineTo(ox + gw, y); ctx.stroke();
+    }
+
+    // Points-clés en coordonnées graphiques
+    const Re = { x: ox + p.Re_x * gw, y: oy - p.Re_y * gh };
+    const Pl = { x: ox + p.plateau_x * gw, y: oy - p.plateau_y * gh };
+    const Rm = { x: ox + p.Rm_x * gw, y: oy - p.Rm_y * gh };
+    const Rup = { x: ox + p.rupture_x * gw, y: oy - p.Rm_y * gh * 0.5 };
+
+    // Construire les segments à tracer en fonction d'animProgress (0→1)
+    // Section 1 : O → Re (linéaire)        : animProgress 0 → 0.3
+    // Section 2 : Re → Pl (transition)      : animProgress 0.3 → 0.45
+    // Section 3 : Pl → Rm (plastique)       : animProgress 0.45 → 0.85
+    // Section 4 : Rm → Rup (chute / rupture) : animProgress 0.85 → 1
+    const segments = [
+      { start: { x: ox, y: oy }, end: Re, range: [0, 0.30] },
+      { start: Re, end: Pl, range: [0.30, 0.45] },
+      { start: Pl, end: Rm, range: [0.45, 0.85] },
+      { start: Rm, end: Rup, range: [0.85, 1] }
+    ];
+
+    // Tracer la courbe
+    ctx.strokeStyle = p.color;
+    ctx.lineWidth = 3.5;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    let started = false;
+    for (let s of segments) {
+      if (animProgress <= s.range[0]) break;
+      const segProg = Math.min(1, (animProgress - s.range[0]) / (s.range[1] - s.range[0]));
+      const endX = s.start.x + (s.end.x - s.start.x) * segProg;
+      const endY = s.start.y + (s.end.y - s.start.y) * segProg;
+      if (!started) {
+        ctx.moveTo(s.start.x, s.start.y);
+        started = true;
+      }
+      ctx.lineTo(endX, endY);
+    }
+    ctx.stroke();
+
+    // Points clés annotés
+    function dot(pt, color, label, lblOff) {
+      ctx.fillStyle = color;
+      ctx.beginPath(); ctx.arc(pt.x, pt.y, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = color;
+      ctx.font = '600 11px JetBrains Mono';
+      ctx.fillText(label, pt.x + lblOff.x, pt.y + lblOff.y);
+    }
+
+    if (animProgress >= 0.3) dot(Re, '#5BA088', 'Re', { x: -42, y: -8 });
+    if (animProgress >= 0.85) dot(Rm, '#B85C2E', 'Rm', { x: 8, y: -6 });
+    if (animProgress >= 1) {
+      // Symbole rupture
+      ctx.fillStyle = '#D9534F';
+      ctx.font = '600 13px JetBrains Mono';
+      ctx.fillText('✗ RUPTURE', Rup.x - 10, Rup.y + 18);
+    }
+
+    // Zones colorées (transparentes)
+    if (animProgress >= 0.3) {
+      ctx.fillStyle = 'rgba(91,160,136,0.08)';
+      ctx.fillRect(ox, padT, Re.x - ox, oy - padT);
+    }
+    if (animProgress >= 0.85) {
+      ctx.fillStyle = 'rgba(201,147,30,0.06)';
+      ctx.fillRect(Re.x, padT, Rm.x - Re.x, oy - padT);
+    }
+
+    // Nom du matériau en haut à droite
+    ctx.fillStyle = p.color;
+    ctx.font = '700 14px Bricolage Grotesque';
+    ctx.textAlign = 'right';
+    ctx.fillText(p.name, ox + gw - 6, padT + 6);
+    ctx.font = '500 11px JetBrains Mono';
+    ctx.fillStyle = '#8A9AA9';
+    ctx.fillText('ductilité ' + p.ductility, ox + gw - 6, padT + 22);
+    ctx.textAlign = 'left';
+
+    // Légende zones (sous la courbe)
+    ctx.font = '600 10px JetBrains Mono';
+    if (animProgress >= 0.3) {
+      ctx.fillStyle = '#5BA088';
+      ctx.fillText('élastique', ox + 8, oy - 8);
+    }
+    if (animProgress >= 0.85 && p.ductility !== 'nulle') {
+      ctx.fillStyle = '#C9931E';
+      ctx.fillText('plastique', Re.x + 8, oy - 8);
+    }
+  }
+
+  function loop() {
+    if (drawing) {
+      animProgress += 0.005;
+      if (animProgress >= 1.2) { drawing = false; animProgress = 1; }
+    }
+    draw();
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ============ TRACTION BIG : barre étirée avec étapes pédagogiques ============
+(function() {
+  const cvEl = document.getElementById('c-traction-big');
+  if (!cvEl) return;
+  const { cv, ctx, w, h } = setupCanvas('c-traction-big');
+  let t = 0;
+  function loop() {
+    const W = w(), H = h();
+    ctx.clearRect(0, 0, W, H);
+    const cy = H / 2;
+    const cycle = (Math.sin(t * 0.018) + 1) / 2;
+    const stretch = cycle * 90;
+    const initThick = 50;
+    const thick = initThick - cycle * 14;
+    const x1 = 80 - stretch * 0.4, x2 = W - 80 + stretch * 0.4;
+
+    // Mesure d'origine (en pointillé)
+    if (stretch > 5) {
+      ctx.strokeStyle = 'rgba(74,90,107,0.35)';
+      ctx.lineWidth = 1.2;
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath();
+      ctx.moveTo(80, cy - initThick / 2 - 30); ctx.lineTo(W - 80, cy - initThick / 2 - 30);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      // Petits traits verticaux aux extrémités
+      ctx.beginPath();
+      ctx.moveTo(80, cy - initThick / 2 - 36); ctx.lineTo(80, cy - initThick / 2 - 24);
+      ctx.moveTo(W - 80, cy - initThick / 2 - 36); ctx.lineTo(W - 80, cy - initThick / 2 - 24);
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(74,90,107,0.55)';
+      ctx.font = '11px JetBrains Mono';
+      ctx.textAlign = 'center';
+      ctx.fillText('longueur d\u2019origine', W / 2, cy - initThick / 2 - 38);
+      ctx.textAlign = 'left';
+    }
+
+    // Étaux
+    ctx.fillStyle = '#4A5A6B';
+    ctx.fillRect(x1 - 26, cy - 50, 26, 100);
+    ctx.fillRect(x2, cy - 50, 26, 100);
+    ctx.fillStyle = '#7B8A99';
+    ctx.fillRect(x1 - 8, cy - 50, 8, 100);
+    ctx.fillRect(x2, cy - 50, 8, 100);
+
+    // Barre
+    const grd = ctx.createLinearGradient(0, cy - thick / 2, 0, cy + thick / 2);
+    grd.addColorStop(0, '#D67D3E');
+    grd.addColorStop(0.5, '#B85C2E');
+    grd.addColorStop(1, '#933F1A');
+    ctx.fillStyle = grd;
+    ctx.fillRect(x1, cy - thick / 2, x2 - x1, thick);
+
+    // Annotations de force avec valeurs
+    ctx.strokeStyle = '#2E6A8E';
+    ctx.fillStyle = '#2E6A8E';
+    ctx.lineWidth = 3;
+    // Gauche
+    ctx.beginPath(); ctx.moveTo(x1 - 30, cy); ctx.lineTo(x1 - 80, cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x1 - 80, cy); ctx.lineTo(x1 - 70, cy - 7); ctx.lineTo(x1 - 70, cy + 7); ctx.fill();
+    // Droite
+    ctx.beginPath(); ctx.moveTo(x2 + 30, cy); ctx.lineTo(x2 + 80, cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x2 + 80, cy); ctx.lineTo(x2 + 70, cy - 7); ctx.lineTo(x2 + 70, cy + 7); ctx.fill();
+    ctx.font = '600 13px JetBrains Mono';
+    ctx.fillText('F', x1 - 50, cy - 14);
+    ctx.fillText('F', x2 + 40, cy - 14);
+
+    // Cote actuelle
+    if (stretch > 5) {
+      ctx.strokeStyle = '#B85C2E';
+      ctx.lineWidth = 1.8;
+      const cy2 = cy + thick / 2 + 28;
+      ctx.beginPath();
+      ctx.moveTo(x1, cy2); ctx.lineTo(x2, cy2);
+      ctx.stroke();
+      // Petits traits verticaux
+      ctx.beginPath();
+      ctx.moveTo(x1, cy2 - 6); ctx.lineTo(x1, cy2 + 6);
+      ctx.moveTo(x2, cy2 - 6); ctx.lineTo(x2, cy2 + 6);
+      ctx.stroke();
+      ctx.fillStyle = '#B85C2E';
+      ctx.font = '600 11px JetBrains Mono';
+      ctx.textAlign = 'center';
+      ctx.fillText('longueur ALLONGÉE (+' + Math.round(stretch * 0.5) + '%)', W / 2, cy2 + 20);
+      ctx.textAlign = 'left';
+    }
+
+    // Étiquette du phénomène
+    ctx.fillStyle = 'rgba(184,92,46,0.85)';
+    ctx.font = '600 12px JetBrains Mono';
+    ctx.fillText(stretch > 5 ? '→ ATOMES S\u2019ÉCARTENT · pièce plus longue, plus fine' : 'AU REPOS', 18, 26);
+
+    t++;
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ============ COMPRESSION BIG : pilier écrasé ============
+(function() {
+  const cvEl = document.getElementById('c-compression-big');
+  if (!cvEl) return;
+  const { cv, ctx, w, h } = setupCanvas('c-compression-big');
+  let t = 0;
+  function loop() {
+    const W = w(), H = h();
+    ctx.clearRect(0, 0, W, H);
+    const cycle = (Math.sin(t * 0.018) + 1) / 2;
+    const compress = cycle * 50;
+    const cx = W / 2;
+    const groundY = H - 50;
+    const initHeight = 240;
+    const height = initHeight - compress;
+    const initWidth = 60;
+    const width = initWidth + compress * 0.4; // léger gonflement
+    const top = groundY - height;
+
+    // Sol
+    ctx.fillStyle = '#4A5A6B';
+    ctx.fillRect(0, groundY, W, H - groundY);
+    ctx.strokeStyle = 'rgba(74,90,107,0.5)';
+    for (let i = 0; i < 20; i++) {
+      ctx.beginPath();
+      ctx.moveTo(i * W / 20, groundY);
+      ctx.lineTo(i * W / 20 + 10, H);
+      ctx.stroke();
+    }
+
+    // Hauteur d'origine (pointillé)
+    if (compress > 3) {
+      ctx.strokeStyle = 'rgba(74,90,107,0.35)';
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath();
+      ctx.moveTo(cx + 60, groundY); ctx.lineTo(cx + 60, groundY - initHeight);
+      ctx.moveTo(cx + 54, groundY - initHeight); ctx.lineTo(cx + 66, groundY - initHeight);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(74,90,107,0.55)';
+      ctx.font = '10px JetBrains Mono';
+      ctx.fillText('h init.', cx + 70, groundY - initHeight + 4);
+    }
+
+    // Pilier (rectangle compressé)
+    const grd = ctx.createLinearGradient(cx - width / 2, 0, cx + width / 2, 0);
+    grd.addColorStop(0, '#933F1A');
+    grd.addColorStop(0.5, '#B85C2E');
+    grd.addColorStop(1, '#D67D3E');
+    ctx.fillStyle = grd;
+    ctx.fillRect(cx - width / 2, top, width, height);
+
+    // Stries horizontales
+    ctx.strokeStyle = 'rgba(255,220,180,0.35)';
+    ctx.lineWidth = 1;
+    const stripes = 8;
+    for (let i = 1; i < stripes; i++) {
+      const y = top + i * height / stripes;
+      ctx.beginPath();
+      ctx.moveTo(cx - width / 2, y); ctx.lineTo(cx + width / 2, y);
+      ctx.stroke();
+    }
+
+    // Plaque qui appuie en haut
+    ctx.fillStyle = '#4A5A6B';
+    ctx.fillRect(cx - width / 2 - 30, top - 18, width + 60, 14);
+    ctx.fillStyle = '#7B8A99';
+    ctx.fillRect(cx - width / 2 - 30, top - 18, width + 60, 4);
+
+    // Flèche de force du haut
+    ctx.strokeStyle = '#2E6A8E';
+    ctx.fillStyle = '#2E6A8E';
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(cx, top - 80); ctx.lineTo(cx, top - 22); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, top - 22); ctx.lineTo(cx - 7, top - 32); ctx.lineTo(cx + 7, top - 32); ctx.fill();
+    ctx.font = '600 14px JetBrains Mono';
+    ctx.fillText('F', cx + 14, top - 56);
+    // Flèche du bas (réaction du sol)
+    ctx.beginPath(); ctx.moveTo(cx, groundY + 40); ctx.lineTo(cx, groundY + 6); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, groundY + 6); ctx.lineTo(cx - 7, groundY + 16); ctx.lineTo(cx + 7, groundY + 16); ctx.fill();
+
+    // Hauteur actuelle (cote à gauche)
+    if (compress > 3) {
+      ctx.strokeStyle = '#B85C2E';
+      ctx.lineWidth = 1.8;
+      ctx.beginPath();
+      ctx.moveTo(cx - 80, top); ctx.lineTo(cx - 80, groundY);
+      ctx.moveTo(cx - 86, top); ctx.lineTo(cx - 74, top);
+      ctx.moveTo(cx - 86, groundY); ctx.lineTo(cx - 74, groundY);
+      ctx.stroke();
+      ctx.fillStyle = '#B85C2E';
+      ctx.font = '600 11px JetBrains Mono';
+      ctx.textAlign = 'right';
+      ctx.fillText('h actuelle (−' + Math.round(compress / initHeight * 100) + '%)', cx - 90, (top + groundY) / 2);
+      ctx.textAlign = 'left';
+    }
+
+    // Étiquette
+    ctx.fillStyle = 'rgba(184,92,46,0.85)';
+    ctx.font = '600 12px JetBrains Mono';
+    ctx.fillText(compress > 5 ? '→ ATOMES SE RAPPROCHENT · pièce plus courte' : 'AU REPOS', 18, 26);
+
+    t++;
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ============ FLEXION BIG : poutre courbée avec fibres traction/compression ============
+(function() {
+  const cvEl = document.getElementById('c-flexion-big');
+  if (!cvEl) return;
+  const { cv, ctx, w, h } = setupCanvas('c-flexion-big');
+  let t = 0;
+  function loop() {
+    const W = w(), H = h();
+    ctx.clearRect(0, 0, W, H);
+    const cycle = (Math.sin(t * 0.018) + 1) / 2;
+    const bend = cycle * 40;
+    const cy = H / 2 - 10;
+    const x1 = 60, x2 = W - 60;
+    const thick = 36;
+
+    // Appuis (triangles)
+    ctx.fillStyle = '#4A5A6B';
+    [x1, x2].forEach(ax => {
+      ctx.beginPath();
+      ctx.moveTo(ax, cy + thick / 2 + 4);
+      ctx.lineTo(ax - 18, cy + thick / 2 + 36);
+      ctx.lineTo(ax + 18, cy + thick / 2 + 36);
+      ctx.fill();
+    });
+    // Sol
+    ctx.fillStyle = 'rgba(74,90,107,0.2)';
+    ctx.fillRect(x1 - 60, cy + thick / 2 + 36, W - 2 * x1 + 120, 10);
+
+    // Poutre courbée (avec dégradé qui montre contraintes)
+    ctx.beginPath();
+    const segs = 40;
+    // Haut de la poutre
+    for (let i = 0; i <= segs; i++) {
+      const r = i / segs;
+      const px = x1 + r * (x2 - x1);
+      const py = cy - thick / 2 + Math.sin(r * Math.PI) * bend;
+      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    }
+    // Bas
+    for (let i = segs; i >= 0; i--) {
+      const r = i / segs;
+      const px = x1 + r * (x2 - x1);
+      const py = cy + thick / 2 + Math.sin(r * Math.PI) * bend;
+      ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+
+    // Dégradé du haut (comprimé) vers le bas (étiré)
+    const grd = ctx.createLinearGradient(0, cy - thick / 2, 0, cy + thick / 2);
+    grd.addColorStop(0, bend > 5 ? '#933F1A' : '#B85C2E'); // haut comprimé : foncé
+    grd.addColorStop(0.5, '#B85C2E');
+    grd.addColorStop(1, bend > 5 ? '#E89570' : '#B85C2E'); // bas étiré : clair
+    ctx.fillStyle = grd;
+    ctx.fill();
+    ctx.strokeStyle = '#933F1A';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Fibre neutre (en pointillé)
+    if (bend > 3) {
+      ctx.strokeStyle = 'rgba(91,160,136,0.85)';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([6, 4]);
+      ctx.beginPath();
+      for (let i = 0; i <= segs; i++) {
+        const r = i / segs;
+        const px = x1 + r * (x2 - x1);
+        const py = cy + Math.sin(r * Math.PI) * bend;
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // Labels haut/bas/neutre
+    if (bend > 5) {
+      const midPx = (x1 + x2) / 2;
+      const midPyTop = cy - thick / 2 + bend - 2;
+      const midPyBot = cy + thick / 2 + bend + 2;
+      const midPyN = cy + bend;
+      // Haut
+      ctx.fillStyle = '#933F1A';
+      ctx.font = '600 11px JetBrains Mono';
+      ctx.fillText('COMPRESSION (raccourci)', midPx - 90, midPyTop - 6);
+      // Bas
+      ctx.fillStyle = '#D67D3E';
+      ctx.fillText('TRACTION (étiré)', midPx - 56, midPyBot + 14);
+      // Neutre
+      ctx.fillStyle = '#3D7E5F';
+      ctx.font = '600 10px JetBrains Mono';
+      ctx.fillText('fibre neutre', midPx + 60, midPyN + 4);
+    }
+
+    // Flèche de force au milieu
+    ctx.strokeStyle = '#2E6A8E';
+    ctx.fillStyle = '#2E6A8E';
+    ctx.lineWidth = 3;
+    const fx = W / 2;
+    const fyTop = cy - thick / 2 - 70;
+    const fyBot = cy - thick / 2 + bend - 6;
+    ctx.beginPath(); ctx.moveTo(fx, fyTop); ctx.lineTo(fx, fyBot); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(fx, fyBot); ctx.lineTo(fx - 7, fyBot - 10); ctx.lineTo(fx + 7, fyBot - 10); ctx.fill();
+    ctx.font = '600 14px JetBrains Mono';
+    ctx.fillText('F', fx + 12, fyTop + 14);
+
+    ctx.fillStyle = 'rgba(184,92,46,0.85)';
+    ctx.font = '600 12px JetBrains Mono';
+    ctx.fillText(bend > 5 ? '→ HAUT comprimé · BAS étiré · NEUTRE au milieu' : 'AU REPOS', 18, 26);
+
+    t++;
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ============ TORSION BIG : barre tordue avec hélice visible ============
+(function() {
+  const cvEl = document.getElementById('c-torsion-big');
+  if (!cvEl) return;
+  const { cv, ctx, w, h } = setupCanvas('c-torsion-big');
+  let t = 0;
+  function loop() {
+    const W = w(), H = h();
+    ctx.clearRect(0, 0, W, H);
+    const cy = H / 2;
+    const cycle = (Math.sin(t * 0.018) + 1) / 2;
+    const twist = cycle * Math.PI * 0.8; // angle total
+    const x1 = 80, x2 = W - 80;
+    const radius = 32;
+
+    // Pince fixe à gauche
+    ctx.fillStyle = '#4A5A6B';
+    ctx.fillRect(x1 - 22, cy - radius - 14, 22, 2 * (radius + 14));
+    // Hachures pour montrer "fixe"
+    ctx.strokeStyle = 'rgba(74,90,107,0.6)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 10; i++) {
+      ctx.beginPath();
+      ctx.moveTo(x1 - 22, cy - radius - 14 + i * 9);
+      ctx.lineTo(x1 - 32, cy - radius - 5 + i * 9);
+      ctx.stroke();
+    }
+
+    // Cylindre principal
+    const grd = ctx.createLinearGradient(0, cy - radius, 0, cy + radius);
+    grd.addColorStop(0, '#D67D3E');
+    grd.addColorStop(0.5, '#B85C2E');
+    grd.addColorStop(1, '#933F1A');
+    ctx.fillStyle = grd;
+    ctx.fillRect(x1, cy - radius, x2 - x1, 2 * radius);
+    ctx.strokeStyle = '#933F1A';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(x1, cy - radius, x2 - x1, 2 * radius);
+
+    // Stries longitudinales qui s'enroulent (hélice)
+    const numStripes = 5;
+    for (let s = 0; s < numStripes; s++) {
+      ctx.strokeStyle = 'rgba(255,220,180,0.65)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      const phaseOffset = (s / numStripes) * Math.PI * 2;
+      const steps = 60;
+      for (let i = 0; i <= steps; i++) {
+        const r = i / steps;
+        const px = x1 + r * (x2 - x1);
+        // Angle local : 0 à gauche, twist à droite
+        const angle = r * twist + phaseOffset;
+        const py = cy + Math.sin(angle) * radius;
+        // Visible seulement si à l'avant (sin < 1, donc ok mais on peut moduler)
+        const visible = Math.cos(angle) > -0.1;
+        if (visible) {
+          if (i === 0 || !visible) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        } else if (i > 0) {
+          ctx.stroke();
+          ctx.beginPath();
+        }
+      }
+      ctx.stroke();
+    }
+
+    // Disque à droite (sera tourné)
+    ctx.fillStyle = '#4A5A6B';
+    ctx.beginPath();
+    ctx.ellipse(x2, cy, 8, radius, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Repère sur le disque (un trait qui montre la rotation)
+    ctx.strokeStyle = '#E5B547';
+    ctx.lineWidth = 3;
+    const markerY = cy + Math.cos(twist) * radius * 0.8;
+    const markerX = x2 + Math.sin(twist) * 4;
+    ctx.beginPath();
+    ctx.moveTo(x2, cy); ctx.lineTo(markerX, markerY);
+    ctx.stroke();
+
+    // Flèche de couple
+    if (cycle > 0.05) {
+      ctx.strokeStyle = '#2E6A8E';
+      ctx.fillStyle = '#2E6A8E';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.arc(x2 + 22, cy, 24, -Math.PI * 0.85, Math.PI * 0.5, false);
+      ctx.stroke();
+      const ax = x2 + 22 + Math.cos(Math.PI * 0.5) * 24;
+      const ay = cy + Math.sin(Math.PI * 0.5) * 24;
+      ctx.beginPath();
+      ctx.moveTo(ax, ay); ctx.lineTo(ax - 7, ay - 6); ctx.lineTo(ax + 2, ay - 7); ctx.fill();
+      ctx.font = '600 13px JetBrains Mono';
+      ctx.fillText('M (couple)', x2 + 8, cy + radius + 24);
+    }
+
+    // Étiquette "fixe"
+    ctx.fillStyle = '#4A5A6B';
+    ctx.font = '11px JetBrains Mono';
+    ctx.fillText('encastré', x1 - 38, cy - radius - 22);
+
+    // Phénomène
+    ctx.fillStyle = 'rgba(184,92,46,0.85)';
+    ctx.font = '600 12px JetBrains Mono';
+    ctx.fillText(cycle > 0.05 ? '→ STRIES s\u2019enroulent en hélice' : 'AU REPOS', 18, 26);
+
+    t++;
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ============ CISAILLEMENT BIG : deux plaques qui glissent + rivet sectionné ============
+(function() {
+  const cvEl = document.getElementById('c-cisail-big');
+  if (!cvEl) return;
+  const { cv, ctx, w, h } = setupCanvas('c-cisail-big');
+  let t = 0;
+  function loop() {
+    const W = w(), H = h();
+    ctx.clearRect(0, 0, W, H);
+    const cy = H / 2;
+    const cx = W / 2;
+    const cycle = (Math.sin(t * 0.018) + 1) / 2;
+    const slip = cycle * 28;
+    const plateW = W - 100;
+    const plateH = 50;
+
+    // Plaque haute (décalée à droite)
+    ctx.fillStyle = '#D67D3E';
+    ctx.fillRect(50 + slip, cy - plateH - 4, plateW, plateH);
+    ctx.strokeStyle = '#933F1A';
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(50 + slip, cy - plateH - 4, plateW, plateH);
+
+    // Plaque basse (décalée à gauche)
+    ctx.fillStyle = '#B85C2E';
+    ctx.fillRect(50 - slip, cy + 4, plateW, plateH);
+    ctx.strokeRect(50 - slip, cy + 4, plateW, plateH);
+
+    // Rivet (cylindre vertical au centre)
+    ctx.fillStyle = cycle > 0.9 ? '#D9534F' : '#4A5A6B';
+    // Bouton du haut
+    ctx.beginPath();
+    ctx.ellipse(cx + slip, cy - plateH - 4, 16, 4, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillRect(cx - 8 + slip, cy - plateH - 4, 16, plateH);
+    // Bouton du bas
+    ctx.beginPath();
+    ctx.ellipse(cx - slip, cy + plateH + 4, 16, 4, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillRect(cx - 8 - slip, cy + 4, 16, plateH);
+
+    // Zone centrale du rivet (entre les 2 plaques) : cisaillée
+    ctx.fillStyle = cycle > 0.6 ? '#D9534F' : '#7B8A99';
+    // Approche en parallélogramme déformé
+    ctx.beginPath();
+    ctx.moveTo(cx - 8 + slip, cy - 4);
+    ctx.lineTo(cx + 8 + slip, cy - 4);
+    ctx.lineTo(cx + 8 - slip, cy + 4);
+    ctx.lineTo(cx - 8 - slip, cy + 4);
+    ctx.closePath();
+    ctx.fill();
+
+    // Zone de cisaillement (encadré pointillé)
+    if (cycle > 0.3) {
+      ctx.strokeStyle = '#D9534F';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([4, 4]);
+      ctx.strokeRect(cx - 30, cy - 18, 60, 36);
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#D9534F';
+      ctx.font = '600 11px JetBrains Mono';
+      ctx.fillText('ZONE CISAILLÉE', cx - 56, cy + 38);
+    }
+
+    // Flèches de force
+    ctx.strokeStyle = '#2E6A8E';
+    ctx.fillStyle = '#2E6A8E';
+    ctx.lineWidth = 3;
+    // Sur plaque haute : tire vers la droite
+    const fy1 = cy - plateH / 2 - 4;
+    ctx.beginPath(); ctx.moveTo(50 + slip - 60, fy1); ctx.lineTo(50 + slip - 6, fy1); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(50 + slip - 6, fy1); ctx.lineTo(50 + slip - 16, fy1 - 6); ctx.lineTo(50 + slip - 16, fy1 + 6); ctx.fill();
+    ctx.font = '600 13px JetBrains Mono';
+    ctx.fillText('F', 50 + slip - 36, fy1 - 10);
+    // Sur plaque basse : tire vers la gauche
+    const fy2 = cy + plateH / 2 + 4;
+    ctx.beginPath(); ctx.moveTo(W - 50 - slip + 60, fy2); ctx.lineTo(W - 50 - slip + 6, fy2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(W - 50 - slip + 6, fy2); ctx.lineTo(W - 50 - slip + 16, fy2 - 6); ctx.lineTo(W - 50 - slip + 16, fy2 + 6); ctx.fill();
+    ctx.fillText('F', W - 50 - slip + 30, fy2 + 18);
+
+    // Labels
+    ctx.fillStyle = '#933F1A';
+    ctx.font = '600 11px JetBrains Mono';
+    ctx.fillText('plaque haute', 80 + slip, cy - plateH - 10);
+    ctx.fillText('plaque basse', 80 - slip, cy + plateH + 18);
+
+    // Phénomène
+    ctx.fillStyle = 'rgba(184,92,46,0.85)';
+    ctx.font = '600 12px JetBrains Mono';
+    ctx.fillText(cycle > 0.05 ? '→ Les forces font GLISSER les deux moitiés' : 'AU REPOS', 18, 26);
 
     t++;
     requestAnimationFrame(loop);
