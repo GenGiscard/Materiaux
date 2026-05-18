@@ -57,18 +57,14 @@ header {
   z-index: 10;
 }
 .head-inner {
-  max-width: 980px;
+  max-width: 1240px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: auto 1fr auto auto;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
-.head-title {
-  font-weight: 800;
-  font-size: 16px;
-  line-height: 1.1;
-}
+.head-title { font-weight: 800; font-size: 16px; line-height: 1.1; }
 .head-sub {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
@@ -81,32 +77,23 @@ header {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
   color: var(--ink-mute);
-  letter-spacing: 0.08em;
 }
 .head-group strong { color: var(--ink); }
-.head-timer {
+.head-q, .head-timer {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 14px;
-  color: var(--copper);
-  font-weight: 600;
+  font-size: 13px;
   padding: 6px 12px;
   background: var(--bg-soft);
   border-radius: 6px;
 }
-.head-q {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--ink-soft);
-  padding: 6px 12px;
-  background: var(--bg-soft);
-  border-radius: 6px;
-}
+.head-q { color: var(--ink-soft); }
+.head-timer { color: var(--copper); font-weight: 600; }
 
 /* CONTAINER */
 .container {
-  max-width: 880px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 32px 24px;
   position: relative;
   z-index: 1;
 }
@@ -119,7 +106,7 @@ header {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ============ SCREEN: SETUP (identification du groupe) ============ */
+/* SETUP */
 .setup-tag {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
@@ -136,14 +123,13 @@ h1 {
   margin-bottom: 14px;
 }
 h1 .hi { color: var(--copper); }
-
 .lead {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--ink-soft);
   line-height: 1.5;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
+  max-width: 720px;
 }
-
 .setup-info {
   background: rgba(46,106,142,0.08);
   border-left: 4px solid var(--steel);
@@ -152,6 +138,7 @@ h1 .hi { color: var(--copper); }
   font-size: 14px;
   margin-bottom: 32px;
   line-height: 1.55;
+  max-width: 720px;
 }
 .setup-info strong { color: var(--steel); }
 .setup-info ul { list-style: none; margin-top: 8px; }
@@ -164,6 +151,7 @@ h1 .hi { color: var(--copper); }
   border-radius: 14px;
   padding: 32px;
   box-shadow: var(--shadow);
+  max-width: 560px;
 }
 .form-row { margin-bottom: 20px; }
 .form-row label {
@@ -190,7 +178,6 @@ h1 .hi { color: var(--copper); }
 .form-row select:focus {
   outline: 2px solid var(--copper);
   outline-offset: -1px;
-  border-color: var(--copper);
 }
 .form-row .hint {
   font-size: 12px;
@@ -202,39 +189,38 @@ h1 .hi { color: var(--copper); }
   background: var(--copper);
   color: white;
   border: none;
-  padding: 14px 28px;
+  padding: 13px 26px;
   border-radius: 8px;
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.15s;
-  letter-spacing: 0.03em;
 }
 .btn:hover { background: var(--copper-soft); transform: translateY(-1px); }
-.btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  transform: none;
-}
+.btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 .btn.ghost {
   background: transparent;
   color: var(--ink-soft);
   border: 1px solid var(--line);
 }
 .btn.ghost:hover { background: var(--bg-soft); color: var(--ink); transform: none; }
+.btn-big { font-size: 16px; padding: 16px 32px; }
 
-.btn-big {
-  font-size: 16px;
-  padding: 16px 32px;
+/* QUESTION LAYOUT */
+.q-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
-
-/* ============ SCREEN: EVALUATION ============ */
+.q-layout.with-calc {
+  grid-template-columns: 1fr 280px;
+}
 .q-card {
   background: var(--bg-elev);
   border: 1px solid var(--line);
   border-radius: 14px;
-  padding: 32px;
+  padding: 28px 32px;
   box-shadow: var(--shadow);
 }
 .q-meta {
@@ -242,67 +228,56 @@ h1 .hi { color: var(--copper); }
   justify-content: space-between;
   align-items: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--ink-mute);
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
-.q-meta .pts { color: var(--copper); font-weight: 600; }
 .q-type-tag {
   padding: 4px 10px;
   background: var(--bg-soft);
   border-radius: 4px;
   color: var(--copper);
-}
-.q-text {
-  font-size: 22px;
-  color: var(--ink);
-  line-height: 1.35;
-  margin-bottom: 20px;
   font-weight: 600;
 }
-.q-image {
-  display: flex;
-  justify-content: center;
-  margin: 16px 0 24px;
-  padding: 20px;
-  background: var(--bg-soft);
-  border-radius: 10px;
+.q-pts { color: var(--copper); font-weight: 600; }
+.q-text {
+  font-size: 20px;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 22px;
+  font-weight: 600;
 }
-.q-image svg { display: block; }
-.q-image .label {
+.q-hint {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
-  color: var(--ink-soft);
-  text-align: center;
-  margin-top: 8px;
+  color: var(--ink-mute);
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  background: var(--bg-soft);
+  border-radius: 6px;
 }
 
+/* QCM */
 .q-options { display: grid; gap: 10px; }
 .q-opt {
   background: var(--bg-soft);
   border: 2px solid transparent;
   border-radius: 10px;
-  padding: 16px 20px;
+  padding: 14px 18px;
   cursor: pointer;
   font-size: 15px;
   color: var(--ink);
   transition: all 0.12s;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
-.q-opt:hover {
-  background: var(--bg-card-hi);
-  border-color: var(--line);
-}
-.q-opt.selected {
-  background: rgba(184,92,46,0.1);
-  border-color: var(--copper);
-}
+.q-opt:hover { background: var(--bg-card-hi); border-color: var(--line); }
+.q-opt.selected { background: rgba(184,92,46,0.1); border-color: var(--copper); }
 .q-opt .letter {
-  width: 28px; height: 28px;
+  width: 26px; height: 26px;
   border-radius: 50%;
   background: white;
   border: 1px solid var(--line);
@@ -311,27 +286,254 @@ h1 .hi { color: var(--copper); }
   justify-content: center;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--ink-mute);
   flex-shrink: 0;
 }
-.q-opt.selected .letter {
-  background: var(--copper);
-  color: white;
-  border-color: var(--copper);
+.q-opt.selected .letter { background: var(--copper); color: white; border-color: var(--copper); }
+
+/* SVG SCHEMA */
+.q-svg {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 22px;
+  padding: 18px;
+  background: var(--bg-soft);
+  border-radius: 10px;
+}
+.q-svg svg { display: block; max-width: 100%; height: auto; }
+
+/* CALC : CHAMP RÉPONSE */
+.calc-zone {
+  background: var(--bg-soft);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.calc-zone label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.calc-input {
+  flex: 1;
+  min-width: 140px;
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+}
+.calc-input:focus { outline: 2px solid var(--copper); outline-offset: -1px; border-color: var(--copper); }
+.calc-unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-weight: 600;
 }
 
+/* CALCULATRICE */
+.calculator {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 90px;
+  height: fit-content;
+}
+.calc-header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.calc-display {
+  background: var(--bg-soft);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+  min-height: 56px;
+  margin-bottom: 10px;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.calc-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.calc-key {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--ink);
+  transition: all 0.1s;
+}
+.calc-key:hover { background: var(--bg-card-hi); }
+.calc-key:active { transform: translateY(1px); }
+.calc-key.op { color: var(--copper); }
+.calc-key.eq { background: var(--copper); color: white; border-color: var(--copper); grid-column: span 2; }
+.calc-key.eq:hover { background: var(--copper-soft); }
+.calc-key.clear { color: var(--red); }
+
+/* CLICK ZONE */
+.click-area {
+  position: relative;
+  display: inline-block;
+}
+.click-target {
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.click-target:hover { fill: rgba(184,92,46,0.3) !important; }
+.click-target.selected { fill: rgba(184,92,46,0.5) !important; stroke: var(--copper) !important; stroke-width: 3 !important; }
+
+/* DRAG & DROP */
+.drag-zone {
+  display: grid;
+  gap: 16px;
+}
+.drag-source {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px;
+  background: var(--bg-soft);
+  border-radius: 10px;
+  min-height: 60px;
+  align-items: center;
+}
+.drag-source-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.drag-targets {
+  display: grid;
+  gap: 10px;
+}
+.drag-target {
+  background: white;
+  border: 2px dashed var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 14px;
+  align-items: center;
+  min-height: 60px;
+  transition: all 0.15s;
+}
+.drag-target.over { background: rgba(184,92,46,0.06); border-color: var(--copper); }
+.drag-target .target-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+}
+.drag-target .drop-slot {
+  min-height: 40px;
+  background: var(--bg-soft);
+  border-radius: 8px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.draggable {
+  background: var(--bg-card-hi);
+  border: 1px solid var(--copper);
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: grab;
+  font-size: 13px;
+  color: var(--ink);
+  transition: all 0.1s;
+  font-weight: 500;
+  user-select: none;
+}
+.draggable:active { cursor: grabbing; }
+.draggable.dragging { opacity: 0.4; }
+
+/* ORDER */
+.order-list {
+  display: grid;
+  gap: 8px;
+}
+.order-item {
+  background: var(--bg-soft);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 14px 18px;
+  cursor: move;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.15s;
+}
+.order-item.dragging { opacity: 0.4; }
+.order-item.over { border-color: var(--copper); background: var(--bg-card-hi); }
+.order-handle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--ink-mute);
+  font-weight: 600;
+}
+.order-num {
+  background: var(--copper);
+  color: white;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+.order-text { flex: 1; font-size: 14px; font-weight: 500; }
+
+/* NAV */
 .q-nav {
   display: flex;
   justify-content: space-between;
-  margin-top: 24px;
+  margin-top: 20px;
   gap: 12px;
 }
 .progress-bar {
   height: 4px;
   background: var(--bg-soft);
   border-radius: 2px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   overflow: hidden;
 }
 .progress-fill {
@@ -340,7 +542,7 @@ h1 .hi { color: var(--copper); }
   transition: width 0.3s;
 }
 
-/* ============ SCREEN: RESULT ============ */
+/* RESULT */
 .result-card {
   background: linear-gradient(135deg, rgba(184,92,46,0.1), rgba(184,92,46,0.02));
   border: 1px solid var(--copper);
@@ -356,10 +558,7 @@ h1 .hi { color: var(--copper); }
   color: var(--copper);
   letter-spacing: -0.03em;
 }
-.result-card .big-score .out {
-  font-size: 32px;
-  color: var(--ink-soft);
-}
+.result-card .big-score .out { font-size: 32px; color: var(--ink-soft); }
 .result-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
@@ -409,10 +608,16 @@ h1 .hi { color: var(--copper); }
 .modal p { color: var(--ink-soft); line-height: 1.5; margin-bottom: 20px; }
 .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
 
+@media (max-width: 900px) {
+  .q-layout.with-calc { grid-template-columns: 1fr; }
+  .calculator { position: static; }
+  .drag-target { grid-template-columns: 1fr; }
+}
 @media (max-width: 720px) {
-  h1 { font-size: 36px; }
-  .container { padding: 32px 16px; }
-  .head-inner { gap: 12px; grid-template-columns: 1fr; text-align: center; }
+  h1 { font-size: 32px; }
+  .container { padding: 24px 14px; }
+  .head-inner { gap: 10px; grid-template-columns: 1fr 1fr; }
+  .head-group, .head-q { font-size: 11px; }
 }
 </style>
 </head>
@@ -428,7 +633,7 @@ h1 .hi { color: var(--copper); }
       <strong id="headGroup">—</strong> · <span id="headClasse">—</span>
     </div>
     <div class="head-q" id="headQ" style="display:none">
-      Question <strong id="qNum">1</strong> / <span id="qTotal">20</span>
+      Q<strong id="qNum">1</strong> / <span id="qTotal">20</span>
     </div>
     <div class="head-timer" id="headTimer" style="display:none">⏱ <span id="timer">30:00</span></div>
   </div>
@@ -441,13 +646,15 @@ h1 .hi { color: var(--copper); }
     <div class="setup-tag">Évaluation notée · en groupe</div>
     <h1>Les matériaux<br><span class="hi">et leurs propriétés</span></h1>
 
+    <p class="lead">Une évaluation ludique en groupe : QCM, calculs (avec calculatrice intégrée), schémas à analyser et à compléter, drag &amp; drop.</p>
+
     <div class="setup-info">
       <strong>Avant de commencer :</strong>
       <ul>
         <li>Vous travaillez en groupe de 2 à 4 élèves sur le même ordinateur.</li>
-        <li>20 questions, durée : 30 minutes. Note finale sur 20.</li>
+        <li>20 questions de types variés · durée 30 minutes · note sur 20.</li>
         <li>Vous ne pouvez pas revenir en arrière une fois une question validée.</li>
-        <li>Vos réponses sont envoyées au professeur quand vous terminez.</li>
+        <li>Vos résultats sont envoyés en direct au professeur.</li>
       </ul>
     </div>
 
@@ -465,10 +672,12 @@ h1 .hi { color: var(--copper); }
           <option value="4eB">4e B</option>
           <option value="4eC">4e C</option>
           <option value="4eD">4e D</option>
+          <option value="4eE">4e E</option>
           <option value="3eA">3e A</option>
           <option value="3eB">3e B</option>
           <option value="3eC">3e C</option>
           <option value="3eD">3e D</option>
+          <option value="3eE">3e E</option>
         </select>
       </div>
       <button class="btn btn-big" id="btnStart" disabled>Commencer l'évaluation →</button>
@@ -478,7 +687,10 @@ h1 .hi { color: var(--copper); }
   <!-- ============ SCREEN ÉVAL ============ -->
   <div class="screen" id="screenEval">
     <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
-    <div class="q-card" id="qCard"></div>
+    <div class="q-layout" id="qLayout">
+      <div class="q-card" id="qCard"></div>
+      <!-- Calculatrice insérée dynamiquement si besoin -->
+    </div>
   </div>
 
   <!-- ============ SCREEN RESULT ============ -->
@@ -496,7 +708,7 @@ h1 .hi { color: var(--copper); }
 
 </div>
 
-<!-- MODAL CONFIRM EXIT -->
+<!-- MODAL CONFIRM -->
 <div class="modal-overlay" id="modalConfirm">
   <div class="modal">
     <h3>Soumettre les réponses ?</h3>
@@ -509,207 +721,28 @@ h1 .hi { color: var(--copper); }
 </div>
 
 <script>
-// ============= CONFIG FIREBASE =============
+// ============ CONFIG FIREBASE ============
 const FIREBASE_URL = 'https://evaluation-bloc-default-rtdb.europe-west1.firebasedatabase.app';
 const NODE = 'resultats_materiaux';
 
-// ============= QUESTIONS =============
-// Format : { txt, type, opts: [...], correct: index, pts }
-// Types : qcm, ident, sollic, propriete, cas
-const allQuestions = [
-  // === FAMILLES (5 questions) ===
-  {
-    type: 'qcm',
-    typeLabel: 'Familles',
-    txt: 'Le verre fait partie de quelle famille de matériaux ?',
-    opts: ['Métaux', 'Polymères', 'Céramiques et verres', 'Composites'],
-    correct: 2, pts: 1
-  },
-  {
-    type: 'qcm',
-    typeLabel: 'Familles',
-    txt: 'Le bois et le coton appartiennent à la famille :',
-    opts: ['Des métaux', 'Des polymères', 'Des composites', 'Des organiques naturels'],
-    correct: 3, pts: 1
-  },
-  {
-    type: 'qcm',
-    typeLabel: 'Familles',
-    txt: 'L\'acier est un alliage de :',
-    opts: ['Fer + carbone', 'Fer + cuivre', 'Aluminium + zinc', 'Fer + plomb'],
-    correct: 0, pts: 1
-  },
-  {
-    type: 'qcm',
-    typeLabel: 'Familles',
-    txt: 'La fibre de carbone associée à de la résine est un :',
-    opts: ['Métal', 'Polymère', 'Céramique', 'Composite'],
-    correct: 3, pts: 1
-  },
-  {
-    type: 'qcm',
-    typeLabel: 'Familles',
-    txt: 'Les bouteilles d\'eau transparentes sont en :',
-    opts: ['PET (polymère)', 'Verre', 'Aluminium', 'Polystyrène'],
-    correct: 0, pts: 1
-  },
-
-  // === PROPRIÉTÉS (4 questions) ===
-  {
-    type: 'qcm',
-    typeLabel: 'Propriétés',
-    txt: 'Un matériau qui revient à sa forme initiale après une force est dit :',
-    opts: ['Plastique', 'Élastique', 'Fragile', 'Ductile'],
-    correct: 1, pts: 1
-  },
-  {
-    type: 'qcm',
-    typeLabel: 'Propriétés',
-    txt: 'La conductivité électrique est une propriété :',
-    opts: ['Mécanique', 'Physique', 'Esthétique', 'Environnementale'],
-    correct: 1, pts: 1
-  },
-  {
-    type: 'qcm',
-    typeLabel: 'Propriétés',
-    txt: 'Quel matériau conduit le mieux l\'électricité ?',
-    opts: ['Bois', 'Verre', 'PVC', 'Cuivre'],
-    correct: 3, pts: 1
-  },
-  {
-    type: 'qcm',
-    typeLabel: 'Propriétés',
-    txt: 'La biodégradabilité fait partie des propriétés :',
-    opts: ['Mécaniques', 'Physiques', 'Esthétiques', 'Environnementales'],
-    correct: 3, pts: 1
-  },
-
-  // === ÉLASTIQUE / PLASTIQUE (2 questions) ===
-  {
-    type: 'qcm',
-    typeLabel: 'Comportement',
-    txt: 'Quand on tord un trombone et qu\'on le relâche, il reste tordu. Cette déformation est :',
-    opts: ['Élastique', 'Plastique', 'Cassante', 'Réversible'],
-    correct: 1, pts: 1
-  },
-  {
-    type: 'qcm',
-    typeLabel: 'Comportement',
-    txt: 'Sur la courbe contrainte-déformation, le point Re représente :',
-    opts: [
-      'La rupture du matériau',
-      'La limite élastique (au-delà : plasticité)',
-      'La résistance maximale',
-      'La densité du matériau'
-    ],
-    correct: 1, pts: 1
-  },
-
-  // === SOLLICITATIONS (4 questions avec schémas) ===
-  {
-    type: 'sollic',
-    typeLabel: 'Sollicitations',
-    txt: 'Quelle sollicitation subit un câble qui tient un ascenseur ?',
-    opts: ['Compression', 'Traction', 'Flexion', 'Torsion'],
-    correct: 1, pts: 1,
-    svg: 'cable'
-  },
-  {
-    type: 'sollic',
-    typeLabel: 'Sollicitations',
-    txt: 'Une étagère chargée de livres au milieu subit principalement :',
-    opts: ['Traction', 'Cisaillement', 'Flexion', 'Torsion'],
-    correct: 2, pts: 1,
-    svg: 'etagere'
-  },
-  {
-    type: 'sollic',
-    typeLabel: 'Sollicitations',
-    txt: 'Quand tu serres une vis avec un tournevis, la tige est en :',
-    opts: ['Traction', 'Flexion', 'Torsion', 'Compression'],
-    correct: 2, pts: 1,
-    svg: 'tournevis'
-  },
-  {
-    type: 'sollic',
-    typeLabel: 'Sollicitations',
-    txt: 'Un pilier qui supporte un toit subit :',
-    opts: ['Traction', 'Compression', 'Flexion', 'Cisaillement'],
-    correct: 1, pts: 1,
-    svg: 'pilier'
-  },
-
-  // === CAS PRATIQUES (5 questions) ===
-  {
-    type: 'cas',
-    typeLabel: 'Cas pratique',
-    txt: 'Pour fabriquer un cadre de vélo de course (léger ET résistant), quel matériau est le plus adapté ?',
-    opts: ['Acier épais', 'Bois sapin', 'Fibre de carbone', 'Verre épais'],
-    correct: 2, pts: 1
-  },
-  {
-    type: 'cas',
-    typeLabel: 'Cas pratique',
-    txt: 'Pour une vitre de fenêtre, on choisit :',
-    opts: [
-      'Du plastique PE (sac plastique)',
-      'Du verre',
-      'De l\'aluminium',
-      'Du bois fin'
-    ],
-    correct: 1, pts: 1
-  },
-  {
-    type: 'cas',
-    typeLabel: 'Cas pratique',
-    txt: 'Pour un câble électrique dans une maison, on utilise du :',
-    opts: ['Cuivre', 'Bois', 'PVC pour conduire', 'Acier'],
-    correct: 0, pts: 1
-  },
-  {
-    type: 'cas',
-    typeLabel: 'Cas pratique',
-    txt: 'Pour une coque de bateau légère et résistante à l\'eau salée :',
-    opts: [
-      'Acier non traité',
-      'Bois sapin non traité',
-      'Fibre de verre (composite)',
-      'Verre'
-    ],
-    correct: 2, pts: 1
-  },
-  {
-    type: 'cas',
-    typeLabel: 'Cas pratique',
-    txt: 'L\'indice de réparabilité est une note sur :',
-    opts: ['5', '10', '20', '100'],
-    correct: 1, pts: 1
-  }
-];
-
-// SVG schémas pour les sollicitations
-const svgSchemas = {
-  cable: `<svg width="220" height="160" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
-    <rect x="80" y="10" width="60" height="14" fill="#4A5A6B" rx="2"/>
-    <line x1="110" y1="24" x2="110" y2="120" stroke="#B85C2E" stroke-width="6"/>
-    <rect x="80" y="120" width="60" height="30" fill="#7B8A99" rx="2"/>
-    <text x="160" y="76" fill="#2E6A8E" font-family="JetBrains Mono" font-size="11" font-weight="600">câble tendu</text>
-    <path d="M 50 75 L 50 50 M 50 75 L 46 70 M 50 75 L 54 70" stroke="#2E6A8E" stroke-width="2" fill="none"/>
-    <path d="M 50 95 L 50 120 M 50 120 L 46 116 M 50 120 L 54 116" stroke="#2E6A8E" stroke-width="2" fill="none"/>
-    <text x="20" y="90" fill="#2E6A8E" font-family="JetBrains Mono" font-size="11" font-weight="600">F</text>
+// ============ SCHÉMAS SVG ============
+const svgs = {
+  cable: `<svg width="200" height="160" viewBox="0 0 200 160">
+    <rect x="70" y="10" width="60" height="14" fill="#4A5A6B" rx="2"/>
+    <line x1="100" y1="24" x2="100" y2="120" stroke="#B85C2E" stroke-width="6"/>
+    <rect x="70" y="120" width="60" height="30" fill="#7B8A99" rx="2"/>
+    <path d="M 40 75 L 40 50 M 40 75 L 36 70 M 40 75 L 44 70" stroke="#2E6A8E" stroke-width="2" fill="none"/>
+    <path d="M 40 95 L 40 120 M 40 120 L 36 116 M 40 120 L 44 116" stroke="#2E6A8E" stroke-width="2" fill="none"/>
+    <text x="14" y="90" fill="#2E6A8E" font-family="JetBrains Mono" font-size="11" font-weight="600">F</text>
   </svg>`,
-  etagere: `<svg width="240" height="160" viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 30 75 Q 120 95 210 75" fill="none" stroke="#8B6F47" stroke-width="14" stroke-linecap="round"/>
-    <rect x="20" y="70" width="14" height="40" fill="#4A5A6B"/>
-    <rect x="206" y="70" width="14" height="40" fill="#4A5A6B"/>
-    <rect x="80" y="40" width="80" height="48" fill="#B85C2E" rx="2"/>
-    <line x1="92" y1="48" x2="148" y2="48" stroke="white" stroke-width="1"/>
-    <line x1="92" y1="58" x2="148" y2="58" stroke="white" stroke-width="1"/>
-    <line x1="92" y1="68" x2="148" y2="68" stroke="white" stroke-width="1"/>
-    <line x1="92" y1="78" x2="148" y2="78" stroke="white" stroke-width="1"/>
-    <text x="100" y="30" fill="#2E6A8E" font-family="JetBrains Mono" font-size="11" font-weight="600">poids ↓</text>
+  pilier: `<svg width="220" height="160" viewBox="0 0 220 160">
+    <rect x="40" y="10" width="140" height="14" fill="#4A5A6B"/>
+    <rect x="90" y="24" width="40" height="106" fill="#B85C2E"/>
+    <rect x="30" y="130" width="160" height="20" fill="#7B8A99"/>
+    <path d="M 110 -5 L 110 20 M 110 20 L 105 15 M 110 20 L 115 15" stroke="#2E6A8E" stroke-width="2.5" fill="none"/>
+    <text x="138" y="14" fill="#2E6A8E" font-family="JetBrains Mono" font-size="11" font-weight="600">poids ↓</text>
   </svg>`,
-  tournevis: `<svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+  tournevis: `<svg width="200" height="160" viewBox="0 0 200 160">
     <rect x="60" y="20" width="80" height="38" fill="#B85C2E" rx="6"/>
     <line x1="100" y1="58" x2="100" y2="120" stroke="#7B8A99" stroke-width="6"/>
     <polygon points="92,120 108,120 100,140" fill="#4A5A6B"/>
@@ -717,23 +750,223 @@ const svgSchemas = {
     <polygon points="45,60 41,55 49,55" fill="#2E6A8E"/>
     <text x="150" y="42" fill="#2E6A8E" font-family="JetBrains Mono" font-size="11" font-weight="600">on tord</text>
   </svg>`,
-  pilier: `<svg width="220" height="160" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
-    <rect x="40" y="10" width="140" height="14" fill="#4A5A6B"/>
-    <rect x="90" y="24" width="40" height="106" fill="#B85C2E"/>
-    <rect x="30" y="130" width="160" height="20" fill="#7B8A99"/>
-    <path d="M 110 -5 L 110 20 M 110 20 L 105 15 M 110 20 L 115 15" stroke="#2E6A8E" stroke-width="2.5" fill="none"/>
-    <text x="138" y="14" fill="#2E6A8E" font-family="JetBrains Mono" font-size="11" font-weight="600">poids ↓</text>
+  ciseaux: `<svg width="220" height="160" viewBox="0 0 220 160">
+    <circle cx="50" cy="40" r="18" fill="none" stroke="#4A5A6B" stroke-width="3"/>
+    <circle cx="50" cy="120" r="18" fill="none" stroke="#4A5A6B" stroke-width="3"/>
+    <line x1="68" y1="40" x2="200" y2="78" stroke="#7B8A99" stroke-width="3"/>
+    <line x1="68" y1="120" x2="200" y2="82" stroke="#7B8A99" stroke-width="3"/>
+    <rect x="120" y="65" width="50" height="30" fill="#E5B547" opacity="0.5" stroke="#C9931E" stroke-width="1.5"/>
+    <text x="125" y="84" fill="#933F1A" font-family="JetBrains Mono" font-size="10" font-weight="600">papier</text>
   </svg>`
 };
 
-// État
-let questions = []; // version mélangée
+// ============ QUESTIONS ============
+// Types : qcm, sollic (qcm + svg), calc, click, drag (match ou order)
+const allQuestions = [
+
+  // ====== QCM FAMILLES (3) ======
+  {
+    type: 'qcm', typeLabel: 'Familles', pts: 1,
+    txt: 'Le verre fait partie de quelle famille de matériaux ?',
+    opts: ['Métaux', 'Polymères', 'Céramiques et verres', 'Composites'],
+    correct: 2
+  },
+  {
+    type: 'qcm', typeLabel: 'Familles', pts: 1,
+    txt: 'L\'acier est un alliage de :',
+    opts: ['Fer + carbone', 'Fer + cuivre', 'Aluminium + zinc', 'Fer + plomb'],
+    correct: 0
+  },
+  {
+    type: 'qcm', typeLabel: 'Familles', pts: 1,
+    txt: 'La fibre de carbone associée à de la résine est un :',
+    opts: ['Métal', 'Polymère', 'Céramique', 'Composite'],
+    correct: 3
+  },
+
+  // ====== QCM PROPRIÉTÉS (3) ======
+  {
+    type: 'qcm', typeLabel: 'Propriétés', pts: 1,
+    txt: 'Un matériau qui revient à sa forme initiale après une force est dit :',
+    opts: ['Plastique', 'Élastique', 'Fragile', 'Ductile'],
+    correct: 1
+  },
+  {
+    type: 'qcm', typeLabel: 'Propriétés', pts: 1,
+    txt: 'Quel matériau conduit le mieux l\'électricité ?',
+    opts: ['Bois', 'Verre', 'PVC', 'Cuivre'],
+    correct: 3
+  },
+  {
+    type: 'qcm', typeLabel: 'Comportement', pts: 1,
+    txt: 'Sur la courbe contrainte-déformation, le point Re représente :',
+    opts: [
+      'La rupture du matériau',
+      'La limite élastique (au-delà : plasticité)',
+      'La résistance maximale',
+      'La densité du matériau'
+    ],
+    correct: 1
+  },
+
+  // ====== SOLLIC (avec schéma SVG) ======
+  {
+    type: 'sollic', typeLabel: 'Sollicitations', pts: 1,
+    txt: 'Quelle sollicitation subit un câble qui tient un ascenseur ?',
+    svg: 'cable',
+    opts: ['Compression', 'Traction', 'Flexion', 'Torsion'],
+    correct: 1
+  },
+  {
+    type: 'sollic', typeLabel: 'Sollicitations', pts: 1,
+    txt: 'Un pilier qui supporte un toit subit :',
+    svg: 'pilier',
+    opts: ['Traction', 'Compression', 'Flexion', 'Cisaillement'],
+    correct: 1
+  },
+  {
+    type: 'sollic', typeLabel: 'Sollicitations', pts: 1,
+    txt: 'Quand tu serres une vis avec un tournevis, la tige est en :',
+    svg: 'tournevis',
+    opts: ['Traction', 'Flexion', 'Torsion', 'Compression'],
+    correct: 2
+  },
+  {
+    type: 'sollic', typeLabel: 'Sollicitations', pts: 1,
+    txt: 'Quelle sollicitation subit le papier entre les deux lames de ciseaux ?',
+    svg: 'ciseaux',
+    opts: ['Traction', 'Flexion', 'Torsion', 'Cisaillement'],
+    correct: 3
+  },
+
+  // ====== CALC (avec calculatrice) ======
+  {
+    type: 'calc', typeLabel: 'Calcul', pts: 1,
+    txt: 'Une pièce d\'aluminium a un volume de 100 cm³. Sa masse volumique est de 2,7 g/cm³. Quelle est sa masse ?',
+    hint: 'Formule : masse = volume × masse volumique',
+    unit: 'g',
+    answer: 270, tolerance: 1
+  },
+  {
+    type: 'calc', typeLabel: 'Calcul', pts: 1,
+    txt: 'Une vis subit une force de traction de 500 N. Sa section est de 25 mm². Calcule la contrainte en MPa.',
+    hint: 'Formule : σ = F / S · 1 MPa = 1 N/mm²',
+    unit: 'MPa',
+    answer: 20, tolerance: 0.5
+  },
+  {
+    type: 'calc', typeLabel: 'Calcul', pts: 1,
+    txt: 'Recycler 1 kg d\'aluminium consomme 30 kWh. Produire 1 kg d\'aluminium neuf consomme 100 kWh. Quel pourcentage d\'énergie économise-t-on en recyclant ?',
+    hint: 'Pourcentage économisé = (neuf − recyclé) / neuf × 100',
+    unit: '%',
+    answer: 70, tolerance: 1
+  },
+  {
+    type: 'calc', typeLabel: 'Calcul', pts: 1,
+    txt: 'Une bouteille en PET met 450 ans à se dégrader. Jetée en 2026, en quelle année aura-t-elle complètement disparu ?',
+    hint: 'Année finale = année actuelle + durée de dégradation',
+    unit: '',
+    answer: 2476, tolerance: 0
+  },
+
+  // ====== CLICK (zones cliquables sur schéma) ======
+  {
+    type: 'click', typeLabel: 'Schéma', pts: 1,
+    txt: 'Sur cette poutre en flexion, clique sur la zone qui subit la COMPRESSION.',
+    hint: 'La poutre est posée sur 2 appuis et chargée au milieu',
+    svgFn: 'flexion_zones',
+    zones: [
+      { id: 'top', label: 'haut' },
+      { id: 'bottom', label: 'bas' },
+      { id: 'neutral', label: 'milieu' }
+    ],
+    correct: 'top'
+  },
+  {
+    type: 'click', typeLabel: 'Schéma', pts: 1,
+    txt: 'Sur cette courbe contrainte-déformation, clique sur le point Re (limite élastique).',
+    hint: 'C\'est le point où on passe de l\'élastique au plastique',
+    svgFn: 'curve_zones',
+    zones: [
+      { id: 'origin', label: 'O' },
+      { id: 're', label: 'Re' },
+      { id: 'rm', label: 'Rm' },
+      { id: 'rupt', label: 'rupture' }
+    ],
+    correct: 're'
+  },
+  {
+    type: 'click', typeLabel: 'Schéma', pts: 1,
+    txt: 'Sur ce schéma de vélo, clique sur la partie qui subit principalement la TORSION quand on pédale.',
+    hint: 'C\'est la pièce qui transmet la rotation des pédales aux roues',
+    svgFn: 'velo_zones',
+    zones: [
+      { id: 'cadre', label: 'cadre' },
+      { id: 'fourche', label: 'fourche' },
+      { id: 'pedalier', label: 'pédalier' },
+      { id: 'selle', label: 'selle' }
+    ],
+    correct: 'pedalier'
+  },
+
+  // ====== DRAG MATCH (associer) ======
+  {
+    type: 'drag_match', typeLabel: 'Associer', pts: 1,
+    txt: 'Associe chaque objet à sa famille de matériau (glisse les étiquettes).',
+    sources: [
+      { id: 'a', label: 'Bouteille d\'eau (PET)' },
+      { id: 'b', label: 'Brique' },
+      { id: 'c', label: 'Manche en bois' },
+      { id: 'd', label: 'Canette aluminium' }
+    ],
+    targets: [
+      { id: 't1', label: 'Polymère' },
+      { id: 't2', label: 'Céramique' },
+      { id: 't3', label: 'Organique naturel' },
+      { id: 't4', label: 'Métal' }
+    ],
+    answers: { a: 't1', b: 't2', c: 't3', d: 't4' }
+  },
+  {
+    type: 'drag_match', typeLabel: 'Associer', pts: 1,
+    txt: 'Associe chaque sollicitation à un objet qui la subit.',
+    sources: [
+      { id: 'a', label: 'Traction' },
+      { id: 'b', label: 'Flexion' },
+      { id: 'c', label: 'Torsion' },
+      { id: 'd', label: 'Cisaillement' }
+    ],
+    targets: [
+      { id: 't1', label: 'Câble d\'ascenseur' },
+      { id: 't2', label: 'Étagère chargée' },
+      { id: 't3', label: 'Vis qu\'on serre' },
+      { id: 't4', label: 'Lame de ciseaux' }
+    ],
+    answers: { a: 't1', b: 't2', c: 't3', d: 't4' }
+  },
+
+  // ====== DRAG ORDER (remettre en ordre) ======
+  {
+    type: 'drag_order', typeLabel: 'Remettre en ordre', pts: 1,
+    txt: 'Remets dans le bon ordre les 4 étapes du cycle de vie d\'un produit.',
+    items: [
+      { id: '1', label: 'Extraction des matières premières' },
+      { id: '2', label: 'Fabrication en usine' },
+      { id: '3', label: 'Utilisation par le consommateur' },
+      { id: '4', label: 'Recyclage ou fin de vie' }
+    ],
+    correctOrder: ['1', '2', '3', '4']
+  }
+];
+
+// ============ ÉTAT ============
+let questions = [];
 let currentQ = 0;
-let answers = []; // index 0-3 ou null
+let answers = [];
 let startTime = null;
 let timerInterval = null;
 
-// ============= SETUP =============
+// ============ SETUP ============
 document.getElementById('inGroupe').addEventListener('input', checkStart);
 document.getElementById('inClasse').addEventListener('change', checkStart);
 function checkStart() {
@@ -743,53 +976,55 @@ function checkStart() {
 }
 
 document.getElementById('btnStart').addEventListener('click', () => {
-  // Mélanger les questions et les options
+  // Mélanger questions
   questions = [...allQuestions];
-  // Mélange les questions
   for (let i = questions.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [questions[i], questions[j]] = [questions[j], questions[i]];
   }
-  // Mélanger les options de chaque question en gardant le bon index
+  // Mélanger options des QCM et sollic
   questions = questions.map(q => {
-    const indexed = q.opts.map((opt, i) => ({ opt, isCorrect: i === q.correct }));
-    for (let i = indexed.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [indexed[i], indexed[j]] = [indexed[j], indexed[i]];
+    if (q.type === 'qcm' || q.type === 'sollic') {
+      const indexed = q.opts.map((opt, i) => ({ opt, isCorrect: i === q.correct }));
+      for (let i = indexed.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indexed[i], indexed[j]] = [indexed[j], indexed[i]];
+      }
+      return { ...q, opts: indexed.map(x => x.opt), correct: indexed.findIndex(x => x.isCorrect) };
     }
-    return {
-      ...q,
-      opts: indexed.map(x => x.opt),
-      correct: indexed.findIndex(x => x.isCorrect)
-    };
+    if (q.type === 'drag_order') {
+      // Mélanger l'ordre initial
+      const shuffled = [...q.items].sort(() => Math.random() - 0.5);
+      return { ...q, items: shuffled };
+    }
+    return q;
   });
 
   answers = Array(questions.length).fill(null);
   currentQ = 0;
   startTime = Date.now();
-  
-  // UI
+
   document.getElementById('headGroupInfo').style.display = '';
   document.getElementById('headGroup').textContent = document.getElementById('inGroupe').value.trim();
   document.getElementById('headClasse').textContent = document.getElementById('inClasse').value;
   document.getElementById('headQ').style.display = '';
   document.getElementById('headTimer').style.display = '';
   document.getElementById('qTotal').textContent = questions.length;
-  
+
   showScreen('screenEval');
   showQuestion();
   startTimer();
 });
 
-// ============= TIMER =============
+// ============ TIMER ============
 function startTimer() {
-  const duration = 30 * 60 * 1000; // 30 minutes
+  const duration = 30 * 60 * 1000;
   timerInterval = setInterval(() => {
     const elapsed = Date.now() - startTime;
     const remaining = Math.max(0, duration - elapsed);
     const mins = Math.floor(remaining / 60000);
     const secs = Math.floor((remaining % 60000) / 1000);
-    document.getElementById('timer').textContent = 
+    document.getElementById('timer').textContent =
       String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
     if (remaining <= 0) {
       clearInterval(timerInterval);
@@ -800,93 +1035,507 @@ function startTimer() {
   }, 250);
 }
 
-// ============= QUESTIONS =============
+// ============ AFFICHAGE QUESTION ============
 function showQuestion() {
   const q = questions[currentQ];
   document.getElementById('qNum').textContent = currentQ + 1;
   document.getElementById('progFill').style.width = ((currentQ) / questions.length * 100) + '%';
 
-  let imgHtml = '';
-  if (q.svg && svgSchemas[q.svg]) {
-    imgHtml = '<div class="q-image">' + svgSchemas[q.svg] + '</div>';
+  const layout = document.getElementById('qLayout');
+  // Reset
+  layout.className = 'q-layout';
+  layout.innerHTML = '<div class="q-card" id="qCard"></div>';
+
+  // Si calc, on ajoute la calculatrice
+  if (q.type === 'calc') {
+    layout.classList.add('with-calc');
+    layout.insertAdjacentHTML('beforeend', buildCalculator());
+    setupCalculator();
   }
 
+  const card = document.getElementById('qCard');
   let html = '<div class="q-meta">' +
     '<span class="q-type-tag">' + q.typeLabel + '</span>' +
-    '<span class="pts">' + q.pts + ' pt</span>' +
+    '<span class="q-pts">' + q.pts + ' pt</span>' +
     '</div>' +
-    '<div class="q-text">' + q.txt + '</div>' +
-    imgHtml +
-    '<div class="q-options">';
+    '<div class="q-text">' + q.txt + '</div>';
+  if (q.hint) html += '<div class="q-hint">💡 ' + q.hint + '</div>';
 
-  q.opts.forEach((opt, i) => {
-    const letter = String.fromCharCode(65 + i); // A, B, C, D
-    const sel = answers[currentQ] === i ? 'selected' : '';
-    html += '<div class="q-opt ' + sel + '" data-i="' + i + '">' +
-      '<div class="letter">' + letter + '</div>' +
-      '<div>' + opt + '</div>' +
-    '</div>';
-  });
-  html += '</div>';
+  // Body de la question selon le type
+  if (q.type === 'qcm') {
+    html += buildQCM(q);
+  } else if (q.type === 'sollic') {
+    html += '<div class="q-svg">' + svgs[q.svg] + '</div>' + buildQCM(q);
+  } else if (q.type === 'calc') {
+    html += buildCalc(q);
+  } else if (q.type === 'click') {
+    html += buildClick(q);
+  } else if (q.type === 'drag_match') {
+    html += buildDragMatch(q);
+  } else if (q.type === 'drag_order') {
+    html += buildDragOrder(q);
+  }
 
   // Nav
   const isLast = currentQ === questions.length - 1;
   html += '<div class="q-nav">' +
     '<span></span>' +
-    '<button class="btn" id="btnNext" ' + (answers[currentQ] === null ? 'disabled' : '') + '>' +
-      (isLast ? 'Terminer et soumettre →' : 'Question suivante →') +
+    '<button class="btn" id="btnNext">' +
+      (isLast ? 'Terminer →' : 'Question suivante →') +
     '</button>' +
   '</div>';
 
-  document.getElementById('qCard').innerHTML = html;
+  card.innerHTML = html;
 
-  // Listeners
+  // Attach listeners selon le type
+  if (q.type === 'qcm' || q.type === 'sollic') setupQCM();
+  else if (q.type === 'calc') setupCalc(q);
+  else if (q.type === 'click') setupClick(q);
+  else if (q.type === 'drag_match') setupDragMatch(q);
+  else if (q.type === 'drag_order') setupDragOrder(q);
+
+  document.getElementById('btnNext').addEventListener('click', () => {
+    if (!isQuestionAnswered(q)) {
+      // permettre quand même de passer si rien rempli ? Non on bloque.
+      // Mais on permet d'aller à la fin sans tout remplir ? Oui, on bloque le clic juste si rien.
+      alert('Tu dois répondre avant de passer à la suivante.');
+      return;
+    }
+    if (isLast) openModal();
+    else { currentQ++; showQuestion(); }
+  });
+}
+
+// ============ QCM ============
+function buildQCM(q) {
+  let h = '<div class="q-options">';
+  q.opts.forEach((opt, i) => {
+    const letter = String.fromCharCode(65 + i);
+    const sel = answers[currentQ] === i ? 'selected' : '';
+    h += '<div class="q-opt ' + sel + '" data-i="' + i + '">' +
+      '<div class="letter">' + letter + '</div>' +
+      '<div>' + opt + '</div>' +
+    '</div>';
+  });
+  return h + '</div>';
+}
+function setupQCM() {
   document.querySelectorAll('.q-opt').forEach(el => {
     el.addEventListener('click', () => {
       const i = parseInt(el.dataset.i);
       answers[currentQ] = i;
       document.querySelectorAll('.q-opt').forEach(x => x.classList.toggle('selected', parseInt(x.dataset.i) === i));
-      document.getElementById('btnNext').disabled = false;
     });
-  });
-
-  document.getElementById('btnNext').addEventListener('click', () => {
-    if (isLast) {
-      openModal();
-    } else {
-      currentQ++;
-      showQuestion();
-    }
   });
 }
 
-// ============= MODAL =============
+// ============ CALC ============
+function buildCalc(q) {
+  return '<div class="calc-zone">' +
+    '<label>Ta réponse :</label>' +
+    '<input type="number" step="any" class="calc-input" id="calcAnswer" placeholder="…" value="' + (answers[currentQ] !== null ? answers[currentQ] : '') + '">' +
+    '<span class="calc-unit">' + (q.unit || '') + '</span>' +
+    '</div>';
+}
+function setupCalc(q) {
+  document.getElementById('calcAnswer').addEventListener('input', e => {
+    answers[currentQ] = e.target.value === '' ? null : parseFloat(e.target.value);
+  });
+}
+
+// ============ CALCULATRICE ============
+function buildCalculator() {
+  return '<div class="calculator">' +
+    '<div class="calc-header">🧮 Calculatrice</div>' +
+    '<div class="calc-display" id="calcDisplay">0</div>' +
+    '<div class="calc-keys">' +
+      '<button class="calc-key clear" data-k="C">C</button>' +
+      '<button class="calc-key" data-k="(">(</button>' +
+      '<button class="calc-key" data-k=")">)</button>' +
+      '<button class="calc-key op" data-k="/">÷</button>' +
+      '<button class="calc-key" data-k="7">7</button>' +
+      '<button class="calc-key" data-k="8">8</button>' +
+      '<button class="calc-key" data-k="9">9</button>' +
+      '<button class="calc-key op" data-k="*">×</button>' +
+      '<button class="calc-key" data-k="4">4</button>' +
+      '<button class="calc-key" data-k="5">5</button>' +
+      '<button class="calc-key" data-k="6">6</button>' +
+      '<button class="calc-key op" data-k="-">−</button>' +
+      '<button class="calc-key" data-k="1">1</button>' +
+      '<button class="calc-key" data-k="2">2</button>' +
+      '<button class="calc-key" data-k="3">3</button>' +
+      '<button class="calc-key op" data-k="+">+</button>' +
+      '<button class="calc-key" data-k="0">0</button>' +
+      '<button class="calc-key" data-k=".">,</button>' +
+      '<button class="calc-key eq" data-k="=">=</button>' +
+    '</div>' +
+  '</div>';
+}
+let calcBuffer = '';
+function setupCalculator() {
+  calcBuffer = '';
+  const disp = document.getElementById('calcDisplay');
+  disp.textContent = '0';
+  document.querySelectorAll('.calc-key').forEach(b => {
+    b.addEventListener('click', () => {
+      const k = b.dataset.k;
+      if (k === 'C') { calcBuffer = ''; disp.textContent = '0'; return; }
+      if (k === '=') {
+        try {
+          // Eval sécurisé : on remplace virgules et on évite tout caractère parasite
+          const clean = calcBuffer.replace(/,/g, '.').replace(/[^0-9+\-*/().]/g, '');
+          if (!clean) return;
+          const r = Function('"use strict";return (' + clean + ')')();
+          if (isFinite(r)) {
+            const rounded = Math.round(r * 1000) / 1000;
+            disp.textContent = String(rounded);
+            calcBuffer = String(rounded);
+          } else {
+            disp.textContent = 'Erreur';
+            calcBuffer = '';
+          }
+        } catch (e) {
+          disp.textContent = 'Erreur';
+          calcBuffer = '';
+        }
+        return;
+      }
+      calcBuffer += k;
+      disp.textContent = calcBuffer
+        .replace(/\*/g, '×')
+        .replace(/\//g, '÷')
+        .replace(/-/g, '−');
+    });
+  });
+}
+
+// ============ CLICK ZONE ============
+function buildClick(q) {
+  // SVG dynamique selon le sujet
+  let svg = '';
+  if (q.svgFn === 'flexion_zones') svg = buildFlexionSVG();
+  else if (q.svgFn === 'curve_zones') svg = buildCurveSVG();
+  else if (q.svgFn === 'velo_zones') svg = buildVeloSVG();
+  return '<div class="q-svg">' + svg + '</div>' +
+    '<div style="text-align:center;font-family:JetBrains Mono;font-size:12px;color:var(--ink-mute)">' +
+    'Clique directement sur la zone correspondante</div>';
+}
+function buildFlexionSVG() {
+  return '<svg width="380" height="200" viewBox="0 0 380 200" class="click-area">' +
+    // Appuis
+    '<polygon points="40,140 28,170 52,170" fill="#4A5A6B"/>' +
+    '<polygon points="340,140 328,170 352,170" fill="#4A5A6B"/>' +
+    '<rect x="0" y="170" width="380" height="10" fill="rgba(74,90,107,0.2)"/>' +
+    // Poutre (avec courbure)
+    '<path d="M 40 95 Q 190 130 340 95 L 340 145 Q 190 175 40 145 Z" fill="rgba(184,92,46,0.3)" stroke="#933F1A" stroke-width="2"/>' +
+    // Zones cliquables (top / bottom / neutral)
+    '<path d="M 40 95 Q 190 130 340 95 L 340 115 Q 190 145 40 115 Z" fill="rgba(184,92,46,0.1)" stroke="none" class="click-target" data-z="top"/>' +
+    '<path d="M 40 125 Q 190 155 340 125 L 340 145 Q 190 175 40 145 Z" fill="rgba(184,92,46,0.1)" stroke="none" class="click-target" data-z="bottom"/>' +
+    '<path d="M 40 115 Q 190 145 340 115 L 340 125 Q 190 155 40 125 Z" fill="rgba(184,92,46,0.1)" stroke="none" class="click-target" data-z="neutral"/>' +
+    // Force
+    '<path d="M 190 30 L 190 88 L 184 80 M 190 88 L 196 80" stroke="#2E6A8E" stroke-width="3" fill="none"/>' +
+    '<text x="200" y="60" fill="#2E6A8E" font-family="JetBrains Mono" font-size="13" font-weight="600">F</text>' +
+    '<text x="14" y="58" fill="#8A9AA9" font-family="JetBrains Mono" font-size="10">↓ haut</text>' +
+    '<text x="14" y="135" fill="#8A9AA9" font-family="JetBrains Mono" font-size="10">↓ milieu</text>' +
+    '<text x="14" y="195" fill="#8A9AA9" font-family="JetBrains Mono" font-size="10">↓ bas</text>' +
+  '</svg>';
+}
+function buildCurveSVG() {
+  // Courbe σ-ε avec 4 points cliquables
+  const ox = 50, oy = 200, gw = 320, gh = 170;
+  return '<svg width="400" height="240" viewBox="0 0 400 240" class="click-area">' +
+    // Axes
+    '<line x1="' + ox + '" y1="' + (oy - gh) + '" x2="' + ox + '" y2="' + oy + '" stroke="#4A5A6B" stroke-width="1.5"/>' +
+    '<line x1="' + ox + '" y1="' + oy + '" x2="' + (ox + gw) + '" y2="' + oy + '" stroke="#4A5A6B" stroke-width="1.5"/>' +
+    '<text x="' + (ox - 28) + '" y="' + (oy - gh - 4) + '" fill="#4A5A6B" font-family="JetBrains Mono" font-size="11">σ</text>' +
+    '<text x="' + (ox + gw - 6) + '" y="' + (oy + 16) + '" fill="#4A5A6B" font-family="JetBrains Mono" font-size="11">ε</text>' +
+    // Courbe (O → Re → Rm → rupt)
+    '<path d="M ' + ox + ' ' + oy + ' L ' + (ox + 80) + ' ' + (oy - 100) + ' L ' + (ox + 180) + ' ' + (oy - 130) + ' L ' + (ox + 240) + ' ' + (oy - 140) + ' L ' + (ox + 270) + ' ' + (oy - 110) + '" fill="none" stroke="#B85C2E" stroke-width="3"/>' +
+    // Points cliquables (cercles larges)
+    '<circle cx="' + ox + '" cy="' + oy + '" r="14" class="click-target" data-z="origin" fill="rgba(184,92,46,0.1)"/>' +
+    '<text x="' + (ox - 16) + '" y="' + (oy + 20) + '" fill="#4A5A6B" font-family="JetBrains Mono" font-size="11">O</text>' +
+    '<circle cx="' + (ox + 80) + '" cy="' + (oy - 100) + '" r="14" class="click-target" data-z="re" fill="rgba(184,92,46,0.1)"/>' +
+    '<text x="' + (ox + 90) + '" y="' + (oy - 100) + '" fill="#4A5A6B" font-family="JetBrains Mono" font-size="11">A</text>' +
+    '<circle cx="' + (ox + 240) + '" cy="' + (oy - 140) + '" r="14" class="click-target" data-z="rm" fill="rgba(184,92,46,0.1)"/>' +
+    '<text x="' + (ox + 250) + '" y="' + (oy - 140) + '" fill="#4A5A6B" font-family="JetBrains Mono" font-size="11">B</text>' +
+    '<circle cx="' + (ox + 270) + '" cy="' + (oy - 110) + '" r="14" class="click-target" data-z="rupt" fill="rgba(184,92,46,0.1)"/>' +
+    '<text x="' + (ox + 280) + '" y="' + (oy - 105) + '" fill="#4A5A6B" font-family="JetBrains Mono" font-size="11">C</text>' +
+  '</svg>';
+}
+function buildVeloSVG() {
+  return '<svg width="380" height="200" viewBox="0 0 380 200" class="click-area">' +
+    // Roues
+    '<circle cx="80" cy="150" r="38" fill="none" stroke="#4A5A6B" stroke-width="3"/>' +
+    '<circle cx="300" cy="150" r="38" fill="none" stroke="#4A5A6B" stroke-width="3"/>' +
+    '<circle cx="80" cy="150" r="3" fill="#4A5A6B"/>' +
+    '<circle cx="300" cy="150" r="3" fill="#4A5A6B"/>' +
+    // Cadre (triangles)
+    '<g class="click-target" data-z="cadre">' +
+      '<line x1="80" y1="150" x2="200" y2="80" stroke="#D67D3E" stroke-width="6" stroke-linecap="round"/>' +
+      '<line x1="200" y1="80" x2="300" y2="150" stroke="#D67D3E" stroke-width="6" stroke-linecap="round"/>' +
+      '<line x1="80" y1="150" x2="170" y2="120" stroke="#D67D3E" stroke-width="6" stroke-linecap="round"/>' +
+      '<line x1="170" y1="120" x2="200" y2="80" stroke="#D67D3E" stroke-width="6" stroke-linecap="round"/>' +
+      '<line x1="170" y1="120" x2="300" y2="150" stroke="#D67D3E" stroke-width="6" stroke-linecap="round"/>' +
+    '</g>' +
+    // Fourche
+    '<line x1="200" y1="80" x2="190" y2="50" stroke="#B85C2E" stroke-width="5" stroke-linecap="round" class="click-target" data-z="fourche"/>' +
+    // Selle
+    '<g class="click-target" data-z="selle">' +
+      '<line x1="200" y1="80" x2="200" y2="50" stroke="#B85C2E" stroke-width="5" stroke-linecap="round"/>' +
+      '<ellipse cx="200" cy="48" rx="22" ry="6" fill="#1A2332"/>' +
+    '</g>' +
+    // Guidon
+    '<line x1="175" y1="50" x2="210" y2="50" stroke="#1A2332" stroke-width="5" stroke-linecap="round"/>' +
+    // Pédalier (au centre)
+    '<g class="click-target" data-z="pedalier">' +
+      '<circle cx="170" cy="120" r="14" fill="#E5B547" stroke="#C9931E" stroke-width="2"/>' +
+      '<rect x="140" y="118" width="8" height="4" fill="#1A2332"/>' +
+      '<rect x="192" y="118" width="8" height="4" fill="#1A2332"/>' +
+    '</g>' +
+    // Labels invisibles, mais on peut survoler
+    '<text x="14" y="20" fill="#8A9AA9" font-family="JetBrains Mono" font-size="9">survoler les pièces pour les identifier</text>' +
+  '</svg>';
+}
+function setupClick(q) {
+  document.querySelectorAll('.click-target').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('.click-target').forEach(x => x.classList.remove('selected'));
+      el.classList.add('selected');
+      answers[currentQ] = el.dataset.z;
+    });
+  });
+  // Restaurer sélection si déjà répondu
+  if (answers[currentQ]) {
+    const el = document.querySelector('.click-target[data-z="' + answers[currentQ] + '"]');
+    if (el) el.classList.add('selected');
+  }
+}
+
+// ============ DRAG MATCH ============
+function buildDragMatch(q) {
+  let h = '<div class="drag-zone">';
+  h += '<div><div class="drag-source-label">Étiquettes à glisser</div>';
+  h += '<div class="drag-source" id="dragSource">';
+  q.sources.forEach(s => {
+    const placed = answers[currentQ] && answers[currentQ][s.id];
+    if (!placed) {
+      h += '<div class="draggable" draggable="true" data-sid="' + s.id + '">' + s.label + '</div>';
+    }
+  });
+  h += '</div></div>';
+  h += '<div class="drag-targets">';
+  q.targets.forEach(t => {
+    h += '<div class="drag-target" data-tid="' + t.id + '">' +
+      '<div class="target-label">' + t.label + '</div>' +
+      '<div class="drop-slot">';
+    // Si une étiquette est déjà placée ici, l'afficher
+    if (answers[currentQ]) {
+      Object.keys(answers[currentQ]).forEach(sid => {
+        if (answers[currentQ][sid] === t.id) {
+          const src = q.sources.find(s => s.id === sid);
+          if (src) h += '<div class="draggable placed" draggable="true" data-sid="' + sid + '">' + src.label + '</div>';
+        }
+      });
+    }
+    h += '</div></div>';
+  });
+  h += '</div></div>';
+  return h;
+}
+function setupDragMatch(q) {
+  if (!answers[currentQ]) answers[currentQ] = {};
+
+  function attachDrag(el) {
+    el.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', el.dataset.sid);
+      el.classList.add('dragging');
+    });
+    el.addEventListener('dragend', () => el.classList.remove('dragging'));
+  }
+  document.querySelectorAll('.draggable').forEach(attachDrag);
+
+  document.querySelectorAll('.drag-target').forEach(t => {
+    t.addEventListener('dragover', e => { e.preventDefault(); t.classList.add('over'); });
+    t.addEventListener('dragleave', () => t.classList.remove('over'));
+    t.addEventListener('drop', e => {
+      e.preventDefault();
+      t.classList.remove('over');
+      const sid = e.dataTransfer.getData('text/plain');
+      const tid = t.dataset.tid;
+      // Si une étiquette était déjà placée à un autre endroit pour ce sid, l'enlever
+      // (toujours associer sid → 1 target)
+      answers[currentQ][sid] = tid;
+      // Reconstruire la vue
+      showQuestion();
+    });
+  });
+
+  // Permettre de glisser depuis une cible vers la source (pour annuler)
+  const source = document.getElementById('dragSource');
+  if (source) {
+    source.addEventListener('dragover', e => e.preventDefault());
+    source.addEventListener('drop', e => {
+      e.preventDefault();
+      const sid = e.dataTransfer.getData('text/plain');
+      if (answers[currentQ][sid]) {
+        delete answers[currentQ][sid];
+        showQuestion();
+      }
+    });
+  }
+}
+
+// ============ DRAG ORDER ============
+function buildDragOrder(q) {
+  // Sauvegardé dans answers ou utiliser l'ordre actuel (déjà mélangé)
+  const order = answers[currentQ] || q.items.map(i => i.id);
+  let h = '<div class="order-list" id="orderList">';
+  order.forEach((id, idx) => {
+    const item = q.items.find(x => x.id === id);
+    if (!item) return;
+    h += '<div class="order-item" draggable="true" data-id="' + id + '">' +
+      '<span class="order-num">' + (idx + 1) + '</span>' +
+      '<span class="order-text">' + item.label + '</span>' +
+      '<span class="order-handle">⋮⋮</span>' +
+    '</div>';
+  });
+  h += '</div>';
+  h += '<div style="text-align:center;font-family:JetBrains Mono;font-size:12px;color:var(--ink-mute);margin-top:8px">Glisse les éléments pour les remettre dans l\'ordre</div>';
+  return h;
+}
+function setupDragOrder(q) {
+  if (!answers[currentQ]) {
+    answers[currentQ] = q.items.map(i => i.id);
+  }
+  let dragSrc = null;
+
+  document.querySelectorAll('.order-item').forEach(el => {
+    el.addEventListener('dragstart', e => {
+      dragSrc = el;
+      el.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    el.addEventListener('dragend', () => el.classList.remove('dragging'));
+    el.addEventListener('dragover', e => {
+      e.preventDefault();
+      el.classList.add('over');
+    });
+    el.addEventListener('dragleave', () => el.classList.remove('over'));
+    el.addEventListener('drop', e => {
+      e.preventDefault();
+      el.classList.remove('over');
+      if (dragSrc && dragSrc !== el) {
+        const list = document.getElementById('orderList');
+        const items = Array.from(list.children);
+        const fromIdx = items.indexOf(dragSrc);
+        const toIdx = items.indexOf(el);
+        if (fromIdx < toIdx) {
+          list.insertBefore(dragSrc, el.nextSibling);
+        } else {
+          list.insertBefore(dragSrc, el);
+        }
+        // Sauvegarder le nouvel ordre
+        answers[currentQ] = Array.from(list.children).map(c => c.dataset.id);
+        // Renuméroter visuellement
+        Array.from(list.children).forEach((c, i) => {
+          const num = c.querySelector('.order-num');
+          if (num) num.textContent = i + 1;
+        });
+      }
+    });
+  });
+}
+
+// ============ VALIDATION ============
+function isQuestionAnswered(q) {
+  const a = answers[currentQ];
+  if (q.type === 'qcm' || q.type === 'sollic') return a !== null && a !== undefined;
+  if (q.type === 'calc') return a !== null && a !== undefined && !isNaN(a);
+  if (q.type === 'click') return a !== null && a !== undefined;
+  if (q.type === 'drag_match') return a && Object.keys(a).length === q.sources.length;
+  if (q.type === 'drag_order') return a && a.length === q.items.length;
+  return true;
+}
+
+// ============ MODAL ============
 function openModal() { document.getElementById('modalConfirm').classList.add('show'); }
 function closeModal() { document.getElementById('modalConfirm').classList.remove('show'); }
 
-// ============= SUBMIT =============
+// ============ SUBMIT ============
 async function submitEval() {
   closeModal();
   if (timerInterval) clearInterval(timerInterval);
 
-  // Calcul du score
   let score = 0;
   const detailedAnswers = [];
   questions.forEach((q, i) => {
-    const ok = answers[i] === q.correct;
+    let ok = false;
+    let repAffichee = '(non répondu)';
+    let bonneRep = '';
+
+    if (q.type === 'qcm' || q.type === 'sollic') {
+      ok = answers[i] === q.correct;
+      repAffichee = answers[i] !== null ? q.opts[answers[i]] : '(non répondu)';
+      bonneRep = q.opts[q.correct];
+    } else if (q.type === 'calc') {
+      const a = answers[i];
+      ok = a !== null && Math.abs(a - q.answer) <= q.tolerance;
+      repAffichee = a !== null ? a + ' ' + (q.unit || '') : '(non répondu)';
+      bonneRep = q.answer + ' ' + (q.unit || '');
+    } else if (q.type === 'click') {
+      ok = answers[i] === q.correct;
+      const z = q.zones.find(zz => zz.id === answers[i]);
+      repAffichee = z ? z.label : '(non répondu)';
+      const cz = q.zones.find(zz => zz.id === q.correct);
+      bonneRep = cz ? cz.label : q.correct;
+    } else if (q.type === 'drag_match') {
+      if (answers[i]) {
+        const total = Object.keys(q.answers).length;
+        let correct = 0;
+        Object.keys(q.answers).forEach(sid => {
+          if (answers[i][sid] === q.answers[sid]) correct++;
+        });
+        // Note partielle : 1pt si tous bons, sinon proportionnel arrondi
+        ok = correct === total;
+        // Liste des associations
+        const lines = q.sources.map(s => {
+          const t = q.targets.find(tt => tt.id === answers[i][s.id]);
+          return s.label + ' → ' + (t ? t.label : '?');
+        });
+        repAffichee = lines.join(' · ');
+        const goodLines = q.sources.map(s => {
+          const t = q.targets.find(tt => tt.id === q.answers[s.id]);
+          return s.label + ' → ' + (t ? t.label : '?');
+        });
+        bonneRep = goodLines.join(' · ');
+      }
+    } else if (q.type === 'drag_order') {
+      ok = answers[i] && answers[i].length === q.correctOrder.length &&
+        answers[i].every((id, idx) => id === q.correctOrder[idx]);
+      if (answers[i]) {
+        repAffichee = answers[i].map(id => {
+          const it = q.items.find(x => x.id === id);
+          return it ? it.label : '?';
+        }).join(' → ');
+      }
+      bonneRep = q.correctOrder.map(id => {
+        const it = q.items.find(x => x.id === id);
+        return it ? it.label : '?';
+      }).join(' → ');
+    }
+
     if (ok) score += q.pts;
     detailedAnswers.push({
       q: i + 1,
       type: q.typeLabel,
       txt: q.txt,
-      rep_eleve: answers[i] !== null ? q.opts[answers[i]] : '(non répondu)',
-      bonne_rep: q.opts[q.correct],
+      rep_eleve: repAffichee,
+      bonne_rep: bonneRep,
       ok: ok,
       pts: q.pts
     });
   });
 
-  // Sur 20 (chaque question vaut 1 pt, 20 questions)
   const maxPts = questions.reduce((s, q) => s + q.pts, 0);
   const noteSur20 = Math.round((score / maxPts) * 20 * 10) / 10;
 
@@ -900,11 +1549,9 @@ async function submitEval() {
     duree_sec: duree,
     timestamp: Date.now(),
     date_iso: new Date().toISOString(),
-    reponses: detailedAnswers,
-    user_agent: navigator.userAgent.substring(0, 200)
+    reponses: detailedAnswers
   };
 
-  // Affichage résultat (avant envoi)
   document.getElementById('finalScore').textContent = noteSur20.toFixed(1);
   let msg = '';
   if (noteSur20 >= 16) msg = 'Excellent travail en groupe ! Vous maîtrisez très bien les matériaux et leurs propriétés.';
@@ -915,7 +1562,6 @@ async function submitEval() {
 
   showScreen('screenResult');
 
-  // Envoi Firebase
   const status = document.getElementById('sendStatus');
   status.className = 'send-status show loading';
   status.textContent = '⏳ Envoi des résultats au professeur…';
@@ -929,22 +1575,18 @@ async function submitEval() {
     if (resp.ok) {
       status.className = 'send-status show ok';
       status.innerHTML = '✓ Résultats envoyés au professeur. Bonne fin de séance !';
-    } else {
-      throw new Error('Erreur réseau ' + resp.status);
-    }
+    } else throw new Error('Erreur réseau ' + resp.status);
   } catch (e) {
     status.className = 'send-status show err';
-    status.innerHTML = '⚠ Impossible d\'envoyer automatiquement. Notez votre score (' + 
+    status.innerHTML = '⚠ Impossible d\'envoyer automatiquement. Notez votre score (' +
       noteSur20.toFixed(1) + '/20) et prévenez le professeur.';
   }
 }
 
-// ============= UTILS =============
+// ============ UTILS ============
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.toggle('active', s.id === id));
 }
-
-// Empêcher la fermeture accidentelle pendant l'éval
 window.addEventListener('beforeunload', (e) => {
   if (startTime && !document.getElementById('screenResult').classList.contains('active')) {
     e.preventDefault();
