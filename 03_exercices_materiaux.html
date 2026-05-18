@@ -1389,33 +1389,6 @@ header {
     </div>
   </div>
 
-  <!-- ========== BILAN ========== -->
-  <div class="activity" data-id="5">
-    <div class="act-header">
-      <div class="act-tag">Bilan</div>
-      <h1>Tu as terminé les 5 activités !</h1>
-      <p class="desc">Voici ton score détaillé. Tu peux le présenter au professeur.</p>
-    </div>
-
-    <div class="summary-card">
-      <div class="big-score"><span id="finalScore">0</span><span class="out">/20</span></div>
-      <div class="label-big">Score total</div>
-      <div class="summary-detail">
-        <div class="detail-card"><div class="name">Tri</div><div class="pts"><span id="s1">0</span><span class="max">/4</span></div></div>
-        <div class="detail-card"><div class="name">QCM</div><div class="pts"><span id="s2">0</span><span class="max">/4</span></div></div>
-        <div class="detail-card"><div class="name">Comparer</div><div class="pts"><span id="s3">0</span><span class="max">/3</span></div></div>
-        <div class="detail-card"><div class="name">Choisir</div><div class="pts"><span id="s4">0</span><span class="max">/5</span></div></div>
-        <div class="detail-card"><div class="name">Analyser</div><div class="pts"><span id="s5">0</span><span class="max">/4</span></div></div>
-      </div>
-      <p class="message-final" id="finalMsg"></p>
-      <div style="margin-top:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-        <button class="btn" onclick="goAct(6)" style="background:#E5B547;">★ Accéder aux jeux bonus</button>
-        <button class="btn btn-ghost" onclick="window.print()">🖨 Imprimer</button>
-        <button class="btn btn-ghost" onclick="resetAll()">Recommencer</button>
-      </div>
-    </div>
-  </div>
-
   <!-- ========== JEUX BONUS ========== -->
   <div class="activity" data-id="6">
     <div class="act-header">
@@ -1775,22 +1748,21 @@ function handleActResult(actId, scoreObtained, maxScore, nextLabel) {
   if (success) {
     // Débloquer la suivante
     unlocked[actId + 1] = true;
-    // Si on vient de finir l'activité 5 (index 4) → débloquer aussi les jeux + le bilan
+    // Si on vient de finir l'activité 5 (index 4) → débloquer aussi les jeux
     if (actId === 4) {
-      unlocked[5] = true;
       unlocked[6] = true;
     }
     const sb = ensureSuccess(actId);
     sb.querySelector('.msg').innerHTML =
       '<strong>Bravo !</strong> ' + Math.round(pct * 100) + '% de réussite. ' +
       (actId < 4 ? 'Tu passes à <strong>' + nextLabel + '</strong> dans un instant…' :
-       'Tu vas découvrir ton bilan, puis tu pourras accéder aux jeux bonus.');
+       'Tu as terminé toutes les activités. Place aux <strong>jeux bonus</strong> !');
     sb.classList.add('show');
     updateScoreDisplay();
     setTimeout(() => {
       sb.classList.remove('show');
-      if (actId === 4) showFinal();
-      else goAct(actId + 1);
+      // Aller direct aux jeux après l'activité 5
+      goAct(actId === 4 ? 6 : actId + 1);
     }, 2200);
   } else {
     const rb = ensureBanner(actId);
@@ -2106,26 +2078,7 @@ function checkAct5() {
 
   scores[4] = Math.round(pts * 10) / 10;
   checked[4] = true;
-  handleActResult(4, scores[4], maxScores[4], 'Bilan');
-}
-
-// ============ FINAL ============
-function showFinal() {
-  goAct(5);
-  const total = scores.reduce((a, b) => a + b, 0);
-  document.getElementById('finalScore').textContent = total.toFixed(1);
-  document.getElementById('s1').textContent = scores[0].toFixed(1);
-  document.getElementById('s2').textContent = scores[1].toFixed(1);
-  document.getElementById('s3').textContent = scores[2].toFixed(1);
-  document.getElementById('s4').textContent = scores[3].toFixed(1);
-  document.getElementById('s5').textContent = scores[4].toFixed(1);
-
-  let msg = '';
-  if (total >= 16) msg = 'Excellent ! Tu maîtrises bien les familles de matériaux et leurs propriétés. Tu es prêt(e) pour l\u2019évaluation écrite.';
-  else if (total >= 12) msg = 'Bon travail. Quelques notions à revoir avant l\u2019évaluation, surtout sur les activités où tu as perdu des points. Relis le cours.';
-  else if (total >= 8) msg = 'Tu as les bases. Reprends les activités où tu as eu des erreurs, et relis attentivement le cours sur les propriétés.';
-  else msg = 'Il faut retravailler la séquence. Reprends le cours en entier, puis recommence les activités.';
-  document.getElementById('finalMsg').textContent = msg;
+  handleActResult(4, scores[4], maxScores[4], 'Jeux');
 }
 
 function resetAll() {
