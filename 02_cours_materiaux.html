@@ -981,6 +981,77 @@ h3 {
 }
 .solli-materials strong { color: var(--steel); }
 
+/* ============= SLIDE DURETÉ ============= */
+.hard-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 28px;
+  margin-top: 14px;
+  align-items: stretch;
+}
+.hard-canvas-wrap {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  min-height: 420px;
+}
+.hard-canvas-wrap canvas { display: block; width: 100%; height: 100%; }
+.hard-scale {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+}
+.hard-scale-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.hard-scale-title strong { color: var(--copper); font-weight: 700; }
+.hard-row {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.hard-row:last-child { border-bottom: none; }
+.hard-rank {
+  background: var(--bg-soft);
+  border-radius: 50%;
+  width: 32px; height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--copper);
+}
+.hard-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+.hard-ex { font-size: 11px; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace; }
+.hard-row.hi { background: rgba(184,92,46,0.08); border-radius: 8px; padding-left: 8px; padding-right: 8px; }
+.hard-row.hi .hard-rank { background: var(--copper); color: white; }
+
+.hard-warn {
+  background: rgba(217,83,79,0.08);
+  border-left: 3px solid var(--red);
+  padding: 14px 18px;
+  border-radius: 0 10px 10px 0;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-top: 18px;
+}
+.hard-warn strong { color: var(--red); }
+
 /* ============= SLIDE REPARABILITE ============= */
 .repar-hero {
   display: grid;
@@ -1273,10 +1344,11 @@ h3 {
     <div class="nav-item" data-target="s9b3"><span class="nav-num">15</span><span>· Flexion</span></div>
     <div class="nav-item" data-target="s9b4"><span class="nav-num">16</span><span>· Torsion</span></div>
     <div class="nav-item" data-target="s9b5"><span class="nav-num">17</span><span>· Cisaillement</span></div>
-    <div class="nav-item" data-target="s10"><span class="nav-num">18</span><span>Casque vélo</span></div>
-    <div class="nav-item" data-target="s11"><span class="nav-num">19</span><span>Environnement</span></div>
-    <div class="nav-item" data-target="s11b"><span class="nav-num">20</span><span>Réparabilité</span></div>
-    <div class="nav-item" data-target="s12"><span class="nav-num">21</span><span>Bilan</span></div>
+    <div class="nav-item" data-target="s9e"><span class="nav-num">18</span><span>Dureté</span></div>
+    <div class="nav-item" data-target="s10"><span class="nav-num">19</span><span>Casque vélo</span></div>
+    <div class="nav-item" data-target="s11"><span class="nav-num">20</span><span>Environnement</span></div>
+    <div class="nav-item" data-target="s11b"><span class="nav-num">21</span><span>Réparabilité</span></div>
+    <div class="nav-item" data-target="s12"><span class="nav-num">22</span><span>Bilan</span></div>
   </div>
 </aside>
 
@@ -2387,6 +2459,93 @@ h3 {
     </div>
   </section>
 
+  <!-- ========== S9E — DURETÉ ========== -->
+  <section class="slide" id="s9e">
+    <div class="slide-tag">Module 2 · Propriété mécanique</div>
+    <h1>La <span class="hi">dureté</span></h1>
+    <p class="lead">Capacité d'un matériau à résister aux <strong>rayures</strong> et à la <strong>pénétration</strong> par un autre corps.</p>
+
+    <div class="hard-layout">
+      <div class="hard-canvas-wrap">
+        <canvas id="c-hardness"></canvas>
+      </div>
+
+      <div class="hard-scale">
+        <div class="hard-scale-title">Échelle de <strong>Mohs</strong> (1 à 10)</div>
+        <div class="hard-row">
+          <div class="hard-rank">1</div>
+          <div class="hard-name">Talc</div>
+          <div class="hard-ex">se raye à l'ongle</div>
+        </div>
+        <div class="hard-row">
+          <div class="hard-rank">2</div>
+          <div class="hard-name">Gypse · plâtre</div>
+          <div class="hard-ex">se raye à l'ongle</div>
+        </div>
+        <div class="hard-row hi">
+          <div class="hard-rank">3</div>
+          <div class="hard-name">Cuivre · calcite</div>
+          <div class="hard-ex">se raye à une pièce</div>
+        </div>
+        <div class="hard-row hi">
+          <div class="hard-rank">5</div>
+          <div class="hard-name">Verre · apatite</div>
+          <div class="hard-ex">se raye à un couteau</div>
+        </div>
+        <div class="hard-row hi">
+          <div class="hard-rank">7</div>
+          <div class="hard-name">Acier trempé · quartz</div>
+          <div class="hard-ex">forets, ciseaux à bois</div>
+        </div>
+        <div class="hard-row">
+          <div class="hard-rank">9</div>
+          <div class="hard-name">Corindon · saphir</div>
+          <div class="hard-ex">papier abrasif, écrans</div>
+        </div>
+        <div class="hard-row">
+          <div class="hard-rank">10</div>
+          <div class="hard-name">Diamant</div>
+          <div class="hard-ex">raye tout le reste</div>
+        </div>
+
+        <div class="hard-warn">
+          <strong>Attention !</strong> Dur ≠ résistant. Le verre est très <em>dur</em> mais casse facilement. Le caoutchouc n'est pas dur du tout, mais ne casse jamais. Ce sont deux propriétés <strong>différentes</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="explain-block" style="--c: var(--copper); --ic-bg: rgba(184,92,46,0.12)">
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">💡</div>
+          <div class="explain-tag">En clair</div>
+        </div>
+        <h4>L'idée à retenir</h4>
+        <p>Imagine que tu prends un caillou et que tu essaies de <strong>rayer</strong> un autre caillou avec. Si tu y arrives, le tien est <strong>plus dur</strong>. Plus un matériau est dur, plus il résiste aux rayures et aux marques.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">📐</div>
+          <div class="explain-tag">Comment on la mesure</div>
+        </div>
+        <h4>Test de rayure (Mohs)</h4>
+        <p>Le test de Mohs consiste à essayer de rayer le matériau avec différents corps de référence. Sa dureté est le plus haut niveau qu'il <strong>résiste</strong> sans se rayer. Industriellement, on enfonce une bille très dure : plus l'empreinte est petite, plus le matériau est dur.</p>
+      </div>
+      <div class="explain-card">
+        <div class="explain-head">
+          <div class="explain-ic">🏠</div>
+          <div class="explain-tag">Dans ta vie</div>
+        </div>
+        <h4>Pourquoi ça compte</h4>
+        <ul>
+          <li>Verre de smartphone (Gorilla Glass = dureté élevée pour éviter les rayures de clés)</li>
+          <li>Forets et ciseaux à bois en acier trempé pour percer/couper d'autres matériaux</li>
+          <li>Papier abrasif (corindon) pour poncer le bois et le métal</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== S10 — CASQUE ========== -->
   <section class="slide" id="s10">
     <div class="slide-tag">Étude de cas · casque vélo</div>
@@ -2537,6 +2696,19 @@ h3 {
     </div>
 
     <p style="margin-top:24px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);letter-spacing:0.18em;text-transform:uppercase">→ Salle informatique · 2 heures d'application</p>
+
+    <div style="margin-top:48px;display:flex;justify-content:center">
+      <a href="./03_exercices_materiaux.html" style="text-decoration:none;display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,var(--copper),var(--copper-soft));color:white;padding:22px 38px;border-radius:14px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.01em;box-shadow:0 8px 28px rgba(184,92,46,0.32);transition:all 0.2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 36px rgba(184,92,46,0.42)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 28px rgba(184,92,46,0.32)'">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <path d="M8,11 L11,14 L16,8"/>
+        </svg>
+        <span>Passer aux activités sur ordinateur</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+          <path d="M5,12 L19,12 M13,6 L19,12 L13,18"/>
+        </svg>
+      </a>
+    </div>
   </section>
 
 </main>
@@ -2664,7 +2836,8 @@ const phaseControl = {
   poly: { manual: null, animOffset: 0 },
   cera: { manual: null, animOffset: 0 },
   comp: { manual: null, animOffset: 0 },
-  orga: { manual: null, animOffset: 0 }
+  orga: { manual: null, animOffset: 0 },
+  hard: { manual: null, animOffset: 0 }
 };
 
 // Phase actuelle selon le mode (auto = défilement, manuel = bloquée)
@@ -5146,6 +5319,174 @@ function replayCasque() {
     ctx.fillStyle = 'rgba(184,92,46,0.85)';
     ctx.font = '600 12px JetBrains Mono';
     ctx.fillText(cycle > 0.05 ? '→ Les forces font GLISSER les deux moitiés' : 'AU REPOS', 18, 26);
+
+    t++;
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+// ============ DURETÉ : stylet qui raye les matériaux ============
+(function() {
+  const cvEl = document.getElementById('c-hardness');
+  if (!cvEl) return;
+  const { cv, ctx, w, h } = setupCanvas('c-hardness');
+
+  // 5 matériaux ciblés alignés horizontalement, classés par dureté
+  const targets = [
+    { name: 'PLÂTRE',  dureté: 2,  color: '#E0D6C2', label: 'gypse · 2' },
+    { name: 'CUIVRE',  dureté: 3,  color: '#D67D3E', label: 'pièce · 3' },
+    { name: 'VERRE',   dureté: 5,  color: '#A3CDDA', label: 'vitre · 5' },
+    { name: 'ACIER',   dureté: 7,  color: '#7B8A99', label: 'foret · 7' },
+    { name: 'DIAMANT', dureté: 10, color: '#FFFFFF', label: 'diamant · 10' }
+  ];
+
+  // 4 stylets : on les fait défiler, chacun raye ceux de dureté ≤
+  const stylets = [
+    { name: 'ONGLE',   dureté: 2,  color: '#F0C8A3', desc: 'l\u2019ongle raye le plâtre' },
+    { name: 'CUIVRE',  dureté: 3,  color: '#D67D3E', desc: 'le cuivre raye plâtre' },
+    { name: 'VERRE',   dureté: 5,  color: '#A3CDDA', desc: 'le verre raye cuivre et plâtre' },
+    { name: 'DIAMANT', dureté: 10, color: '#E5B547', desc: 'le diamant raye TOUT' }
+  ];
+
+  const PER = 540; // 9s par phase
+  let t = 0;
+  // État des marques pour chaque target : tableau de marques permanentes (croix)
+  const marks = targets.map(() => 0); // 0 = vierge, n = niveau du stylet qui a rayé
+
+  function reset() {
+    for (let i = 0; i < marks.length; i++) marks[i] = 0;
+  }
+
+  function loop() {
+    const W = w(), H = h();
+    ctx.clearRect(0, 0, W, H);
+
+    const p = phase(t, PER, 'hard');
+    const pp = phaseProgress(t, PER, 'hard');
+    const stylet = stylets[p];
+
+    // Update caption-like elements (réutilise les structures de cours mais inline simple)
+    // Reset marks au début de chaque cycle complet
+    if (p === 0 && pp < 0.05) {
+      reset();
+    }
+
+    // Layout : ligne de matériaux en bas, stylet en haut
+    const rowY = H - 110;
+    const blockW = (W - 40) / targets.length;
+    const blockH = 80;
+
+    // Légende phase en haut
+    ctx.fillStyle = 'rgba(184,92,46,0.85)';
+    ctx.font = '600 12px JetBrains Mono';
+    ctx.fillText('PHASE ' + (p + 1) + '/4 · STYLET = ' + stylet.name + ' (dureté ' + stylet.dureté + ')', 16, 22);
+    ctx.fillStyle = '#4A5A6B';
+    ctx.font = '500 13px Bricolage Grotesque';
+    ctx.fillText(stylet.desc, 16, 42);
+
+    // Stylet : se déplace de gauche à droite au-dessus des cibles
+    // pp 0→1 : passe au dessus de chaque cible et raye si dureté supérieure
+    const styletX = 20 + pp * (W - 40);
+    const styletY = rowY - 20;
+
+    // Position du stylet sur chaque cible (vérifier si on a déjà passé)
+    targets.forEach((tgt, i) => {
+      const cx = 20 + (i + 0.5) * blockW;
+      // Si le stylet est passé sur cette cible et que sa dureté > celle de la cible
+      if (styletX >= cx - blockW * 0.4 && stylet.dureté > tgt.dureté) {
+        marks[i] = Math.max(marks[i], stylet.dureté);
+      }
+    });
+
+    // Dessiner les cibles
+    targets.forEach((tgt, i) => {
+      const x = 20 + i * blockW;
+      const cx = x + blockW / 2;
+      // Plaque
+      ctx.fillStyle = tgt.color;
+      ctx.strokeStyle = '#4A5A6B';
+      ctx.lineWidth = 1.5;
+      ctx.fillRect(x + 8, rowY, blockW - 16, blockH);
+      ctx.strokeRect(x + 8, rowY, blockW - 16, blockH);
+
+      // Marques (croix de rayures si le matériau a été rayé)
+      if (marks[i] > 0) {
+        ctx.strokeStyle = 'rgba(217,83,79,0.85)';
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = 'round';
+        for (let k = 0; k < 3; k++) {
+          const my = rowY + 18 + k * 22;
+          ctx.beginPath();
+          ctx.moveTo(x + 16, my);
+          ctx.lineTo(x + blockW - 16, my + 6);
+          ctx.stroke();
+        }
+        // Symbole "rayé"
+        ctx.fillStyle = 'rgba(217,83,79,0.95)';
+        ctx.font = '600 10px JetBrains Mono';
+        ctx.textAlign = 'center';
+        ctx.fillText('RAYÉ', cx, rowY - 6);
+      } else if (stylet.dureté <= tgt.dureté && styletX >= cx - blockW * 0.4) {
+        // Cible non rayée car résistant
+        ctx.fillStyle = 'rgba(91,160,136,0.95)';
+        ctx.font = '600 10px JetBrains Mono';
+        ctx.textAlign = 'center';
+        ctx.fillText('RÉSISTE ✓', cx, rowY - 6);
+      }
+
+      // Label sous le bloc
+      ctx.fillStyle = '#1A2332';
+      ctx.font = '700 11px JetBrains Mono';
+      ctx.textAlign = 'center';
+      ctx.fillText(tgt.name, cx, rowY + blockH + 18);
+      ctx.fillStyle = '#8A9AA9';
+      ctx.font = '500 10px JetBrains Mono';
+      ctx.fillText(tgt.label, cx, rowY + blockH + 32);
+    });
+    ctx.textAlign = 'left';
+
+    // Dessiner le stylet (pointe + manche)
+    ctx.fillStyle = stylet.color;
+    ctx.strokeStyle = '#1A2332';
+    ctx.lineWidth = 1.5;
+    // Manche
+    ctx.beginPath();
+    ctx.moveTo(styletX - 16, styletY - 60);
+    ctx.lineTo(styletX + 16, styletY - 60);
+    ctx.lineTo(styletX + 8, styletY - 16);
+    ctx.lineTo(styletX - 8, styletY - 16);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    // Pointe
+    ctx.beginPath();
+    ctx.moveTo(styletX - 8, styletY - 16);
+    ctx.lineTo(styletX + 8, styletY - 16);
+    ctx.lineTo(styletX, styletY);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // Trace de mouvement
+    ctx.strokeStyle = 'rgba(184,92,46,0.3)';
+    ctx.setLineDash([3, 3]);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(20, styletY);
+    ctx.lineTo(styletX, styletY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Label stylet
+    ctx.fillStyle = '#1A2332';
+    ctx.font = '700 10px JetBrains Mono';
+    ctx.textAlign = 'center';
+    ctx.fillText(stylet.name, styletX, styletY - 70);
+    ctx.font = '500 9px JetBrains Mono';
+    ctx.fillStyle = '#8A9AA9';
+    ctx.fillText('dureté ' + stylet.dureté, styletX, styletY - 82);
+    ctx.textAlign = 'left';
 
     t++;
     requestAnimationFrame(loop);
