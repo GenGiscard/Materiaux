@@ -2274,7 +2274,7 @@ h3 {
           <div class="explain-tag">Déformation</div>
         </div>
         <h4>Comment la pièce se déforme</h4>
-        <p>La flexion combine deux sollicitations à la fois : la <strong>face supérieure est comprimée</strong>, la <strong>face inférieure est étirée</strong>. Au milieu, une zone sans déformation : la <strong>fibre neutre</strong>.</p>
+        <p>Quand la pièce plie, le <strong>dessus se raccourcit</strong> et le <strong>dessous s\u2019allonge</strong>. Entre les deux, une zone qui ne change pas : la <strong>fibre neutre</strong>.</p>
       </div>
       <div class="explain-card">
         <div class="explain-head">
@@ -4912,10 +4912,10 @@ function replayCasque() {
       // Haut
       ctx.fillStyle = '#933F1A';
       ctx.font = '600 11px JetBrains Mono';
-      ctx.fillText('COMPRESSION (raccourci)', midPx - 90, midPyTop - 6);
+      ctx.fillText('LE HAUT SE RACCOURCIT', midPx - 80, midPyTop - 6);
       // Bas
       ctx.fillStyle = '#D67D3E';
-      ctx.fillText('TRACTION (étiré)', midPx - 56, midPyBot + 14);
+      ctx.fillText('LE BAS S\u2019ALLONGE', midPx - 56, midPyBot + 14);
       // Neutre
       ctx.fillStyle = '#3D7E5F';
       ctx.font = '600 10px JetBrains Mono';
@@ -4936,7 +4936,7 @@ function replayCasque() {
 
     ctx.fillStyle = 'rgba(184,92,46,0.85)';
     ctx.font = '600 12px JetBrains Mono';
-    ctx.fillText(bend > 5 ? '→ HAUT comprimé · BAS étiré · NEUTRE au milieu' : 'AU REPOS', 18, 26);
+    ctx.fillText(bend > 5 ? '→ HAUT raccourci · BAS allongé · MILIEU sans changement' : 'AU REPOS', 18, 26);
 
     t++;
     requestAnimationFrame(loop);
