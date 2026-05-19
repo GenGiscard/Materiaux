@@ -1390,6 +1390,177 @@ header {
 .search-q.done.ok .sq-status { color: var(--green); }
 .search-q.done.ko .sq-status { color: var(--red); }
 
+/* ====== EXERCICE DÉTECTIVE (drag-match sollicitations) ====== */
+.detective-ex {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+.detective-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+.det-card {
+  background: var(--bg-card);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.15s;
+}
+.det-card.over { background: rgba(184,92,46,0.06); border-color: var(--copper); }
+.det-card.ok { border-color: var(--green); background: rgba(91,160,136,0.06); }
+.det-card.ko { border-color: var(--red); background: rgba(217,83,79,0.06); }
+.det-svg {
+  background: var(--bg-soft);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+}
+.det-svg svg { display: block; max-width: 100%; height: auto; }
+.det-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.det-slot {
+  min-height: 44px;
+  background: var(--bg-soft);
+  border-radius: 8px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--ink-mute);
+}
+.det-bench {
+  background: var(--bg-soft);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 60px;
+  align-items: center;
+}
+.det-bench-label {
+  width: 100%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.det-tag {
+  background: var(--bg-card);
+  border: 1px solid var(--copper);
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: grab;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  user-select: none;
+  transition: all 0.1s;
+}
+.det-tag:active { cursor: grabbing; }
+.det-tag.placed-ok { border-color: var(--green); background: rgba(91,160,136,0.1); color: var(--green); }
+.det-tag.placed-ko { border-color: var(--red); background: rgba(217,83,79,0.1); color: var(--red); text-decoration: line-through; }
+.det-tag.dragging { opacity: 0.4; }
+
+/* ====== EXERCICE VOCABULAIRE (drag-match termes/définitions) ====== */
+.vocab-ex {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+.vocab-bench {
+  background: var(--bg-soft);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 60px;
+  align-items: center;
+}
+.vocab-bench-label {
+  width: 100%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.vocab-tag {
+  background: var(--bg-card);
+  border: 1px solid var(--steel);
+  border-radius: 6px;
+  padding: 9px 16px;
+  cursor: grab;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--steel);
+  user-select: none;
+  transition: all 0.1s;
+}
+.vocab-tag:active { cursor: grabbing; }
+.vocab-tag.dragging { opacity: 0.4; }
+.vocab-tag.placed-ok { background: rgba(91,160,136,0.1); border-color: var(--green); color: var(--green); }
+.vocab-tag.placed-ko { background: rgba(217,83,79,0.1); border-color: var(--red); color: var(--red); text-decoration: line-through; }
+
+.vocab-list {
+  display: grid;
+  gap: 10px;
+}
+.vocab-def {
+  background: var(--bg-card);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: center;
+  transition: all 0.15s;
+}
+.vocab-def.over { background: rgba(46,106,142,0.06); border-color: var(--steel); }
+.vocab-def.ok { border-color: var(--green); background: rgba(91,160,136,0.05); }
+.vocab-def.ko { border-color: var(--red); background: rgba(217,83,79,0.04); }
+.vocab-def .def-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.vocab-def .def-slot {
+  min-width: 180px;
+  min-height: 44px;
+  background: var(--bg-soft);
+  border-radius: 6px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--ink-mute);
+  border: 2px dashed transparent;
+}
+.vocab-def.over .def-slot { border-color: var(--steel); }
+
 /* ====== MEMORY ====== */
 .memory-info {
   display: flex;
@@ -1802,8 +1973,10 @@ header {
     <div class="step" data-act="5"><span class="step-num">06</span>Courbe</div>
     <div class="step" data-act="6"><span class="step-num">07</span>Calculs</div>
     <div class="step" data-act="7"><span class="step-num">08</span>Recherche</div>
+    <div class="step" data-act="8"><span class="step-num">09</span>Détective</div>
+    <div class="step" data-act="9"><span class="step-num">10</span>Vocabulaire</div>
     <div class="step-sep"></div>
-    <div class="step step-bonus" data-act="8"><span class="step-num">★</span>Jeux</div>
+    <div class="step step-bonus" data-act="10"><span class="step-num">★</span>Jeux</div>
   </div>
 </header>
 
@@ -2069,7 +2242,10 @@ header {
 
     <div class="nav-bottom">
       <button class="btn btn-ghost" onclick="goAct(3)">← Précédent</button>
-      <button class="btn" onclick="checkAct6()">Vérifier mes réponses</button>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost" onclick="resetCurveEx()">↻ Recommencer</button>
+        <button class="btn" onclick="checkAct6()">Vérifier mes réponses</button>
+      </div>
     </div>
   </div>
 
@@ -2193,8 +2369,50 @@ header {
     </div>
   </div>
 
-  <!-- ========== JEUX BONUS ========== -->
+  <!-- ========== ACT 9 : DÉTECTIVE DES SOLLICITATIONS ========== -->
   <div class="activity" data-id="8">
+    <div class="act-header">
+      <div class="act-tag">Activité 09 · Le détective</div>
+      <h1>Identifie la sollicitation <br>qui a brisé chaque pièce</h1>
+      <p class="desc">5 cas de cassure. <strong>Glisse</strong> les étiquettes en bas vers le bon schéma. Une fois tout placé, vérifie tes choix.</p>
+    </div>
+
+    <div class="detective-ex">
+      <div class="detective-cards" id="detCards"></div>
+      <div class="det-bench" id="detBench">
+        <div class="det-bench-label">⬇ Étiquettes à glisser sur chaque schéma</div>
+      </div>
+    </div>
+
+    <div class="nav-bottom">
+      <button class="btn btn-ghost" onclick="goAct(6)">← Précédent</button>
+      <button class="btn" onclick="checkAct9()">Vérifier mes choix</button>
+    </div>
+  </div>
+
+  <!-- ========== ACT 10 : ATELIER VOCABULAIRE ========== -->
+  <div class="activity" data-id="9">
+    <div class="act-header">
+      <div class="act-tag">Activité 10 · Atelier vocabulaire</div>
+      <h1>Associe chaque mot <br>à sa définition</h1>
+      <p class="desc">6 termes techniques du chapitre. <strong>Glisse</strong> chaque mot vers la bonne définition.</p>
+    </div>
+
+    <div class="vocab-ex">
+      <div class="vocab-bench" id="vocabBench">
+        <div class="vocab-bench-label">⬇ Termes à glisser vers les définitions</div>
+      </div>
+      <div class="vocab-list" id="vocabList"></div>
+    </div>
+
+    <div class="nav-bottom">
+      <button class="btn btn-ghost" onclick="goAct(7)">← Précédent</button>
+      <button class="btn" onclick="checkAct10()">Vérifier mes associations</button>
+    </div>
+  </div>
+
+  <!-- ========== JEUX BONUS ========== -->
+  <div class="activity" data-id="10">
     <div class="act-header">
       <div class="act-tag" style="color:var(--warn)">★ Jeux bonus · non notés</div>
       <h1>S'entraîner en s'amusant</h1>
@@ -2589,11 +2807,11 @@ const cases = [
 
 // ============ STATE ============
 let currentAct = 0;
-const scores = [0, 0, 0, 0, 0, 0, 0, 0];
-const maxScores = [4, 4, 3, 5, 4, 4, 5, 3];
-const checked = [false, false, false, false, false, false, false, false];
-// 0-7 = activités notées, 8 = jeux
-const unlocked = [true, false, false, false, false, false, false, false, false];
+const scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const maxScores = [4, 4, 3, 5, 4, 4, 5, 3, 5, 6];
+const checked = [false, false, false, false, false, false, false, false, false, false];
+// 0-9 = activités notées, 10 = jeux
+const unlocked = [true, false, false, false, false, false, false, false, false, false, false];
 const REQUIRED_PCT = 0.8;
 
 function updateScoreDisplay() {
@@ -2671,7 +2889,7 @@ function handleActResult(actId, scoreObtained, maxScore, nextLabel) {
     const sb = ensureSuccess(actId);
     sb.querySelector('.msg').innerHTML =
       '<strong>Bravo !</strong> ' + Math.round(pct * 100) + '% de réussite. ' +
-      (actId < 7 ? 'Tu passes à <strong>' + nextLabel + '</strong> dans un instant…' :
+      (actId < 9 ? 'Tu passes à <strong>' + nextLabel + '</strong> dans un instant…' :
        'Tu as terminé toutes les activités. Place aux <strong>jeux bonus</strong> !');
     sb.classList.add('show');
     updateScoreDisplay();
@@ -3984,9 +4202,25 @@ function checkAct6() {
 }
 
 function resetCurveEx() {
+  // Réinitialiser entièrement l'état de l'exercice
   curveExAnswers = Array(curveExQuestions.length).fill(null);
   curveExCurrent = 0;
+  scores[5] = 0;
+  checked[5] = false;
+  // Reset visuel du SVG (retirer tous les marquages target/ok/ko)
+  document.querySelectorAll('#curveSvg .curve-zone-btn').forEach(el => {
+    el.classList.remove('target', 'ok', 'ko');
+  });
+  // Reset des bannières retry / success de cette activité
+  const wrap = document.querySelector('.activity[data-id="5"]');
+  if (wrap) {
+    const rb = wrap.querySelector('.retry-banner');
+    if (rb) rb.classList.remove('show');
+    const sb = wrap.querySelector('.success-banner');
+    if (sb) sb.classList.remove('show');
+  }
   renderCurveQuestions();
+  updateScoreDisplay();
 }
 
 // ============ ACT 7 : CALCULS AVEC CALCULATRICE ============
@@ -4131,7 +4365,7 @@ function checkAct8() {
   }
   scores[7] = Math.round((correct / cards.length) * maxScores[7] * 10) / 10;
   checked[7] = true;
-  handleActResult(7, scores[7], maxScores[7], 'Jeux');
+  handleActResult(7, scores[7], maxScores[7], 'Détective');
 }
 
 // Update resetActivity pour gérer 6, 7, 8
@@ -4161,6 +4395,237 @@ resetActivity = function(actId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
+// ============ ACT 9 : DÉTECTIVE DES SOLLICITATIONS ============
+const detSvgs = {
+  traction: `<svg width="120" height="80" viewBox="0 0 120 80"><rect x="14" y="35" width="34" height="10" fill="#B85C2E"/><polygon points="50,30 50,50 60,40" fill="#B85C2E"/><polygon points="72,30 72,50 62,40" fill="#B85C2E"/><rect x="74" y="35" width="34" height="10" fill="#B85C2E"/><path d="M 6 40 L 14 40 M 6 38 L 10 40 L 6 42" stroke="#2E6A8E" stroke-width="2" fill="none"/><path d="M 116 40 L 108 40 M 116 38 L 112 40 L 116 42" stroke="#2E6A8E" stroke-width="2" fill="none"/></svg>`,
+  compression: `<svg width="120" height="80" viewBox="0 0 120 80"><rect x="46" y="60" width="40" height="14" fill="#7B8A99"/><polygon points="46,30 86,30 90,50 42,50" fill="#B85C2E"/><rect x="40" y="6" width="56" height="10" fill="#4A5A6B"/><path d="M 66 0 L 66 24 M 64 22 L 66 26 L 68 22" stroke="#2E6A8E" stroke-width="2" fill="none"/></svg>`,
+  flexion: `<svg width="120" height="80" viewBox="0 0 120 80"><path d="M 8 28 Q 60 70 112 28" stroke="#B85C2E" stroke-width="10" fill="none"/><polygon points="6,38 0,58 12,58" fill="#4A5A6B"/><polygon points="114,38 108,58 120,58" fill="#4A5A6B"/><path d="M 60 6 L 60 38 M 58 36 L 60 40 L 62 36" stroke="#2E6A8E" stroke-width="2" fill="none"/></svg>`,
+  torsion: `<svg width="120" height="80" viewBox="0 0 120 80"><rect x="6" y="32" width="14" height="16" fill="#4A5A6B"/><path d="M 20 40 Q 40 32 60 40 Q 80 48 100 40" stroke="#B85C2E" stroke-width="14" fill="none"/><circle cx="106" cy="40" r="8" fill="#4A5A6B"/><path d="M 106 40 L 100 32" stroke="#E5B547" stroke-width="3"/><path d="M 90 12 Q 106 8 116 18" stroke="#2E6A8E" stroke-width="2" fill="none"/><polygon points="116,18 108,16 116,12" fill="#2E6A8E"/></svg>`,
+  cisaillement: `<svg width="120" height="80" viewBox="0 0 120 80"><rect x="6" y="20" width="100" height="14" fill="#D67D3E"/><rect x="14" y="40" width="100" height="14" fill="#B85C2E"/><rect x="56" y="20" width="8" height="34" fill="#4A5A6B" opacity="0.6"/><path d="M 2 27 L 14 27 M 12 25 L 14 27 L 12 29" stroke="#2E6A8E" stroke-width="2" fill="none"/><path d="M 118 47 L 106 47 M 108 45 L 106 47 L 108 49" stroke="#2E6A8E" stroke-width="2" fill="none"/></svg>`
+};
+const detCases = [
+  { id: 'a', svg: 'traction', label: 'Câble cassé en deux', correct: 'Traction' },
+  { id: 'b', svg: 'compression', label: 'Pilier écrasé', correct: 'Compression' },
+  { id: 'c', svg: 'flexion', label: 'Étagère effondrée', correct: 'Flexion' },
+  { id: 'd', svg: 'torsion', label: 'Tige tordue', correct: 'Torsion' },
+  { id: 'e', svg: 'cisaillement', label: 'Plaque tranchée', correct: 'Cisaillement' }
+];
+let detPlacements = {}; // cardId → tagText
+let detTags = ['Traction', 'Compression', 'Flexion', 'Torsion', 'Cisaillement'];
+
+function buildDetective() {
+  detPlacements = {};
+  // Mélanger les cas
+  const shuffled = [...detCases].sort(() => Math.random() - 0.5);
+  detCases.length = 0;
+  detCases.push(...shuffled);
+  // Mélanger les étiquettes
+  detTags = ['Traction', 'Compression', 'Flexion', 'Torsion', 'Cisaillement'].sort(() => Math.random() - 0.5);
+  renderDetective();
+}
+
+function renderDetective() {
+  const cards = document.getElementById('detCards');
+  if (!cards) return;
+  cards.innerHTML = detCases.map(c => {
+    const placed = detPlacements[c.id];
+    return '<div class="det-card" data-cid="' + c.id + '">' +
+      '<div class="det-svg">' + detSvgs[c.svg] + '</div>' +
+      '<div class="det-label">' + c.label + '</div>' +
+      '<div class="det-slot">' +
+        (placed ? '<div class="det-tag" draggable="true" data-tag="' + placed + '">' + placed + '</div>' : 'glisse une étiquette ici') +
+      '</div>' +
+    '</div>';
+  }).join('');
+  // Bench : étiquettes non encore placées
+  const bench = document.getElementById('detBench');
+  const placedTags = Object.values(detPlacements);
+  bench.innerHTML = '<div class="det-bench-label">⬇ Étiquettes à glisser sur chaque schéma</div>' +
+    detTags.filter(t => !placedTags.includes(t)).map(t =>
+      '<div class="det-tag" draggable="true" data-tag="' + t + '">' + t + '</div>'
+    ).join('');
+  setupDetectiveDrag();
+}
+
+function setupDetectiveDrag() {
+  document.querySelectorAll('.det-tag').forEach(t => {
+    t.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', t.dataset.tag);
+      t.classList.add('dragging');
+    });
+    t.addEventListener('dragend', () => t.classList.remove('dragging'));
+  });
+  document.querySelectorAll('.det-card').forEach(c => {
+    c.addEventListener('dragover', e => { e.preventDefault(); c.classList.add('over'); });
+    c.addEventListener('dragleave', () => c.classList.remove('over'));
+    c.addEventListener('drop', e => {
+      e.preventDefault();
+      c.classList.remove('over');
+      const tag = e.dataTransfer.getData('text/plain');
+      // Si ce tag était sur une autre carte, le retirer
+      Object.keys(detPlacements).forEach(k => {
+        if (detPlacements[k] === tag) delete detPlacements[k];
+      });
+      detPlacements[c.dataset.cid] = tag;
+      renderDetective();
+    });
+  });
+  // Drop sur la bench pour retirer
+  const bench = document.getElementById('detBench');
+  bench.addEventListener('dragover', e => e.preventDefault());
+  bench.addEventListener('drop', e => {
+    e.preventDefault();
+    const tag = e.dataTransfer.getData('text/plain');
+    Object.keys(detPlacements).forEach(k => {
+      if (detPlacements[k] === tag) delete detPlacements[k];
+    });
+    renderDetective();
+  });
+}
+
+function checkAct9() {
+  if (Object.keys(detPlacements).length < detCases.length) {
+    alert('Tu dois placer une étiquette sur chaque schéma avant de vérifier.');
+    return;
+  }
+  let correct = 0;
+  detCases.forEach(c => {
+    const card = document.querySelector('.det-card[data-cid="' + c.id + '"]');
+    const tag = card.querySelector('.det-tag');
+    if (detPlacements[c.id] === c.correct) {
+      card.classList.add('ok');
+      if (tag) tag.classList.add('placed-ok');
+      correct++;
+    } else {
+      card.classList.add('ko');
+      if (tag) tag.classList.add('placed-ko');
+    }
+  });
+  scores[8] = Math.round((correct / detCases.length) * maxScores[8] * 10) / 10;
+  checked[8] = true;
+  handleActResult(8, scores[8], maxScores[8], 'Vocabulaire');
+}
+
+// ============ ACT 10 : ATELIER VOCABULAIRE ============
+const vocabPairs = [
+  { term: 'Élasticité', def: 'Capacité d\'un matériau à <strong>revenir à sa forme initiale</strong> après une force.' },
+  { term: 'Plasticité', def: 'Déformation <strong>permanente</strong> d\'un matériau qui ne revient pas à sa forme.' },
+  { term: 'Fibre neutre', def: 'Zone d\'une poutre fléchie qui <strong>ne change pas</strong> de longueur (ni allongée ni raccourcie).' },
+  { term: 'Alliage', def: 'Mélange de plusieurs <strong>métaux</strong> (ou métal + autre élément). Ex. acier = fer + carbone.' },
+  { term: 'Composite', def: 'Matériau formé de <strong>deux composants</strong> qui se complètent : fibre + matrice.' },
+  { term: 'Dureté', def: 'Résistance d\'un matériau aux <strong>rayures</strong> et à la pénétration.' }
+];
+let vocabPlacements = {}; // defIdx → term
+
+function buildVocab() {
+  vocabPlacements = {};
+  // Mélanger les définitions et les termes
+  const shuffledDefs = [...vocabPairs].sort(() => Math.random() - 0.5);
+  vocabPairs.length = 0;
+  vocabPairs.push(...shuffledDefs);
+  renderVocab();
+}
+
+function renderVocab() {
+  const list = document.getElementById('vocabList');
+  if (!list) return;
+  list.innerHTML = vocabPairs.map((p, i) => {
+    const placed = vocabPlacements[i];
+    return '<div class="vocab-def" data-i="' + i + '">' +
+      '<div class="def-text">' + p.def + '</div>' +
+      '<div class="def-slot">' +
+        (placed ? '<div class="vocab-tag" draggable="true" data-term="' + placed + '">' + placed + '</div>' : 'glisse le terme ici') +
+      '</div>' +
+    '</div>';
+  }).join('');
+  const bench = document.getElementById('vocabBench');
+  const placedTerms = Object.values(vocabPlacements);
+  // Liste de termes mélangés
+  const allTerms = vocabPairs.map(p => p.term).sort(() => Math.random() - 0.5);
+  bench.innerHTML = '<div class="vocab-bench-label">⬇ Termes à glisser vers les définitions</div>' +
+    allTerms.filter(t => !placedTerms.includes(t)).map(t =>
+      '<div class="vocab-tag" draggable="true" data-term="' + t + '">' + t + '</div>'
+    ).join('');
+  setupVocabDrag();
+}
+
+function setupVocabDrag() {
+  document.querySelectorAll('.vocab-tag').forEach(t => {
+    t.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', t.dataset.term);
+      t.classList.add('dragging');
+    });
+    t.addEventListener('dragend', () => t.classList.remove('dragging'));
+  });
+  document.querySelectorAll('.vocab-def').forEach(d => {
+    d.addEventListener('dragover', e => { e.preventDefault(); d.classList.add('over'); });
+    d.addEventListener('dragleave', () => d.classList.remove('over'));
+    d.addEventListener('drop', e => {
+      e.preventDefault();
+      d.classList.remove('over');
+      const term = e.dataTransfer.getData('text/plain');
+      Object.keys(vocabPlacements).forEach(k => {
+        if (vocabPlacements[k] === term) delete vocabPlacements[k];
+      });
+      vocabPlacements[parseInt(d.dataset.i)] = term;
+      renderVocab();
+    });
+  });
+  const bench = document.getElementById('vocabBench');
+  bench.addEventListener('dragover', e => e.preventDefault());
+  bench.addEventListener('drop', e => {
+    e.preventDefault();
+    const term = e.dataTransfer.getData('text/plain');
+    Object.keys(vocabPlacements).forEach(k => {
+      if (vocabPlacements[k] === term) delete vocabPlacements[k];
+    });
+    renderVocab();
+  });
+}
+
+function checkAct10() {
+  if (Object.keys(vocabPlacements).length < vocabPairs.length) {
+    alert('Tu dois associer un terme à chaque définition avant de vérifier.');
+    return;
+  }
+  let correct = 0;
+  vocabPairs.forEach((p, i) => {
+    const card = document.querySelector('.vocab-def[data-i="' + i + '"]');
+    const tag = card.querySelector('.vocab-tag');
+    if (vocabPlacements[i] === p.term) {
+      card.classList.add('ok');
+      if (tag) tag.classList.add('placed-ok');
+      correct++;
+    } else {
+      card.classList.add('ko');
+      if (tag) tag.classList.add('placed-ko');
+    }
+  });
+  scores[9] = Math.round((correct / vocabPairs.length) * maxScores[9] * 10) / 10;
+  checked[9] = true;
+  handleActResult(9, scores[9], maxScores[9], 'Jeux');
+}
+
+// Étendre resetActivity pour les nouvelles activités
+const _origResetActivity2 = resetActivity;
+resetActivity = function(actId) {
+  if (actId === 8) {
+    buildDetective();
+    scores[8] = 0;
+    checked[8] = false;
+    updateScoreDisplay();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else if (actId === 9) {
+    buildVocab();
+    scores[9] = 0;
+    checked[9] = false;
+    updateScoreDisplay();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    _origResetActivity2(actId);
+  }
+};
+
 // ============ INIT ============
 initAct1();
 initAct2();
@@ -4169,6 +4634,8 @@ initAct4();
 buildCurveEx();
 buildCalcEx();
 setupCalculator();
+buildDetective();
+buildVocab();
 buildMemory();
 initSim();
 initCmp();
