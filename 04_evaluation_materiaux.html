@@ -641,8 +641,24 @@ h1 .hi { color: var(--copper); }
 
 <div class="container">
 
+  <!-- ============ SCREEN UNLOCK (code prof) ============ -->
+  <div class="screen active" id="screenUnlock">
+    <div class="setup-tag">Évaluation notée · code requis</div>
+    <h1>Évaluation <span class="hi">verrouillée</span></h1>
+    <p class="lead">Avant de commencer, ton <strong>professeur</strong> va te donner un code à entrer pour débloquer l'évaluation.</p>
+
+    <div class="setup-form" style="max-width: 460px">
+      <div class="form-row">
+        <label>🔒 Code de l'évaluation</label>
+        <input type="text" id="inCode" placeholder="entre le code donné par le prof" autocomplete="off" style="text-align:center;text-transform:uppercase;letter-spacing:0.15em;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:18px">
+        <div class="hint" id="codeHint">Le code te sera communiqué oralement au début de l'évaluation.</div>
+      </div>
+      <button class="btn btn-big" id="btnUnlock" style="width:100%">Déverrouiller →</button>
+    </div>
+  </div>
+
   <!-- ============ SCREEN SETUP ============ -->
-  <div class="screen active" id="screenSetup">
+  <div class="screen" id="screenSetup">
     <div class="setup-tag">Évaluation notée · en groupe</div>
     <h1>Les matériaux<br><span class="hi">et leurs propriétés</span></h1>
 
@@ -721,6 +737,39 @@ h1 .hi { color: var(--copper); }
 </div>
 
 <script>
+// ============ CODE D'ACCÈS À L'ÉVALUATION ============
+// ↓ Modifier ici pour changer le code communiqué aux élèves
+const EVAL_CODE = 'MAT2026';
+// Insensible à la casse et aux espaces
+
+(function() {
+  const input = document.getElementById('inCode');
+  const btn = document.getElementById('btnUnlock');
+  const hint = document.getElementById('codeHint');
+
+  function tryUnlock() {
+    const v = input.value.toUpperCase().replace(/\s/g, '').trim();
+    if (v === EVAL_CODE.toUpperCase()) {
+      showScreen('screenSetup');
+    } else {
+      hint.textContent = '✗ Code incorrect. Demande à ton professeur.';
+      hint.style.color = 'var(--red)';
+      input.value = '';
+      input.focus();
+      // Reset le message après 3 sec
+      setTimeout(() => {
+        hint.textContent = 'Le code te sera communiqué oralement au début de l\u2019évaluation.';
+        hint.style.color = '';
+      }, 3000);
+    }
+  }
+  btn.addEventListener('click', tryUnlock);
+  input.addEventListener('keypress', e => {
+    if (e.key === 'Enter') tryUnlock();
+  });
+  input.focus();
+})();
+
 // ============ CONFIG FIREBASE ============
 const FIREBASE_URL = 'https://evaluation-bloc-default-rtdb.europe-west1.firebasedatabase.app';
 const NODE = 'resultats_materiaux';

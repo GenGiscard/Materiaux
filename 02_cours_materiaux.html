@@ -6348,10 +6348,18 @@ document.querySelectorAll('.checkpoint-quiz').forEach(quiz => {
           opt.classList.add('ko');
           opt.disabled = true;
           if (fb) {
-            fb.textContent = '✗ Faux. La réponse se trouve dans le cours juste au-dessus — relis et réessaie.';
+            fb.textContent = '✗ Faux. Relis le cours au-dessus et réessaie.';
             fb.classList.remove('ok');
             fb.classList.add('show', 'ko');
           }
+          // Réactiver l'option après un court délai pour ne pas mémoriser les mauvaises réponses
+          setTimeout(() => {
+            opt.classList.remove('ko');
+            opt.disabled = false;
+            if (fb && !q.classList.contains('answered')) {
+              fb.classList.remove('show');
+            }
+          }, 1500);
         }
       });
     });
