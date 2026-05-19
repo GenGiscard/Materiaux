@@ -981,6 +981,289 @@ h3 {
 }
 .solli-materials strong { color: var(--steel); }
 
+/* ============= MINI-QUIZ CHECKPOINTS ============= */
+.checkpoint-quiz {
+  margin: 28px 0 12px;
+  background: linear-gradient(135deg, rgba(46,106,142,0.06), rgba(46,106,142,0.02));
+  border: 2px solid var(--steel);
+  border-radius: 16px;
+  padding: 24px 28px;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(46,106,142,0.08);
+}
+.cq-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.cq-ic {
+  width: 44px; height: 44px;
+  background: var(--steel);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.cq-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--steel);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.cq-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.cq-progress {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.cq-progress strong { color: var(--steel); font-weight: 700; font-size: 16px; }
+
+.cq-question {
+  background: white;
+  border: 1px solid rgba(46,106,142,0.2);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  transition: all 0.2s;
+}
+.cq-question.answered { opacity: 0.65; }
+.cq-question.answered.ok { border-color: var(--green); background: rgba(91,160,136,0.04); }
+.cq-question.answered.ko { border-color: var(--red); background: rgba(217,83,79,0.04); }
+
+.cq-q {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.cq-q .qnum {
+  display: inline-block;
+  background: var(--steel);
+  color: white;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 8px;
+  line-height: 24px;
+}
+.cq-options {
+  display: grid;
+  gap: 8px;
+}
+.cq-opt {
+  background: var(--bg-soft);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ink);
+  text-align: left;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  transition: all 0.12s;
+}
+.cq-opt:hover:not(:disabled) {
+  background: var(--bg-card-hi, #F5EFE0);
+  border-color: var(--steel);
+}
+.cq-opt:disabled { cursor: default; }
+.cq-opt.ok {
+  background: rgba(91,160,136,0.15);
+  border-color: var(--green);
+  color: var(--green);
+  font-weight: 600;
+}
+.cq-opt.ko {
+  background: rgba(217,83,79,0.1);
+  border-color: var(--red);
+  color: var(--red);
+  font-weight: 600;
+  text-decoration: line-through;
+}
+.cq-feedback {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  display: none;
+  line-height: 1.5;
+}
+.cq-feedback.show { display: block; }
+.cq-feedback.ok { background: rgba(91,160,136,0.1); color: var(--green); }
+.cq-feedback.ko { background: rgba(217,83,79,0.08); color: var(--red); }
+
+.cq-final {
+  margin-top: 14px;
+  text-align: center;
+  padding: 16px;
+  background: var(--steel);
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+.cq-final.show { display: block; }
+.cq-final strong { font-size: 22px; display: block; margin-bottom: 4px; }
+.cq-final button {
+  background: white;
+  color: var(--steel);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.cq-final button:hover { background: var(--bg-soft); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shakeQ {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+/* ============= VERROUILLAGE DES SLIDES ============= */
+.slide.locked {
+  position: relative;
+}
+.slide.locked > * {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+.slide.locked::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(248,244,236,0.7);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 50;
+  pointer-events: none;
+}
+.slide.locked::after {
+  content: '🔒  Termine le mini-défi de la slide précédente pour débloquer';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 51;
+  background: var(--copper);
+  color: white;
+  padding: 18px 32px;
+  border-radius: 14px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  box-shadow: 0 10px 32px rgba(184,92,46,0.35);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+@media (max-width: 720px) {
+  .slide.locked::after {
+    font-size: 13px;
+    padding: 14px 18px;
+    white-space: normal;
+    text-align: center;
+    max-width: 80%;
+  }
+}
+
+/* Nav item verrouillé dans sidebar */
+.nav-item.locked {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: not-allowed;
+  position: relative;
+}
+.nav-item.locked::after {
+  content: '🔒';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+}
+
+/* MINI-QUIZ compact (1 question) */
+.checkpoint-quiz.mini {
+  padding: 18px 22px;
+  margin: 22px 0 8px;
+}
+.checkpoint-quiz.mini .cq-header {
+  margin-bottom: 12px;
+}
+.checkpoint-quiz.mini .cq-ic {
+  width: 36px; height: 36px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.checkpoint-quiz.mini .cq-title { font-size: 17px; }
+.checkpoint-quiz.mini .cq-question {
+  padding: 14px 18px;
+  margin-bottom: 0;
+}
+.checkpoint-quiz.mini .cq-q { font-size: 15px; margin-bottom: 10px; }
+.checkpoint-quiz.mini .cq-final { padding: 12px; font-size: 14px; }
+.checkpoint-quiz.mini .cq-final strong { font-size: 16px; }
+
+/* VARIANTE VRAI / FAUX (2 gros boutons côte à côte) */
+.cq-options.vf {
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.cq-options.vf .cq-opt {
+  padding: 18px;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.cq-options.vf .cq-opt[data-value="V"] { background: rgba(91,160,136,0.08); }
+.cq-options.vf .cq-opt[data-value="F"] { background: rgba(217,83,79,0.06); }
+.cq-options.vf .cq-opt:hover:not(:disabled) { transform: scale(1.02); }
+
+/* QCM avec icônes / emojis (rendu plus ludique) */
+.cq-options.with-icon .cq-opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cq-options.with-icon .cq-opt .ic {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+
 /* ============= SLIDE DURETÉ ============= */
 .hard-layout {
   display: grid;
@@ -1517,6 +1800,52 @@ h3 {
         <div class="examples">bois · cuir<br>coton</div>
       </div>
     </div>
+
+    <div class="checkpoint-quiz">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Vérifie ta compréhension</div>
+          <div class="cq-title">Les 5 familles · 3 questions</div>
+        </div>
+        <div class="cq-progress"><strong>0/3</strong></div>
+      </div>
+
+      <div class="cq-question" data-explain="Le verre s'obtient en chauffant du sable : c'est une céramique.">
+        <div class="cq-q"><span class="qnum">1</span>Le verre fait partie de quelle famille ?</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">Métaux</button>
+          <button class="cq-opt" data-ok="false">Polymères</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ Oui ! Le verre est une céramique : il s'obtient par cuisson de sable à très haute température.">Céramiques et verres</button>
+          <button class="cq-opt" data-ok="false">Composites</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-question" data-explain="Les organiques naturels viennent directement du vivant : bois, coton, laine, cuir.">
+        <div class="cq-q"><span class="qnum">2</span>Quelle famille vient directement du vivant ?</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">Métaux</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ Bravo ! Le bois pousse, le coton vient d'une plante, la laine d'un mouton, le cuir d'un animal.">Organiques naturels</button>
+          <button class="cq-opt" data-ok="false">Polymères</button>
+          <button class="cq-opt" data-ok="false">Céramiques</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-question" data-explain="Un composite est fait de DEUX matériaux qui se complètent : une fibre résistante + une matrice rigide.">
+        <div class="cq-q"><span class="qnum">3</span>Pourquoi le béton armé est-il un composite ?</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">Parce qu'il est très dur</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ Exactement : béton (rigide en compression) + ferraille (résistante en traction) = un composite.">Parce qu'il combine deux matériaux complémentaires</button>
+          <button class="cq-opt" data-ok="false">Parce qu'il est lourd</button>
+          <button class="cq-opt" data-ok="false">Parce qu'il vient du sable</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-final"></div>
+    </div>
   </section>
 
   <!-- ========== S3 — METAUX ========== -->
@@ -1603,6 +1932,22 @@ h3 {
       </div>
     </div>
 
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">Les métaux</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Qu’est-ce qu’un alliage ?</div>
+        <div class="cq-options with-icon"><button class="cq-opt" data-ok="false">🥇 Un métal pur</button><button class="cq-opt" data-ok="true" data-explain="✓ Bravo ! Un alliage est un mélange (ex. acier = fer + carbone).">🔀 Un mélange de plusieurs métaux</button><button class="cq-opt" data-ok="false">🔥 Un métal fondu</button><button class="cq-opt" data-ok="false">💎 Une pierre précieuse</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S4 — POLYMERES ========== -->
@@ -1685,6 +2030,25 @@ h3 {
           <li>Coque de téléphone, jouets, emballages</li>
         </ul>
       </div>
+    </div>
+
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">⚖</div>
+        <div>
+          <div class="cq-tag">Vrai ou faux ?</div>
+          <div class="cq-title">Les polymères</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Presque tous les plastiques sont fabriqués à partir du pétrole.</div>
+        <div class="cq-options vf">
+          <button class="cq-opt" data-value="V" data-ok="true" data-explain="✓ Exactement ! Le pétrole est transformé en longues chaînes de molécules.">✓ Vrai</button>
+          <button class="cq-opt" data-value="F" data-ok="false">✗ Faux</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
     </div>
 
   </section>
@@ -1772,6 +2136,22 @@ h3 {
       </div>
     </div>
 
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">Les céramiques</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Comment obtient-on du verre ?</div>
+        <div class="cq-options with-icon"><button class="cq-opt" data-ok="false">🌳 En sciant du bois</button><button class="cq-opt" data-ok="false">🏭 En faisant fondre du métal</button><button class="cq-opt" data-ok="true" data-explain="✓ Exact ! On chauffe du sable (silice) avec de la soude à 1500°C.">🔥 En chauffant du sable très fort</button><button class="cq-opt" data-ok="false">⛏ En creusant dans la roche</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S6 — COMPOSITES ========== -->
@@ -1854,6 +2234,22 @@ h3 {
           <li>Béton armé des bâtiments</li>
         </ul>
       </div>
+    </div>
+
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">Les composites</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">De quoi est composé le béton armé ?</div>
+        <div class="cq-options with-icon"><button class="cq-opt" data-ok="false">🪨 De béton uniquement</button><button class="cq-opt" data-ok="true" data-explain="✓ Oui ! C’est ce mélange qui le rend résistant à la fois en compression et en traction.">🪨 + 🔩 De béton + d’acier (ferraille)</button><button class="cq-opt" data-ok="false">🪨 + 🪵 De béton + de bois</button><button class="cq-opt" data-ok="false">🪨 + 🧴 De béton + de plastique</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
     </div>
 
   </section>
@@ -1942,6 +2338,25 @@ h3 {
       </div>
     </div>
 
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">⚖</div>
+        <div>
+          <div class="cq-tag">Vrai ou faux ?</div>
+          <div class="cq-title">Les organiques naturels</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Les matériaux organiques (bois, coton, cuir) sont biodégradables.</div>
+        <div class="cq-options vf">
+          <button class="cq-opt" data-value="V" data-ok="true" data-explain="✓ Oui ! Ils se décomposent dans la nature, contrairement aux plastiques.">✓ Vrai</button>
+          <button class="cq-opt" data-value="F" data-ok="false">✗ Faux</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S8 — 4 PROPRIETES ========== -->
@@ -2028,6 +2443,22 @@ h3 {
         </div>
       </div>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">4 catégories de propriétés</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">La conductivité électrique appartient à quelle catégorie ?</div>
+        <div class="cq-options with-icon"><button class="cq-opt" data-ok="false">⚙ Propriétés mécaniques</button><button class="cq-opt" data-ok="true" data-explain="✓ Oui ! La conductivité (électrique, thermique) fait partie des propriétés physiques.">🌡 Propriétés physiques</button><button class="cq-opt" data-ok="false">🎨 Propriétés esthétiques</button><button class="cq-opt" data-ok="false">🌍 Propriétés environnementales</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S9 — DEMO RESISTANCE ========== -->
@@ -2070,6 +2501,22 @@ h3 {
 
       <button class="demo-btn" onclick="animDemo()">▶ Lancer la démonstration</button>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">Résistance</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Lequel de ces matériaux résiste le mieux à la traction ?</div>
+        <div class="cq-options with-icon"><button class="cq-opt" data-ok="false">🪵 Bois sapin</button><button class="cq-opt" data-ok="false">🧪 Verre</button><button class="cq-opt" data-ok="true" data-explain="✓ L’acier supporte jusqu’à 1000 MPa de traction, bien plus que le bois ou le verre.">🔗 Câble en acier</button><button class="cq-opt" data-ok="false">🥃 Porcelaine</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S9c — ÉLASTIQUE vs PLASTIQUE ========== -->
@@ -2124,6 +2571,25 @@ h3 {
       <div class="icon">!</div>
       <p>La plupart des matériaux passent <strong>d'abord par l'élastique, puis par le plastique</strong> avant de casser. Le point qui sépare les deux s'appelle la <strong>limite élastique</strong> : c'est elle que les ingénieurs ne veulent jamais dépasser.</p>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">⚖</div>
+        <div>
+          <div class="cq-tag">Vrai ou faux ?</div>
+          <div class="cq-title">Élastique ou plastique ?</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Tu tords un trombone et il reste tordu. C’est une déformation élastique.</div>
+        <div class="cq-options vf">
+          <button class="cq-opt" data-value="V" data-ok="false">✓ Vrai</button>
+          <button class="cq-opt" data-value="F" data-ok="true" data-explain="✓ Exact, c’est FAUX. Quand le matériau ne revient pas à sa forme, c’est une déformation plastique.">✗ Faux</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S9d — COURBE CONTRAINTE-DÉFORMATION ========== -->
@@ -2167,6 +2633,22 @@ h3 {
         </div>
       </div>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">La courbe σ-ε</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Que représente le point Re sur la courbe ?</div>
+        <div class="cq-options"><button class="cq-opt" data-ok="false">La rupture du matériau</button><button class="cq-opt" data-ok="true" data-explain="✓ Bravo ! Re est le point clé que les ingénieurs ne veulent jamais dépasser.">La limite élastique (= passage en plastique)</button><button class="cq-opt" data-ok="false">La résistance maximale</button><button class="cq-opt" data-ok="false">La densité du matériau</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S9b — 5 SOLLICITATIONS ========== -->
@@ -2216,6 +2698,22 @@ h3 {
         <div class="solli-ex">ciseaux · rivet · boulon</div>
       </div>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">Les 5 sollicitations</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Combien y a-t-il de sollicitations mécaniques principales ?</div>
+        <div class="cq-options"><button class="cq-opt" data-ok="false">3</button><button class="cq-opt" data-ok="true" data-explain="✓ Exact ! Traction, compression, flexion, torsion, cisaillement.">5</button><button class="cq-opt" data-ok="false">7</button><button class="cq-opt" data-ok="false">10</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
 
@@ -2265,6 +2763,25 @@ h3 {
         </ul>
       </div>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">⚖</div>
+        <div>
+          <div class="cq-tag">Vrai ou faux ?</div>
+          <div class="cq-title">Traction</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Un câble qui tient un ascenseur est en traction.</div>
+        <div class="cq-options vf">
+          <button class="cq-opt" data-value="V" data-ok="true" data-explain="✓ Oui ! Le poids de la cabine tire sur le câble vers le bas.">✓ Vrai</button>
+          <button class="cq-opt" data-value="F" data-ok="false">✗ Faux</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S9B2 — COMPRESSION ========== -->
@@ -2313,6 +2830,22 @@ h3 {
         </ul>
       </div>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">Compression</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Quel matériau est excellent en compression ?</div>
+        <div class="cq-options with-icon"><button class="cq-opt" data-ok="false">🔗 Le caoutchouc</button><button class="cq-opt" data-ok="true" data-explain="✓ Le béton est très résistant en compression (mais nul en traction, d’où le béton armé).">🪨 Le béton</button><button class="cq-opt" data-ok="false">🧴 Le PVC</button><button class="cq-opt" data-ok="false">🪵 La planche de carton</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S9B3 — FLEXION ========== -->
@@ -2346,7 +2879,7 @@ h3 {
           <div class="explain-tag">Déformation</div>
         </div>
         <h4>Comment la pièce se déforme</h4>
-        <p>Quand la pièce plie, le <strong>dessus se raccourcit</strong> et le <strong>dessous s\u2019allonge</strong>. Entre les deux, une zone qui ne change pas : la <strong>fibre neutre</strong>.</p>
+        <p>Quand la pièce plie, le <strong>dessus se raccourcit</strong> et le <strong>dessous s’allonge</strong>. Entre les deux, une zone qui ne change pas : la <strong>fibre neutre</strong>.</p>
       </div>
       <div class="explain-card">
         <div class="explain-head">
@@ -2361,6 +2894,22 @@ h3 {
         </ul>
       </div>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">Flexion</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Quand une poutre plie, que se passe-t-il en haut ?</div>
+        <div class="cq-options with-icon"><button class="cq-opt" data-ok="false">📏 Le haut s’allonge</button><button class="cq-opt" data-ok="true" data-explain="✓ Bravo ! Le haut se raccourcit, le bas s’allonge, le milieu (fibre neutre) ne change pas.">📏 Le haut se raccourcit</button><button class="cq-opt" data-ok="false">📏 Le haut ne change pas</button><button class="cq-opt" data-ok="false">📏 Le haut se déchire</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S9B4 — TORSION ========== -->
@@ -2409,6 +2958,22 @@ h3 {
         </ul>
       </div>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">Torsion</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Serrer une vis avec un tournevis met la tige en :</div>
+        <div class="cq-options"><button class="cq-opt" data-ok="false">Traction</button><button class="cq-opt" data-ok="false">Compression</button><button class="cq-opt" data-ok="true" data-explain="✓ Oui ! Une extrémité tourne pendant que l’autre est bloquée : c’est de la torsion.">Torsion</button><button class="cq-opt" data-ok="false">Flexion</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S9B5 — CISAILLEMENT ========== -->
@@ -2457,6 +3022,25 @@ h3 {
         </ul>
       </div>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">⚖</div>
+        <div>
+          <div class="cq-tag">Vrai ou faux ?</div>
+          <div class="cq-title">Cisaillement</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Les ciseaux qui coupent du papier exercent du cisaillement.</div>
+        <div class="cq-options vf">
+          <button class="cq-opt" data-value="V" data-ok="true" data-explain="✓ Oui ! Deux forces parallèles décalées font glisser et trancher la matière.">✓ Vrai</button>
+          <button class="cq-opt" data-value="F" data-ok="false">✗ Faux</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S9E — DURETÉ ========== -->
@@ -2544,6 +3128,63 @@ h3 {
         </ul>
       </div>
     </div>
+
+    <div class="checkpoint-quiz">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Vérifie ta compréhension</div>
+          <div class="cq-title">Propriétés &amp; sollicitations · 4 questions</div>
+        </div>
+        <div class="cq-progress"><strong>0/4</strong></div>
+      </div>
+
+      <div class="cq-question">
+        <div class="cq-q"><span class="qnum">1</span>Tu tords un trombone et il reste tordu. Cette déformation est :</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">Élastique</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ Exact ! La déformation reste après la force : c'est plastique (= irréversible).">Plastique</button>
+          <button class="cq-opt" data-ok="false">Réversible</button>
+          <button class="cq-opt" data-ok="false">Fragile</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-question">
+        <div class="cq-q"><span class="qnum">2</span>Un pilier qui supporte un toit subit quelle sollicitation ?</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">Traction</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ Oui ! Le poids du toit comprime le pilier vers le bas : c'est de la compression.">Compression</button>
+          <button class="cq-opt" data-ok="false">Flexion</button>
+          <button class="cq-opt" data-ok="false">Cisaillement</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-question">
+        <div class="cq-q"><span class="qnum">3</span>Sur la courbe contrainte-déformation, le point Re représente :</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">La rupture du matériau</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ Re = limite élastique. Au-delà, on entre en zone plastique. C'est elle que les ingénieurs surveillent.">La limite élastique (au-delà : plasticité)</button>
+          <button class="cq-opt" data-ok="false">La résistance maximale</button>
+          <button class="cq-opt" data-ok="false">La dureté du matériau</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-question">
+        <div class="cq-q"><span class="qnum">4</span>Sur l'échelle de Mohs, quel matériau peut rayer le verre ?</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">L'ongle (dureté 2,5)</button>
+          <button class="cq-opt" data-ok="false">Le cuivre (dureté 3)</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ L'acier trempé (dureté 7) raye le verre (dureté 5). C'est pour ça que les forets sont en acier trempé.">L'acier trempé (dureté 7)</button>
+          <button class="cq-opt" data-ok="false">Le plâtre (dureté 2)</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-final"></div>
+    </div>
   </section>
 
   <!-- ========== S10 — CASQUE ========== -->
@@ -2579,6 +3220,41 @@ h3 {
         </div>
       </div>
     </div>
+
+    <div class="checkpoint-quiz">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Vérifie ta compréhension</div>
+          <div class="cq-title">Le casque vélo · 2 questions</div>
+        </div>
+        <div class="cq-progress"><strong>0/2</strong></div>
+      </div>
+
+      <div class="cq-question">
+        <div class="cq-q"><span class="qnum">1</span>Pourquoi un casque utilise deux matériaux différents ?</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">Pour faire joli</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ Oui ! Chaque matériau remplit une fonction : la coque résiste, la mousse absorbe.">Parce qu'aucun matériau seul ne remplit toutes les fonctions</button>
+          <button class="cq-opt" data-ok="false">Pour économiser du plastique</button>
+          <button class="cq-opt" data-ok="false">Pour qu'il soit plus lourd</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-question">
+        <div class="cq-q"><span class="qnum">2</span>Quel matériau absorbe le choc à l'intérieur du casque ?</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">L'ABS (la coque rigide)</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ L'EPS (polystyrène expansé) se déforme plastiquement en s'écrasant, ce qui absorbe l'énergie du choc.">L'EPS (polystyrène expansé)</button>
+          <button class="cq-opt" data-ok="false">La sangle en nylon</button>
+          <button class="cq-opt" data-ok="false">Le métal des fixations</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-final"></div>
+    </div>
   </section>
 
   <!-- ========== S11 — ENVIRONNEMENT ========== -->
@@ -2608,6 +3284,22 @@ h3 {
         <div class="label">d'énergie avec l'aluminium recyclé</div>
       </div>
     </div>
+    <div class="checkpoint-quiz mini">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Mini-défi</div>
+          <div class="cq-title">Environnement</div>
+        </div>
+      </div>
+      <div class="cq-question">
+        <div class="cq-q">Recycler 1 kg d’aluminium permet d’économiser environ :</div>
+        <div class="cq-options"><button class="cq-opt" data-ok="false">10 % d’énergie</button><button class="cq-opt" data-ok="false">30 % d’énergie</button><button class="cq-opt" data-ok="true" data-explain="✓ Excellent ! Le recyclage de l’aluminium est l’un des plus efficaces énergétiquement.">95 % d’énergie</button><button class="cq-opt" data-ok="false">0 % (autant qu’un neuf)</button></div>
+        <div class="cq-feedback"></div>
+      </div>
+      <div class="cq-final"></div>
+    </div>
+
   </section>
 
   <!-- ========== S11b — INDICE RÉPARABILITÉ ========== -->
@@ -2667,6 +3359,52 @@ h3 {
         </div>
       </div>
     </div>
+
+    <div class="checkpoint-quiz">
+      <div class="cq-header">
+        <div class="cq-ic">✓</div>
+        <div>
+          <div class="cq-tag">Vérifie ta compréhension</div>
+          <div class="cq-title">Environnement &amp; réparabilité · 3 questions</div>
+        </div>
+        <div class="cq-progress"><strong>0/3</strong></div>
+      </div>
+
+      <div class="cq-question">
+        <div class="cq-q"><span class="qnum">1</span>L'indice de réparabilité est une note sur :</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">5</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ /10. Plus la note est élevée, plus le produit est facile à réparer.">10</button>
+          <button class="cq-opt" data-ok="false">20</button>
+          <button class="cq-opt" data-ok="false">100</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-question">
+        <div class="cq-q"><span class="qnum">2</span>Recycler l'aluminium permet d'économiser environ :</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">10 % d'énergie</button>
+          <button class="cq-opt" data-ok="false">30 % d'énergie</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ Le recyclage de l'aluminium économise environ 95 % de l'énergie nécessaire à sa production neuve.">95 % d'énergie</button>
+          <button class="cq-opt" data-ok="false">0 % (autant qu'un neuf)</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-question">
+        <div class="cq-q"><span class="qnum">3</span>Combien de temps une bouteille en plastique met-elle à se dégrader dans la nature ?</div>
+        <div class="cq-options">
+          <button class="cq-opt" data-ok="false">10 ans</button>
+          <button class="cq-opt" data-ok="false">50 ans</button>
+          <button class="cq-opt" data-ok="true" data-explain="✓ Environ 450 ans ! C'est pour ça que le recyclage et la réduction des déchets sont essentiels.">450 ans environ</button>
+          <button class="cq-opt" data-ok="false">5000 ans</button>
+        </div>
+        <div class="cq-feedback"></div>
+      </div>
+
+      <div class="cq-final"></div>
+    </div>
   </section>
 
   <!-- ========== S12 — BILAN ========== -->
@@ -2723,8 +3461,64 @@ const navItems = document.querySelectorAll('.nav-item');
 const main = document.getElementById('main');
 const progFill = document.getElementById('progFill');
 
+// ============ SYSTÈME DE VERROUILLAGE DES SLIDES ============
+// Une slide qui contient un .checkpoint-quiz est un "checkpoint" : il faut le valider
+// pour débloquer la slide suivante. Une slide sans quiz se valide automatiquement.
+const slideOrder = Array.from(slides).map(s => s.id);
+const slideHasQuiz = {};
+const slideValidated = {};
+slideOrder.forEach(id => {
+  const s = document.getElementById(id);
+  const hasQuiz = s && s.querySelector('.checkpoint-quiz') !== null;
+  slideHasQuiz[id] = hasQuiz;
+  slideValidated[id] = !hasQuiz;
+});
+
+function refreshSlideLocks() {
+  let allOk = true;
+  slideOrder.forEach((id, i) => {
+    const slide = document.getElementById(id);
+    if (i === 0) {
+      slide.classList.remove('locked');
+    } else {
+      slide.classList.toggle('locked', !allOk);
+    }
+    const navItem = document.querySelector('.nav-item[data-target="' + id + '"]');
+    if (navItem) navItem.classList.toggle('locked', !allOk && i > 0);
+    if (!slideValidated[id]) allOk = false;
+  });
+}
+
+function markSlideValidated(slideId) {
+  if (!slideValidated[slideId]) {
+    slideValidated[slideId] = true;
+    refreshSlideLocks();
+  }
+}
+
+// Mode prof : Ctrl+Shift+U débloque tout (utile pour démo)
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && e.shiftKey && (e.key === 'U' || e.key === 'u')) {
+    e.preventDefault();
+    slideOrder.forEach(id => slideValidated[id] = true);
+    refreshSlideLocks();
+    console.log('🔓 Toutes les slides débloquées (mode prof)');
+  }
+});
+
 function goTo(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  const slide = document.getElementById(id);
+  if (slide.classList.contains('locked')) {
+    // Trouver la première slide encore à valider et y rediriger
+    for (const sid of slideOrder) {
+      if (!slideValidated[sid]) {
+        document.getElementById(sid).scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    return;
+  }
+  slide.scrollIntoView({ behavior: 'smooth' });
 }
 
 navItems.forEach(item => {
@@ -2758,7 +3552,22 @@ document.addEventListener('keydown', e => {
   });
   if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
     e.preventDefault();
-    if (best < ids.length - 1) goTo(ids[best + 1]);
+    if (best < ids.length - 1) {
+      const nextSlide = document.getElementById(ids[best + 1]);
+      // Si la slide suivante est verrouillée, on ne bouge pas
+      if (nextSlide && nextSlide.classList.contains('locked')) {
+        // Petit feedback visuel : faire trembler le quiz de la slide actuelle
+        const currentSlide = document.getElementById(ids[best]);
+        const quiz = currentSlide ? currentSlide.querySelector('.checkpoint-quiz') : null;
+        if (quiz) {
+          quiz.style.animation = 'shakeQ 0.4s';
+          setTimeout(() => quiz.style.animation = '', 400);
+          quiz.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+      goTo(ids[best + 1]);
+    }
   }
   if (e.key === 'ArrowUp' || e.key === 'PageUp') {
     e.preventDefault();
@@ -5493,6 +6302,81 @@ function replayCasque() {
   }
   loop();
 })();
+
+// ============ MINI-QUIZ CHECKPOINTS ============
+// Sur erreur : l'option choisie passe en rouge et se désactive, MAIS les autres restent
+// cliquables. La bonne réponse N'est JAMAIS révélée — l'élève doit relire le cours.
+document.querySelectorAll('.checkpoint-quiz').forEach(quiz => {
+  const questions = quiz.querySelectorAll('.cq-question');
+  const total = questions.length;
+  const progressEl = quiz.querySelector('.cq-progress strong');
+  const finalEl = quiz.querySelector('.cq-final');
+  let validated = 0;
+
+  questions.forEach(q => {
+    const opts = q.querySelectorAll('.cq-opt');
+    const fb = q.querySelector('.cq-feedback');
+    let firstTry = true;
+    opts.forEach(opt => {
+      opt.addEventListener('click', () => {
+        if (q.classList.contains('answered') || opt.disabled) return;
+        const ok = opt.dataset.ok === 'true';
+        if (ok) {
+          opt.classList.add('ok');
+          opts.forEach(o => o.disabled = true);
+          q.classList.add('answered', 'ok');
+          if (fb) {
+            const msg = opt.dataset.explain || (firstTry ? '✓ Bien joué, du premier coup !' : '✓ Bonne réponse, après recherche.');
+            fb.textContent = msg;
+            fb.classList.remove('ko');
+            fb.classList.add('show', 'ok');
+          }
+          validated++;
+          if (progressEl) progressEl.textContent = validated + '/' + total;
+          if (validated === total && finalEl) {
+            finalEl.innerHTML = '<strong>🎉 Chapitre validé !</strong>Toutes les notions sont acquises. La suite est débloquée.' +
+              '<button onclick="resetCheckpoint(this)">↻ Refaire</button>';
+            finalEl.classList.add('show');
+            // ✨ Débloquer la slide suivante
+            const owningSlide = quiz.closest('section.slide');
+            if (owningSlide && typeof markSlideValidated === 'function') {
+              markSlideValidated(owningSlide.id);
+            }
+          }
+        } else {
+          firstTry = false;
+          opt.classList.add('ko');
+          opt.disabled = true;
+          if (fb) {
+            fb.textContent = '✗ Faux. La réponse se trouve dans le cours juste au-dessus — relis et réessaie.';
+            fb.classList.remove('ok');
+            fb.classList.add('show', 'ko');
+          }
+        }
+      });
+    });
+  });
+});
+
+function resetCheckpoint(btn) {
+  const quiz = btn.closest('.checkpoint-quiz');
+  quiz.querySelectorAll('.cq-question').forEach(q => {
+    q.classList.remove('answered', 'ok', 'ko');
+    q.querySelectorAll('.cq-opt').forEach(o => {
+      o.disabled = false;
+      o.classList.remove('ok', 'ko');
+    });
+    const fb = q.querySelector('.cq-feedback');
+    if (fb) { fb.classList.remove('show', 'ok', 'ko'); fb.textContent = ''; }
+  });
+  const prog = quiz.querySelector('.cq-progress strong');
+  if (prog) prog.textContent = '0/' + quiz.querySelectorAll('.cq-question').length;
+  const finalEl = quiz.querySelector('.cq-final');
+  if (finalEl) finalEl.classList.remove('show');
+}
+
+// Initialiser les verrouillages au chargement
+refreshSlideLocks();
 </script>
 
 </body>
