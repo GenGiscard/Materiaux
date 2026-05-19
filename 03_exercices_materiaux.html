@@ -141,6 +141,7 @@ header {
   to { opacity: 1; transform: translateY(0); }
 }
 
+
 .act-header {
   margin-bottom: 28px;
 }
@@ -1108,6 +1109,287 @@ header {
   flex-wrap: wrap;
 }
 
+/* ====== EXERCICE COURBE ÉLASTICITÉ ====== */
+.curve-ex {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 22px;
+  margin-top: 18px;
+}
+.curve-ex-svg {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px;
+  position: sticky;
+  top: 90px;
+  height: fit-content;
+}
+.curve-ex-svg svg { display: block; width: 100%; height: auto; }
+.curve-zone-btn {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.curve-zone-btn:hover { opacity: 0.65; }
+.curve-zone-btn.target { fill: rgba(229,181,71,0.5); stroke: var(--warn); stroke-width: 3; }
+.curve-zone-btn.ok { fill: rgba(91,160,136,0.55); stroke: var(--green); stroke-width: 3; }
+.curve-zone-btn.ko { fill: rgba(217,83,79,0.45); stroke: var(--red); stroke-width: 3; }
+
+.curve-questions {
+  display: grid;
+  gap: 10px;
+}
+.curve-q {
+  background: var(--bg-card);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.curve-q:hover { background: var(--bg-card-hi); border-color: var(--line); }
+.curve-q.current { border-color: var(--warn); background: rgba(229,181,71,0.08); }
+.curve-q.done.ok { border-color: var(--green); background: rgba(91,160,136,0.08); }
+.curve-q.done.ko { border-color: var(--red); background: rgba(217,83,79,0.06); }
+.curve-q .q-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.curve-q .q-num .badge { color: var(--warn); font-weight: 700; }
+.curve-q.done.ok .q-num .badge { color: var(--green); }
+.curve-q.done.ko .q-num .badge { color: var(--red); }
+.curve-q .q-text {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* ====== EXERCICE CALCULS ====== */
+.calc-ex {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 22px;
+  margin-top: 18px;
+}
+@media (max-width: 900px) {
+  .calc-ex { grid-template-columns: 1fr; }
+  .curve-ex { grid-template-columns: 1fr; }
+  .curve-ex-svg { position: static; }
+}
+.calc-questions {
+  display: grid;
+  gap: 14px;
+}
+.calc-q {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 22px;
+  transition: all 0.15s;
+}
+.calc-q.done.ok { border-color: var(--green); background: rgba(91,160,136,0.05); }
+.calc-q.done.ko { border-color: var(--red); background: rgba(217,83,79,0.04); }
+.calc-q .q-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.calc-q .q-text {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.calc-q .q-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  background: var(--bg-soft);
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.calc-q .answer-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.calc-q input {
+  flex: 1;
+  min-width: 100px;
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 9px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: right;
+  color: var(--ink);
+}
+.calc-q input:focus { outline: 2px solid var(--copper); outline-offset: -1px; }
+.calc-q.done input { background: var(--bg-soft); }
+.calc-q .unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.calc-q .status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+}
+.calc-q.done.ok .status { color: var(--green); }
+.calc-q.done.ko .status { color: var(--red); }
+
+/* Calculatrice */
+.calculator {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  position: sticky;
+  top: 90px;
+  height: fit-content;
+}
+.calc-header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex; gap: 6px;
+}
+.calc-display {
+  background: var(--bg-soft);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: right;
+  min-height: 56px;
+  margin-bottom: 10px;
+  word-break: break-all;
+  display: flex; align-items: center; justify-content: flex-end;
+}
+.calc-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.calc-key {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  color: var(--ink);
+  transition: all 0.1s;
+}
+.calc-key:hover { background: var(--bg-card-hi); }
+.calc-key:active { transform: translateY(1px); }
+.calc-key.op { color: var(--copper); }
+.calc-key.eq { background: var(--copper); color: white; border-color: var(--copper); grid-column: span 2; }
+.calc-key.eq:hover { background: var(--copper-soft); }
+.calc-key.clear { color: var(--red); }
+
+/* ====== EXERCICE RECHERCHE INTERNET ====== */
+.search-intro {
+  background: rgba(46,106,142,0.08);
+  border-left: 4px solid var(--steel);
+  padding: 16px 20px;
+  border-radius: 0 10px 10px 0;
+  font-size: 14px;
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+.search-intro strong { color: var(--steel); }
+.search-questions {
+  display: grid;
+  gap: 16px;
+}
+.search-q {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px 26px;
+  transition: all 0.15s;
+}
+.search-q.done.ok { border-color: var(--green); background: rgba(91,160,136,0.04); }
+.search-q.done.ko { border-color: var(--red); background: rgba(217,83,79,0.03); }
+.search-q .sq-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.search-q .sq-num {
+  background: var(--steel);
+  color: white;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  flex-shrink: 0;
+}
+.search-q.done.ok .sq-num { background: var(--green); }
+.search-q .sq-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.search-q .sq-question {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.search-q .sq-question em { color: var(--steel); font-style: normal; font-weight: 600; }
+.search-q .sq-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.search-q input {
+  flex: 1;
+  min-width: 200px;
+  background: white;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 11px 16px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+}
+.search-q input:focus { outline: 2px solid var(--steel); outline-offset: -1px; }
+.search-q .sq-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+}
+.search-q.done.ok .sq-status { color: var(--green); }
+.search-q.done.ko .sq-status { color: var(--red); }
+
 /* ====== MEMORY ====== */
 .memory-info {
   display: flex;
@@ -1517,8 +1799,11 @@ header {
     <div class="step" data-act="2"><span class="step-num">03</span>Comparer</div>
     <div class="step" data-act="3"><span class="step-num">04</span>Choisir</div>
     <div class="step" data-act="4"><span class="step-num">05</span>Analyser</div>
+    <div class="step" data-act="5"><span class="step-num">06</span>Courbe</div>
+    <div class="step" data-act="6"><span class="step-num">07</span>Calculs</div>
+    <div class="step" data-act="7"><span class="step-num">08</span>Recherche</div>
     <div class="step-sep"></div>
-    <div class="step step-bonus" data-act="6"><span class="step-num">★</span>Jeux</div>
+    <div class="step step-bonus" data-act="8"><span class="step-num">★</span>Jeux</div>
   </div>
 </header>
 
@@ -1731,8 +2016,185 @@ header {
     </div>
   </div>
 
-  <!-- ========== JEUX BONUS ========== -->
+  <!-- ========== ACT 6 : COURBE D'ÉLASTICITÉ ========== -->
+  <div class="activity" data-id="5">
+    <div class="act-header">
+      <div class="act-tag">Activité 06 · Repère sur la courbe</div>
+      <h1>Identifier le comportement <br>sur la courbe σ-ε</h1>
+      <p class="desc">Pour chaque situation, clique sur la <strong>zone correspondante</strong> du graphique contrainte-déformation.</p>
+    </div>
+
+    <div class="curve-ex">
+      <div class="curve-ex-svg">
+        <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" id="curveSvg">
+          <!-- Axes -->
+          <line x1="50" y1="40" x2="50" y2="280" stroke="#4A5A6B" stroke-width="1.5"/>
+          <line x1="50" y1="280" x2="380" y2="280" stroke="#4A5A6B" stroke-width="1.5"/>
+          <text x="22" y="38" fill="#4A5A6B" font-family="JetBrains Mono" font-size="12">σ</text>
+          <text x="375" y="305" fill="#4A5A6B" font-family="JetBrains Mono" font-size="12">ε</text>
+          <text x="20" y="290" fill="#4A5A6B" font-family="JetBrains Mono" font-size="10">O</text>
+
+          <!-- Courbe -->
+          <path d="M 50 280 L 130 100 L 230 70 L 310 60 L 340 130" fill="none" stroke="#B85C2E" stroke-width="3"/>
+
+          <!-- Zones cliquables (rectangles transparents par-dessus) -->
+          <!-- Zone élastique : 50→130 sur X -->
+          <rect x="50" y="40" width="80" height="240" class="curve-zone-btn" data-zone="elastique" fill="rgba(184,92,46,0.05)" stroke="rgba(184,92,46,0.3)" stroke-width="1"/>
+          <text x="62" y="265" fill="#3D7E5F" font-family="JetBrains Mono" font-size="10" font-weight="600">Élastique</text>
+
+          <!-- Point Re -->
+          <circle cx="130" cy="100" r="14" class="curve-zone-btn" data-zone="re" fill="rgba(184,92,46,0.1)" stroke="rgba(184,92,46,0.4)" stroke-width="1"/>
+          <text x="115" y="92" fill="#1A2332" font-family="JetBrains Mono" font-size="11" font-weight="700">Re</text>
+
+          <!-- Zone plastique : 130→310 -->
+          <rect x="130" y="40" width="180" height="240" class="curve-zone-btn" data-zone="plastique" fill="rgba(201,147,30,0.05)" stroke="rgba(201,147,30,0.3)" stroke-width="1"/>
+          <text x="200" y="265" fill="#C9931E" font-family="JetBrains Mono" font-size="10" font-weight="600">Plastique</text>
+
+          <!-- Point Rm -->
+          <circle cx="310" cy="60" r="14" class="curve-zone-btn" data-zone="rm" fill="rgba(184,92,46,0.1)" stroke="rgba(184,92,46,0.4)" stroke-width="1"/>
+          <text x="294" y="55" fill="#1A2332" font-family="JetBrains Mono" font-size="11" font-weight="700">Rm</text>
+
+          <!-- Point rupture -->
+          <circle cx="340" cy="130" r="14" class="curve-zone-btn" data-zone="rupture" fill="rgba(217,83,79,0.1)" stroke="rgba(217,83,79,0.4)" stroke-width="1"/>
+          <text x="345" y="135" fill="#D9534F" font-family="JetBrains Mono" font-size="11" font-weight="700">✗</text>
+
+          <!-- Point Origine -->
+          <circle cx="50" cy="280" r="14" class="curve-zone-btn" data-zone="origine" fill="rgba(74,90,107,0.1)" stroke="rgba(74,90,107,0.4)" stroke-width="1"/>
+        </svg>
+        <div style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:0.15em;text-transform:uppercase;margin-top:8px">Clique sur la zone qui correspond</div>
+      </div>
+
+      <div class="curve-questions" id="curveQuestions"></div>
+    </div>
+
+    <div class="nav-bottom">
+      <button class="btn btn-ghost" onclick="goAct(3)">← Précédent</button>
+      <button class="btn" onclick="checkAct6()">Vérifier mes réponses</button>
+    </div>
+  </div>
+
+  <!-- ========== ACT 7 : CALCULS ========== -->
   <div class="activity" data-id="6">
+    <div class="act-header">
+      <div class="act-tag">Activité 07 · Calculs sur les matériaux</div>
+      <h1>Mets en pratique <br>avec des calculs</h1>
+      <p class="desc">Utilise la <strong>calculatrice à droite</strong> pour résoudre les 5 calculs. Tape ta réponse dans le champ.</p>
+    </div>
+
+    <div class="calc-ex">
+      <div class="calc-questions" id="calcQuestions"></div>
+      <div class="calculator">
+        <div class="calc-header">🧮 Calculatrice</div>
+        <div class="calc-display" id="calcDisplay">0</div>
+        <div class="calc-keys" id="calcKeys">
+          <button class="calc-key clear" data-k="C">C</button>
+          <button class="calc-key" data-k="(">(</button>
+          <button class="calc-key" data-k=")">)</button>
+          <button class="calc-key op" data-k="/">÷</button>
+          <button class="calc-key" data-k="7">7</button>
+          <button class="calc-key" data-k="8">8</button>
+          <button class="calc-key" data-k="9">9</button>
+          <button class="calc-key op" data-k="*">×</button>
+          <button class="calc-key" data-k="4">4</button>
+          <button class="calc-key" data-k="5">5</button>
+          <button class="calc-key" data-k="6">6</button>
+          <button class="calc-key op" data-k="-">−</button>
+          <button class="calc-key" data-k="1">1</button>
+          <button class="calc-key" data-k="2">2</button>
+          <button class="calc-key" data-k="3">3</button>
+          <button class="calc-key op" data-k="+">+</button>
+          <button class="calc-key" data-k="0">0</button>
+          <button class="calc-key" data-k=".">,</button>
+          <button class="calc-key eq" data-k="=">=</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-bottom">
+      <button class="btn btn-ghost" onclick="goAct(4)">← Précédent</button>
+      <button class="btn" onclick="checkAct7()">Vérifier mes calculs</button>
+    </div>
+  </div>
+
+  <!-- ========== ACT 8 : RECHERCHE INTERNET ========== -->
+  <div class="activity" data-id="7">
+    <div class="act-header">
+      <div class="act-tag">Activité 08 · Recherche sur Internet</div>
+      <h1>Mène l'enquête <br>en ligne</h1>
+      <p class="desc">Trois mots clés du vocabulaire technologique à découvrir. <strong>Cherche sur Internet</strong> et tape la bonne réponse.</p>
+    </div>
+
+    <div class="search-intro">
+      <strong>Comment chercher ?</strong> Ouvre un nouvel onglet et utilise un moteur de recherche (Google, Qwant, Lilo…). Tape les mots clés de la question et lis le premier résultat fiable.
+    </div>
+
+    <div class="search-questions">
+      <div class="search-q" data-sq="1" data-answer="masse volumique">
+        <div class="sq-head">
+          <div class="sq-num">1</div>
+          <div>
+            <div class="sq-tag">Mot à trouver · 3 mots</div>
+            <div style="font-size:15px;font-weight:600;color:var(--ink)">Quelle grandeur ?</div>
+          </div>
+        </div>
+        <div class="sq-question">
+          Comment appelle-t-on la grandeur qui mesure <em>combien pèse 1 cm³ d'un matériau</em> ? Elle s'exprime en g/cm³ ou kg/m³.
+          <br><br>
+          <em>Cherche sur Internet : "g/cm³ matériau grandeur"</em>
+        </div>
+        <div class="sq-row">
+          <input type="text" placeholder="Tape la réponse ici..." autocomplete="off">
+          <span class="sq-status"></span>
+        </div>
+      </div>
+
+      <div class="search-q" data-sq="2" data-answer="mohs">
+        <div class="sq-head">
+          <div class="sq-num">2</div>
+          <div>
+            <div class="sq-tag">Mot à trouver · 1 mot</div>
+            <div style="font-size:15px;font-weight:600;color:var(--ink)">Une échelle de dureté</div>
+          </div>
+        </div>
+        <div class="sq-question">
+          Quelle échelle de dureté, inventée par un minéralogiste allemand au début du XIXe siècle, classe les minéraux de <em>1 (talc) à 10 (diamant)</em> ?
+          <br><br>
+          <em>Cherche sur Internet : "échelle dureté minéraux 1 à 10"</em>
+        </div>
+        <div class="sq-row">
+          <input type="text" placeholder="Tape le nom de l'échelle..." autocomplete="off">
+          <span class="sq-status"></span>
+        </div>
+      </div>
+
+      <div class="search-q" data-sq="3" data-answer="rockwell">
+        <div class="sq-head">
+          <div class="sq-num">3</div>
+          <div>
+            <div class="sq-tag">Mot à trouver · 1 nom</div>
+            <div style="font-size:15px;font-weight:600;color:var(--ink)">Un autre test industriel</div>
+          </div>
+        </div>
+        <div class="sq-question">
+          Comment s'appelle le test de dureté industriel, du nom de son inventeur américain, qui consiste à <em>enfoncer une bille ou un cône dans le matériau et à mesurer la profondeur de l'empreinte</em> ?
+          <br><br>
+          <em>Cherche sur Internet : "test dureté bille empreinte industriel"</em>
+        </div>
+        <div class="sq-row">
+          <input type="text" placeholder="Tape le nom du test..." autocomplete="off">
+          <span class="sq-status"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-bottom">
+      <button class="btn btn-ghost" onclick="goAct(5)">← Précédent</button>
+      <button class="btn" onclick="checkAct8()">Vérifier mes recherches</button>
+    </div>
+  </div>
+
+  <!-- ========== JEUX BONUS ========== -->
+  <div class="activity" data-id="8">
     <div class="act-header">
       <div class="act-tag" style="color:var(--warn)">★ Jeux bonus · non notés</div>
       <h1>S'entraîner en s'amusant</h1>
@@ -2127,12 +2589,12 @@ const cases = [
 
 // ============ STATE ============
 let currentAct = 0;
-const scores = [0, 0, 0, 0, 0];
-const maxScores = [4, 4, 3, 5, 4];
-const checked = [false, false, false, false, false];
-// Verrouillage : seule l'acti 1 (index 0) est débloquée au départ
-const unlocked = [true, false, false, false, false, false, false];
-const REQUIRED_PCT = 0.8; // 80% pour débloquer la suivante
+const scores = [0, 0, 0, 0, 0, 0, 0, 0];
+const maxScores = [4, 4, 3, 5, 4, 4, 5, 3];
+const checked = [false, false, false, false, false, false, false, false];
+// 0-7 = activités notées, 8 = jeux
+const unlocked = [true, false, false, false, false, false, false, false, false];
+const REQUIRED_PCT = 0.8;
 
 function updateScoreDisplay() {
   // Steps
@@ -2206,21 +2668,16 @@ function handleActResult(actId, scoreObtained, maxScore, nextLabel) {
   if (success) {
     // Débloquer la suivante
     unlocked[actId + 1] = true;
-    // Si on vient de finir l'activité 5 (index 4) → débloquer aussi les jeux
-    if (actId === 4) {
-      unlocked[6] = true;
-    }
     const sb = ensureSuccess(actId);
     sb.querySelector('.msg').innerHTML =
       '<strong>Bravo !</strong> ' + Math.round(pct * 100) + '% de réussite. ' +
-      (actId < 4 ? 'Tu passes à <strong>' + nextLabel + '</strong> dans un instant…' :
+      (actId < 7 ? 'Tu passes à <strong>' + nextLabel + '</strong> dans un instant…' :
        'Tu as terminé toutes les activités. Place aux <strong>jeux bonus</strong> !');
     sb.classList.add('show');
     updateScoreDisplay();
     setTimeout(() => {
       sb.classList.remove('show');
-      // Aller direct aux jeux après l'activité 5
-      goAct(actId === 4 ? 6 : actId + 1);
+      goAct(actId + 1);
     }, 2200);
   } else {
     const rb = ensureBanner(actId);
@@ -2536,7 +2993,7 @@ function checkAct5() {
 
   scores[4] = Math.round(pts * 10) / 10;
   checked[4] = true;
-  handleActResult(4, scores[4], maxScores[4], 'Jeux');
+  handleActResult(4, scores[4], maxScores[4], 'Courbe');
 }
 
 function resetAll() {
@@ -3446,11 +3903,272 @@ document.getElementById('hardCheck').addEventListener('click', () => {
 
 document.getElementById('hardReset').addEventListener('click', buildHardness);
 
+// ============ ACT 6 : COURBE D'ÉLASTICITÉ ============
+const curveExQuestions = [
+  { txt: 'La pièce est <strong>au repos</strong>, aucune force ne lui est encore appliquée.', zone: 'origine' },
+  { txt: 'On tire dessus, la pièce s\'allonge, et si on relâche elle <strong>revient à sa forme initiale</strong>.', zone: 'elastique' },
+  { txt: 'C\'est la <strong>limite à ne pas dépasser</strong> pour que la pièce reste réutilisable.', zone: 're' },
+  { txt: 'La pièce s\'est <strong>déformée définitivement</strong> et ne reprendra plus sa forme.', zone: 'plastique' },
+  { txt: 'La pièce subit la <strong>force maximale</strong> qu\'elle peut supporter avant de rompre.', zone: 'rm' },
+  { txt: 'La pièce vient de <strong>casser</strong>, elle est désormais en deux morceaux.', zone: 'rupture' }
+];
+let curveExCurrent = 0;
+let curveExAnswers = []; // index → 'ok'|'ko'|null
+
+function buildCurveEx() {
+  // Mélanger les questions
+  const shuffled = [...curveExQuestions].sort(() => Math.random() - 0.5);
+  curveExQuestions.length = 0;
+  curveExQuestions.push(...shuffled);
+  curveExAnswers = Array(curveExQuestions.length).fill(null);
+  curveExCurrent = 0;
+  renderCurveQuestions();
+  setupCurveSvg();
+}
+
+function renderCurveQuestions() {
+  const wrap = document.getElementById('curveQuestions');
+  if (!wrap) return;
+  wrap.innerHTML = curveExQuestions.map((q, i) => {
+    const status = curveExAnswers[i];
+    const cls = i === curveExCurrent ? 'current' :
+                status === 'ok' ? 'done ok' :
+                status === 'ko' ? 'done ko' : '';
+    const badge = i === curveExCurrent ? '◉ À placer' :
+                  status === 'ok' ? '✓ Bien placé' :
+                  status === 'ko' ? '✗ Mauvaise zone' : '— En attente';
+    return '<div class="curve-q ' + cls + '" data-i="' + i + '">' +
+      '<div class="q-num"><span class="badge">' + badge + '</span> · Situation ' + (i + 1) + '</div>' +
+      '<div class="q-text">' + q.txt + '</div>' +
+    '</div>';
+  }).join('');
+  wrap.querySelectorAll('.curve-q').forEach(el => {
+    el.addEventListener('click', () => {
+      const i = parseInt(el.dataset.i);
+      if (curveExAnswers[i] === null) {
+        curveExCurrent = i;
+        renderCurveQuestions();
+      }
+    });
+  });
+}
+
+function setupCurveSvg() {
+  document.querySelectorAll('#curveSvg .curve-zone-btn').forEach(el => {
+    el.addEventListener('click', () => {
+      const zone = el.dataset.zone;
+      const q = curveExQuestions[curveExCurrent];
+      if (!q || curveExAnswers[curveExCurrent] !== null) return;
+      if (zone === q.zone) {
+        curveExAnswers[curveExCurrent] = 'ok';
+      } else {
+        curveExAnswers[curveExCurrent] = 'ko';
+      }
+      // Trouver la prochaine question non répondue
+      const nextIdx = curveExAnswers.findIndex(a => a === null);
+      if (nextIdx !== -1) curveExCurrent = nextIdx;
+      renderCurveQuestions();
+    });
+  });
+}
+
+function checkAct6() {
+  if (curveExAnswers.some(a => a === null)) {
+    alert('Tu dois placer toutes les situations sur la courbe avant de vérifier.');
+    return;
+  }
+  const correct = curveExAnswers.filter(a => a === 'ok').length;
+  scores[5] = Math.round((correct / curveExQuestions.length) * maxScores[5] * 10) / 10;
+  checked[5] = true;
+  handleActResult(5, scores[5], maxScores[5], 'Calculs');
+}
+
+function resetCurveEx() {
+  curveExAnswers = Array(curveExQuestions.length).fill(null);
+  curveExCurrent = 0;
+  renderCurveQuestions();
+}
+
+// ============ ACT 7 : CALCULS AVEC CALCULATRICE ============
+const calcQuestions = [
+  {
+    txt: 'Une pièce d\'aluminium a un volume de <strong>200 cm³</strong>. Sa masse volumique est de <strong>2,7 g/cm³</strong>. Quelle est sa masse ?',
+    hint: 'm = V × ρ',
+    unit: 'g',
+    answer: 540, tolerance: 2
+  },
+  {
+    txt: 'Une vis subit une traction de <strong>1000 N</strong>. Sa section est de <strong>25 mm²</strong>. Calcule la contrainte σ en MPa.',
+    hint: 'σ = F / S · 1 MPa = 1 N/mm²',
+    unit: 'MPa',
+    answer: 40, tolerance: 1
+  },
+  {
+    txt: 'Une éprouvette mesurait <strong>100 mm</strong> au départ. Après traction, elle mesure <strong>102 mm</strong>. Quel est son pourcentage d\'allongement ?',
+    hint: '% = (longueur finale − longueur initiale) / longueur initiale × 100',
+    unit: '%',
+    answer: 2, tolerance: 0.2
+  },
+  {
+    txt: 'Fabriquer 1 kg d\'aluminium neuf consomme <strong>200 kWh</strong>. Recycler 1 kg d\'aluminium n\'en consomme que <strong>10 kWh</strong>. Quel pourcentage d\'énergie est économisé ?',
+    hint: 'économie % = (neuf − recyclé) / neuf × 100',
+    unit: '%',
+    answer: 95, tolerance: 1
+  },
+  {
+    txt: 'Une plaque rectangulaire de cuivre mesure <strong>30 cm × 20 cm × 0,5 cm</strong>. Sachant que la masse volumique du cuivre est de <strong>8,9 g/cm³</strong>, quelle est la masse de la plaque ?',
+    hint: 'V = L × l × e, puis m = V × ρ',
+    unit: 'g',
+    answer: 2670, tolerance: 10
+  }
+];
+let calcAnswers = [];
+
+function buildCalcEx() {
+  calcAnswers = Array(calcQuestions.length).fill(null);
+  const wrap = document.getElementById('calcQuestions');
+  if (!wrap) return;
+  wrap.innerHTML = calcQuestions.map((q, i) =>
+    '<div class="calc-q" data-i="' + i + '">' +
+      '<div class="q-num">Calcul ' + (i + 1) + ' / ' + calcQuestions.length + '</div>' +
+      '<div class="q-text">' + q.txt + '</div>' +
+      '<div class="q-hint">💡 ' + q.hint + '</div>' +
+      '<div class="answer-row">' +
+        '<input type="number" step="any" placeholder="…" data-i="' + i + '">' +
+        '<span class="unit">' + q.unit + '</span>' +
+        '<span class="status"></span>' +
+      '</div>' +
+    '</div>'
+  ).join('');
+  wrap.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('input', e => {
+      const i = parseInt(inp.dataset.i);
+      calcAnswers[i] = inp.value === '' ? null : parseFloat(inp.value);
+    });
+  });
+}
+
+function checkAct7() {
+  if (calcAnswers.some(a => a === null || isNaN(a))) {
+    alert('Tu dois répondre à tous les calculs avant de vérifier.');
+    return;
+  }
+  let correct = 0;
+  calcQuestions.forEach((q, i) => {
+    const card = document.querySelector('.calc-q[data-i="' + i + '"]');
+    const status = card.querySelector('.status');
+    const ok = Math.abs(calcAnswers[i] - q.answer) <= q.tolerance;
+    card.classList.remove('done', 'ok', 'ko');
+    card.classList.add('done', ok ? 'ok' : 'ko');
+    status.textContent = ok ? '✓ Correct' : '✗ Réponse attendue : ' + q.answer + ' ' + q.unit;
+    if (ok) correct++;
+  });
+  scores[6] = Math.round((correct / calcQuestions.length) * maxScores[6] * 10) / 10;
+  checked[6] = true;
+  handleActResult(6, scores[6], maxScores[6], 'Recherche');
+}
+
+// Calculatrice
+let calcBuffer = '';
+function setupCalculator() {
+  const disp = document.getElementById('calcDisplay');
+  if (!disp) return;
+  document.querySelectorAll('#calcKeys .calc-key').forEach(b => {
+    b.addEventListener('click', () => {
+      const k = b.dataset.k;
+      if (k === 'C') { calcBuffer = ''; disp.textContent = '0'; return; }
+      if (k === '=') {
+        try {
+          const clean = calcBuffer.replace(/,/g, '.').replace(/[^0-9+\-*/().]/g, '');
+          if (!clean) return;
+          const r = Function('"use strict";return (' + clean + ')')();
+          if (isFinite(r)) {
+            const rounded = Math.round(r * 10000) / 10000;
+            disp.textContent = String(rounded);
+            calcBuffer = String(rounded);
+          } else {
+            disp.textContent = 'Erreur'; calcBuffer = '';
+          }
+        } catch (e) {
+          disp.textContent = 'Erreur'; calcBuffer = '';
+        }
+        return;
+      }
+      calcBuffer += k;
+      disp.textContent = calcBuffer.replace(/\*/g, '×').replace(/\//g, '÷').replace(/-/g, '−');
+    });
+  });
+}
+
+// ============ ACT 8 : RECHERCHE INTERNET ============
+function normalize(s) {
+  return (s || '').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // retirer accents
+    .replace(/[^a-z0-9 ]/g, '') // garder lettres, chiffres et espaces
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function checkAct8() {
+  const cards = document.querySelectorAll('.search-q');
+  let correct = 0;
+  let allFilled = true;
+  cards.forEach(card => {
+    const input = card.querySelector('input');
+    const status = card.querySelector('.sq-status');
+    const expected = normalize(card.dataset.answer);
+    const got = normalize(input.value);
+    if (!got) { allFilled = false; return; }
+    const ok = got === expected || got.includes(expected) || expected.includes(got);
+    card.classList.remove('done', 'ok', 'ko');
+    card.classList.add('done', ok ? 'ok' : 'ko');
+    status.textContent = ok ? '✓ Trouvé !' : '✗ Pas tout à fait — vérifie l\'orthographe';
+    if (ok) correct++;
+  });
+  if (!allFilled) {
+    alert('Tu dois répondre aux 3 recherches avant de vérifier.');
+    return;
+  }
+  scores[7] = Math.round((correct / cards.length) * maxScores[7] * 10) / 10;
+  checked[7] = true;
+  handleActResult(7, scores[7], maxScores[7], 'Jeux');
+}
+
+// Update resetActivity pour gérer 6, 7, 8
+const _origResetActivity = resetActivity;
+resetActivity = function(actId) {
+  if (actId === 5) {
+    resetCurveEx();
+  } else if (actId === 6) {
+    buildCalcEx();
+  } else if (actId === 7) {
+    document.querySelectorAll('.search-q').forEach(card => {
+      card.classList.remove('done', 'ok', 'ko');
+      const inp = card.querySelector('input');
+      if (inp) inp.value = '';
+      const st = card.querySelector('.sq-status');
+      if (st) st.textContent = '';
+    });
+    scores[7] = 0;
+    checked[7] = false;
+  } else {
+    _origResetActivity(actId);
+    return;
+  }
+  scores[actId] = 0;
+  checked[actId] = false;
+  updateScoreDisplay();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
 // ============ INIT ============
 initAct1();
 initAct2();
 initAct3();
 initAct4();
+buildCurveEx();
+buildCalcEx();
+setupCalculator();
 buildMemory();
 initSim();
 initCmp();
