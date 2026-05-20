@@ -932,17 +932,21 @@ const allQuestions = [
     correct: 'top'
   },
   {
-    type: 'click', typeLabel: 'Schéma', pts: 1,
-    txt: 'Sur cette courbe contrainte-déformation, clique sur le point Re (limite élastique).',
-    hint: 'C\'est le point où on passe de l\'élastique au plastique',
-    svgFn: 'curve_zones',
-    zones: [
-      { id: 'origin', label: 'O' },
-      { id: 're', label: 'Re' },
-      { id: 'rm', label: 'Rm' },
-      { id: 'rupt', label: 'rupture' }
+    type: 'drag_match', typeLabel: 'Associer', pts: 1,
+    txt: 'Associe chaque comportement d\'une pièce à sa zone sur la courbe contrainte-déformation (glisse les étiquettes).',
+    sources: [
+      { id: 'a', label: 'La pièce s\'allonge puis revient à sa forme' },
+      { id: 'b', label: 'La pièce reste déformée définitivement' },
+      { id: 'c', label: 'La pièce subit la force maximale avant de casser' },
+      { id: 'd', label: 'La pièce se sépare en deux morceaux' }
     ],
-    correct: 're'
+    targets: [
+      { id: 't1', label: 'Zone élastique' },
+      { id: 't2', label: 'Zone plastique' },
+      { id: 't3', label: 'Résistance maximale (Rm)' },
+      { id: 't4', label: 'Point de rupture' }
+    ],
+    answers: { a: 't1', b: 't2', c: 't3', d: 't4' }
   },
   {
     type: 'click', typeLabel: 'Schéma', pts: 1,
