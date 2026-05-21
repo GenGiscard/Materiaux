@@ -4149,10 +4149,11 @@ function renderCurveQuestions() {
   if (!wrap) return;
   wrap.innerHTML = curveExQuestions.map((q, i) => {
     const status = curveExAnswers[i];
-    const cls = i === curveExCurrent ? 'current' :
+    const isCurrent = (i === curveExCurrent && status === null);
+    const cls = isCurrent ? 'current' :
                 status === 'ok' ? 'done ok' :
                 status === 'ko' ? 'done ko' : '';
-    const badge = i === curveExCurrent ? '◉ À placer' :
+    const badge = isCurrent ? '◉ À placer' :
                   status === 'ok' ? '✓ Bien placé' :
                   status === 'ko' ? '✗ Mauvaise zone' : '— En attente';
     return '<div class="curve-q ' + cls + '" data-i="' + i + '">' +
@@ -4182,9 +4183,9 @@ function setupCurveSvg() {
       } else {
         curveExAnswers[curveExCurrent] = 'ko';
       }
-      // Trouver la prochaine question non répondue
+      // Trouver la prochaine question non répondue (-1 = tout est répondu)
       const nextIdx = curveExAnswers.findIndex(a => a === null);
-      if (nextIdx !== -1) curveExCurrent = nextIdx;
+      curveExCurrent = nextIdx; // -1 si plus aucune à placer
       renderCurveQuestions();
     });
   });
