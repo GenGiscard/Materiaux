@@ -881,7 +881,7 @@ header {
   gap: 10px;
 }
 .mystery-hint {
-  background: white;
+  background: var(--bg-card-hi);
   border-left: 3px solid var(--copper);
   border-radius: 0 8px 8px 0;
   padding: 12px 16px;
@@ -1054,7 +1054,7 @@ header {
   border-radius: 10px;
 }
 .hardness-item {
-  background: white;
+  background: var(--bg-card-hi);
   border: 2px solid transparent;
   border-radius: 10px;
   padding: 14px 16px;
@@ -1226,7 +1226,7 @@ header {
 .calc-q input {
   flex: 1;
   min-width: 100px;
-  background: white;
+  background: var(--bg-card-hi);
   border: 2px solid var(--line);
   border-radius: 6px;
   padding: 9px 14px;
@@ -1236,8 +1236,9 @@ header {
   text-align: right;
   color: var(--ink);
 }
+.calc-q input::placeholder { color: var(--ink-mute); }
 .calc-q input:focus { outline: 2px solid var(--copper); outline-offset: -1px; }
-.calc-q.done input { background: var(--bg-soft); }
+.calc-q.done input { background: var(--bg-card); }
 .calc-q .unit {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 600;
@@ -1373,7 +1374,7 @@ header {
 .search-q input {
   flex: 1;
   min-width: 200px;
-  background: white;
+  background: var(--bg-card-hi);
   border: 2px solid var(--line);
   border-radius: 6px;
   padding: 11px 16px;
@@ -1381,6 +1382,7 @@ header {
   font-size: 15px;
   color: var(--ink);
 }
+.search-q input::placeholder { color: var(--ink-mute); }
 .search-q input:focus { outline: 2px solid var(--steel); outline-offset: -1px; }
 .search-q .sq-status {
   font-family: 'JetBrains Mono', monospace;
@@ -4187,11 +4189,16 @@ function setupCurveSvg() {
       const nextIdx = curveExAnswers.findIndex(a => a === null);
       curveExCurrent = nextIdx; // -1 si plus aucune à placer
       renderCurveQuestions();
+      // Si tout est placé, valider automatiquement après un court instant
+      if (nextIdx === -1) {
+        setTimeout(checkAct6, 700);
+      }
     });
   });
 }
 
 function checkAct6() {
+  if (checked[5]) return; // déjà validé (évite le double-déclenchement auto + manuel)
   if (curveExAnswers.some(a => a === null)) {
     alert('Tu dois placer toutes les situations sur la courbe avant de vérifier.');
     return;
